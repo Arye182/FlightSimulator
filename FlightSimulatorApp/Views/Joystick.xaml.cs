@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace FlightSimulatorApp
+namespace FlightSimulatorApp.Views
 {
     public partial class Joystick : UserControl
     {

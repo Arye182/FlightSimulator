@@ -5,10 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FlightSimulatorApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <TextBox HorizontalAlignment="Left" Height="71" Margin="30,48,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="220"/>
-        <local:Joystick HorizontalAlignment="Left" Height="100" Margin="420,40,0,0" VerticalAlignment="Top" Width="100"/>
+        Title="MainWindow" Height="900" Width="1000">
+    <Grid Margin="0,-28,0,-3">
+        <Viewbox HorizontalAlignment="Left" Height="55" Margin="838,595,0,0" VerticalAlignment="Top" Width="65"/>
+        <Slider HorizontalAlignment="Left" Margin="608,840,0,0" VerticalAlignment="Top" Height="20" Width="313"/>
+        <Slider HorizontalAlignment="Left" Margin="395,624,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.402" Width="273" Height="46">
+            <Slider.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="89.741"/>
+                    <TranslateTransform X="4.508" Y="4.488"/>
+                </TransformGroup>
+            </Slider.RenderTransform>
+        </Slider>
 
     </Grid>
 </Window>

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace FlightSimulatorApp
 {
     /// <summary>
@@ -23,6 +24,16 @@ namespace FlightSimulatorApp
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void InitializeComponent()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Joystick_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
