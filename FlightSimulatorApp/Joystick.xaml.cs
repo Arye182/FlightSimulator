@@ -17,7 +17,7 @@ namespace FlightSimulatorApp
 
         private void centerKnob_Completed(object sender, EventArgs e)
         {
-
+            //lalal
         }
     }
 
