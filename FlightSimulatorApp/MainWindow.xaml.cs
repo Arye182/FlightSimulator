@@ -26,12 +26,27 @@ namespace FlightSimulatorApp
             InitializeComponent();
         }
 
-        private void InitializeComponent()
+        private void Joystick_Loaded(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+
         }
 
-        private void Joystick_Loaded(object sender, RoutedEventArgs e)
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+        }
+
+        private void Throttle_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+        }
+
+        private void Joystick_Loaded_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Joystick_Loaded_2(object sender, RoutedEventArgs e)
         {
 
         }

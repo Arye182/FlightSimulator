@@ -19,6 +19,16 @@ namespace FlightSimulatorApp.Views
         {
             //lalal
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void Slider_ValueChanged(object sender, System.Windows.RoutedPropertyChangedEventArgs<double> e)
+        {
+
+        }
     }
 
 }

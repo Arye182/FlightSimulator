@@ -3,22 +3,31 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FlightSimulatorApp"
+        xmlns:views="clr-namespace:FlightSimulatorApp.Views"
+        xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="900" Width="1000">
-    <Grid Margin="0,-28,0,-3">
-        <Viewbox HorizontalAlignment="Left" Height="55" Margin="838,595,0,0" VerticalAlignment="Top" Width="65"/>
-        <Slider HorizontalAlignment="Left" Margin="608,840,0,0" VerticalAlignment="Top" Height="20" Width="313"/>
-        <Slider HorizontalAlignment="Left" Margin="395,624,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.402" Width="273" Height="46">
-            <Slider.RenderTransform>
+        Title="Flight Simulator App" Height="800" Width="1400">
+    <Grid Background="#FF80ABCF" RenderTransformOrigin="0.496,0.502">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="83*"/>
+            <ColumnDefinition Width="912*"/>
+        </Grid.ColumnDefinitions>
+        <Viewbox HorizontalAlignment="Left" Height="55" Margin="750,595,0,0" VerticalAlignment="Top" Width="66" Grid.Column="2"/>
+        <views:Joystick Grid.Column="2" Margin="684.464,234,-102.464,-36" Loaded="Joystick_Loaded_2"></views:Joystick>
+        <m:Map CredentialsProvider="0lorjGXdhAaoxKgm8ZCp~3iC811-s_dKqVi3oSUbISA~Aidta9Kv4580M0wRbDmjoWHM1I9mUw6JjmcT43tiNvyrUeAFDXmF9SIf4JLQ6pAu" Grid.ColumnSpan="3" Margin="0,0,507.536,0"/>
+        <Viewbox Grid.Column="1" HorizontalAlignment="Left" Height="100" Margin="44,358,0,0" VerticalAlignment="Top" Width="100" Grid.ColumnSpan="2"/>
+        <GridSplitter Grid.Column="2" HorizontalAlignment="Left" Height="769" Margin="750,0,0,0" VerticalAlignment="Top" Width="4"/>
+        <GridSplitter Grid.Column="2" HorizontalAlignment="Left" Height="518" Margin="1010,48,0,0" VerticalAlignment="Top" Width="3" RenderTransformOrigin="0.5,0.5">
+            <GridSplitter.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
                     <SkewTransform/>
-                    <RotateTransform Angle="89.741"/>
-                    <TranslateTransform X="4.508" Y="4.488"/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
                 </TransformGroup>
-            </Slider.RenderTransform>
-        </Slider>
+            </GridSplitter.RenderTransform>
+        </GridSplitter>
 
     </Grid>
 </Window>
