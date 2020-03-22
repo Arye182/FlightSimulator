@@ -136,8 +136,8 @@
       </Canvas>
       <Viewbox Height="100" Canvas.Left="128" Canvas.Top="229" Width="100"/>
     </Canvas>
-    <Slider HorizontalAlignment="Left" Margin="196,472,0,0" VerticalAlignment="Top" Width="298" Background="#FF162EC5" Foreground="#FFE5E5E5" ValueChanged="Slider_ValueChanged"/>
-    <Slider HorizontalAlignment="Left" Margin="-5,276,0,0" VerticalAlignment="Top" Height="20" Width="298" RenderTransformOrigin="0.5,0.5" Background="#FF162EC5">
+    <Slider x:Name="Ailron" HorizontalAlignment="Left" Margin="196,472,0,0" VerticalAlignment="Top" Width="298" Background="#FF162EC5" Foreground="#FFE5E5E5" ValueChanged="Slider_ValueChanged"/>
+    <Slider x:Name="Throttle" HorizontalAlignment="Left" Margin="-5,276,0,0" VerticalAlignment="Top" Height="20" Width="298" RenderTransformOrigin="0.5,0.5" Background="#FF162EC5" ValueChanged="Slider_ValueChanged_1">
       <Slider.RenderTransform>
         <TransformGroup>
           <ScaleTransform/>

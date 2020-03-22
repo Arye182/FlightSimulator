@@ -6,7 +6,7 @@
         xmlns:views="clr-namespace:FlightSimulatorApp.Views"
         xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
         mc:Ignorable="d"
-        Title="Flight Simulator App" Height="800" Width="1400">
+        Title="Flight Simulator App" Height="800" Width="1200">
     <Grid Background="#FF80ABCF" RenderTransformOrigin="0.496,0.502">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5*"/>
@@ -14,11 +14,11 @@
             <ColumnDefinition Width="912*"/>
         </Grid.ColumnDefinitions>
         <Viewbox HorizontalAlignment="Left" Height="55" Margin="750,595,0,0" VerticalAlignment="Top" Width="66" Grid.Column="2"/>
-        <views:Joystick Grid.Column="2" Margin="684.464,234,-102.464,-36" Loaded="Joystick_Loaded_2"></views:Joystick>
-        <m:Map CredentialsProvider="0lorjGXdhAaoxKgm8ZCp~3iC811-s_dKqVi3oSUbISA~Aidta9Kv4580M0wRbDmjoWHM1I9mUw6JjmcT43tiNvyrUeAFDXmF9SIf4JLQ6pAu" Grid.ColumnSpan="3" Margin="0,0,507.536,0"/>
+        <views:Joystick Grid.Column="2" Margin="508,234,-110,-36" Loaded="Joystick_Loaded_2"></views:Joystick>
+        <m:Map CredentialsProvider="0lorjGXdhAaoxKgm8ZCp~3iC811-s_dKqVi3oSUbISA~Aidta9Kv4580M0wRbDmjoWHM1I9mUw6JjmcT43tiNvyrUeAFDXmF9SIf4JLQ6pAu" Grid.ColumnSpan="3" Margin="0,0,495,0"/>
         <Viewbox Grid.Column="1" HorizontalAlignment="Left" Height="100" Margin="44,358,0,0" VerticalAlignment="Top" Width="100" Grid.ColumnSpan="2"/>
-        <GridSplitter Grid.Column="2" HorizontalAlignment="Left" Height="769" Margin="750,0,0,0" VerticalAlignment="Top" Width="4"/>
-        <GridSplitter Grid.Column="2" HorizontalAlignment="Left" Height="518" Margin="1010,48,0,0" VerticalAlignment="Top" Width="3" RenderTransformOrigin="0.5,0.5">
+        <GridSplitter Grid.Column="2" HorizontalAlignment="Left" Height="769" Margin="579,0,0,0" VerticalAlignment="Top" Width="4"/>
+        <GridSplitter Grid.Column="2" HorizontalAlignment="Left" Height="502" Margin="834,56,0,0" VerticalAlignment="Top" Width="3" RenderTransformOrigin="0.5,0.5">
             <GridSplitter.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

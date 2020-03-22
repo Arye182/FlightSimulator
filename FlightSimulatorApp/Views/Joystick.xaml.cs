@@ -29,6 +29,11 @@ namespace FlightSimulatorApp.Views
         {
 
         }
+
+        private void Slider_ValueChanged_1(object sender, System.Windows.RoutedPropertyChangedEventArgs<double> e)
+        {
+
+        }
     }
 
 }
