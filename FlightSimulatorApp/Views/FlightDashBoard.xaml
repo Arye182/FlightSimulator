@@ -4,18 +4,38 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FlightSimulatorApp.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Label Content="Air Speed" HorizontalAlignment="Left" Margin="25,140,0,0" VerticalAlignment="Top" Height="60" Width="195" FontSize="36" FontWeight="Bold"/>
-        <Label Content="Flight Dash Board" HorizontalAlignment="Left" Margin="125,25,0,0" VerticalAlignment="Top" Height="100" Width="565" FontSize="65" Background="#FFF33535" FontWeight="Bold" FontStyle="Italic"/>
-        <Label Content="Altitude" HorizontalAlignment="Left" Margin="25,220,0,0" VerticalAlignment="Top" Height="60" Width="195" FontSize="36" FontWeight="Bold"/>
-        <Label Content="Roll" HorizontalAlignment="Left" Margin="25,300,0,0" VerticalAlignment="Top" Height="60" Width="195" FontSize="36" FontWeight="Bold"/>
-        <Label Content="Pitch" HorizontalAlignment="Left" Margin="25,380,0,0" VerticalAlignment="Top" Height="60" Width="195" FontSize="36" FontWeight="Bold"/>
-        <Label Content="Altimeter" HorizontalAlignment="Left" Margin="453,140,0,0" VerticalAlignment="Top" Height="60" Width="180" FontSize="36" FontWeight="Bold"/>
-        <Label Content="Heading" HorizontalAlignment="Left" Margin="453,220,0,0" VerticalAlignment="Top" Height="60" Width="180" FontSize="36" FontWeight="Bold"/>
-        <Label Content="Ground Speed" HorizontalAlignment="Left" Margin="453,300,0,0" VerticalAlignment="Top" Height="60" Width="265" FontSize="36" FontWeight="Bold"/>
-        <Label Content="Vertical Speed" HorizontalAlignment="Left" Margin="453,380,0,0" VerticalAlignment="Top" Height="60" Width="265" FontSize="36" FontWeight="Bold"/>
+             mc:Ignorable="d" Height="500" Width="745">
+    <Grid Margin="-50,-140,-15,10">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black"/>
+                <GradientStop Color="#FF92F0F0" Offset="0.727"/>
+                <GradientStop Color="#FF152217"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Air Speed" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Height="60" Width="195" FontSize="36" FontWeight="Bold" FontStretch="Normal"/>
+        <Label Content="Flight Dash Board"  Grid.Row="0" Margin="0" Height="100" Width="565" FontSize="65" Background="#FFF33535" FontWeight="Bold" FontStyle="Italic" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontStretch="Normal"/>
+        <Label Content="Altitude" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Margin="0,29,0,14" VerticalAlignment="Center" Height="60" Width="195" FontSize="36" FontWeight="Bold" FontStretch="Normal"/>
+        <Label Content="Roll"  Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Height="60" Width="195" FontSize="36" FontWeight="Bold" FontStretch="Normal"/>
+        <Label Content="Pitch" Grid.Row="4" Grid.Column="1"  HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Height="60" Width="195" FontSize="36" FontWeight="Bold" FontStretch="Normal"/>
+        <Label Content="Altimeter"  Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Center" Height="60" Width="180" FontSize="36" FontWeight="Bold" FontStretch="Normal"/>
+        <Label Content="Heading" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Height="60" Width="180" FontSize="36" FontWeight="Bold" FontStretch="Normal" />
+        <Label Content="Ground Speed" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Height="60" Width="265" FontSize="36" FontWeight="Bold" FontStretch="Normal" />
+        <Label Content="Vertical Speed" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Height="60" Width="265" FontSize="36" FontWeight="Bold" FontStretch="Normal"/>
 
     </Grid>
 </UserControl>
