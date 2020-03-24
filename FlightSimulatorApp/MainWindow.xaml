@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:FlightSimulatorApp.Views"
         mc:Ignorable="d"
-        Title="Flight Simulator App" Height="650" Width="1050">
+        Title="Flight Simulator App" Height="650" Width="1050" MaxWidth="1200" MaxHeight="720" FontSize="24" MinWidth="1050" MinHeight="650">
 
     <Grid RenderTransformOrigin="0.505,0.722" Background="#FF726B6B">
         <Grid.ColumnDefinitions>
@@ -21,12 +21,12 @@
             <views:Map Grid.Column="1" Height="450" Width="450" Loaded="Map_Loaded" RenderTransformOrigin="0.5,0.5" Margin="0"/>
         </Viewbox>
 
-        <Viewbox Grid.Column="2" Height="275" Margin="0,0,87,24" VerticalAlignment="Bottom" Width="305" HorizontalAlignment="Right" Stretch="Uniform">
+        <Viewbox Grid.Column="2" Height="275" Margin="0,0,96,24" VerticalAlignment="Bottom" Width="305" HorizontalAlignment="Right" Stretch="Uniform">
             <views:Joystick Height="600" Width="687" RenderTransformOrigin="0.501,0.495" Loaded="Joystick_Loaded_3"></views:Joystick>
         </Viewbox>
 
-        <Viewbox Grid.Column="2"  HorizontalAlignment="Center" Margin="86,28,66,329" VerticalAlignment="Center" Stretch="Uniform" Width="349" Height="262">
-            <views:FlightData Height="657" Width="861"></views:FlightData>
+        <Viewbox Grid.Column="2" HorizontalAlignment="Right" Margin="0,104,40,0" VerticalAlignment="Top" Stretch="Uniform" Width="430" Height="211">
+            <views:FlightData Height="398" Width="723" RenderTransformOrigin="0.493,0.407"></views:FlightData>
         </Viewbox>
 
     </Grid>
