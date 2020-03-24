@@ -1,8 +1,15 @@
 ﻿using System;
-
-public interface INotifyPropertyChanged
+namespace FlightSimulatorApp.Model
 {
-	public Class1()
+	public interface INotifyPropertyChanged
 	{
+		public Class1()
+		{
+		}
+	}
+
+	public interface IFlightSimulatorModel : INotifyPropertyChanged
+	{
+
 	}
 }

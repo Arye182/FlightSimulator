@@ -58,6 +58,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\IFlightSimulatorModel.cs" />
+    <Compile Include="Model\INotifyPropertyChanged.cs" />
     <Compile Include="Views\FlightDashBoard.xaml.cs">
       <DependentUpon>FlightDashBoard.xaml</DependentUpon>
     </Compile>
@@ -120,8 +122,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="ViewModels\" />
+    <Folder Include="ViewModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
