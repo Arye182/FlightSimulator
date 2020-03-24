@@ -4,30 +4,30 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:FlightSimulatorApp.Views"
-        xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
         mc:Ignorable="d"
-        Title="Flight Simulator App" Height="800" Width="1200">
-    <Grid Background="#FF80ABCF" RenderTransformOrigin="0.496,0.502">
+        Title="Flight Simulator App" Height="650" Width="1050">
+
+    <Grid RenderTransformOrigin="0.505,0.722" Background="#FF726B6B">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="83*"/>
-            <ColumnDefinition Width="912*"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
-        <Viewbox HorizontalAlignment="Left" Height="55" Margin="750,595,0,0" VerticalAlignment="Top" Width="66" Grid.Column="2"/>
-        <views:Joystick Grid.Column="2" Margin="508,234,-110,-36" Loaded="Joystick_Loaded_2"></views:Joystick>
-        <m:Map CredentialsProvider="0lorjGXdhAaoxKgm8ZCp~3iC811-s_dKqVi3oSUbISA~Aidta9Kv4580M0wRbDmjoWHM1I9mUw6JjmcT43tiNvyrUeAFDXmF9SIf4JLQ6pAu" Grid.ColumnSpan="3" Margin="0,0,495,0"/>
-        <Viewbox Grid.Column="1" HorizontalAlignment="Left" Height="100" Margin="44,358,0,0" VerticalAlignment="Top" Width="100" Grid.ColumnSpan="2"/>
-        <GridSplitter Grid.Column="2" HorizontalAlignment="Left" Height="769" Margin="579,0,0,0" VerticalAlignment="Top" Width="4"/>
-        <GridSplitter Grid.Column="2" HorizontalAlignment="Left" Height="502" Margin="834,56,0,0" VerticalAlignment="Top" Width="3" RenderTransformOrigin="0.5,0.5">
-            <GridSplitter.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="90"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </GridSplitter.RenderTransform>
-        </GridSplitter>
+
+
+
+        <Viewbox Grid.Column="1" HorizontalAlignment="Center" Height="450"  VerticalAlignment="Center" Width="450" Stretch="Uniform">
+            <views:Map Grid.Column="1" Height="450" Width="450" Loaded="Map_Loaded" RenderTransformOrigin="0.5,0.5" Margin="0"/>
+        </Viewbox>
+
+        <Viewbox Grid.Column="2" Height="275" Margin="0,0,87,24" VerticalAlignment="Bottom" Width="305" HorizontalAlignment="Right" Stretch="Uniform">
+            <views:Joystick Height="600" Width="687" RenderTransformOrigin="0.501,0.495" Loaded="Joystick_Loaded_3"></views:Joystick>
+        </Viewbox>
+
+        <Viewbox Grid.Column="2"  HorizontalAlignment="Center" Margin="86,28,66,329" VerticalAlignment="Center" Stretch="Uniform" Width="349" Height="262">
+            <views:FlightData Height="657" Width="861"></views:FlightData>
+        </Viewbox>
 
     </Grid>
 </Window>

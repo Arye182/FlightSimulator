@@ -50,5 +50,20 @@ namespace FlightSimulatorApp
         {
 
         }
+
+        private void Joystick_Loaded_3(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void UserControl1_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Map_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

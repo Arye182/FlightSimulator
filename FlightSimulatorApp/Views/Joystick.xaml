@@ -47,7 +47,7 @@
         </Path.RenderTransform>
       </Path>
 
-      <Canvas  x:Name="Knob" VerticalAlignment="Top" HorizontalAlignment="Left" Width="0" Height="0" RenderTransformOrigin="0.5,0.5" Canvas.Left="125" Canvas.Top="125">
+      <Canvas  x:Name="Knob" VerticalAlignment="Top" HorizontalAlignment="Left" Width="0" Height="0" RenderTransformOrigin="0.5,0.5" Canvas.Left="125" Canvas.Top="125" MouseDown="Knob_MouseDown" MouseMove="Knob_MouseMove" MouseUp="Knob_MouseUp">
         <Canvas.Resources>
 
           <Storyboard x:Key="CenterKnob" x:Name="centerKnob" Completed="centerKnob_Completed">
@@ -136,19 +136,19 @@
       </Canvas>
       <Viewbox Height="100" Canvas.Left="128" Canvas.Top="229" Width="100"/>
     </Canvas>
-    <Slider x:Name="Ailron" HorizontalAlignment="Left" Margin="196,472,0,0" VerticalAlignment="Top" Width="298" Background="#FF162EC5" Foreground="#FFE5E5E5" ValueChanged="Slider_ValueChanged"/>
-    <Slider x:Name="Throttle" HorizontalAlignment="Left" Margin="-5,276,0,0" VerticalAlignment="Top" Height="20" Width="298" RenderTransformOrigin="0.5,0.5" Background="#FF162EC5" ValueChanged="Slider_ValueChanged_1">
+    <Slider x:Name="Ailron" HorizontalAlignment="Left" Margin="157,498,0,0" VerticalAlignment="Top" Width="375" Background="#FF162EC5" Foreground="#FFE5E5E5" ValueChanged="Slider_ValueChanged" Height="19"/>
+    <Slider x:Name="Throttle" HorizontalAlignment="Left" Margin="-94,287,0,0" VerticalAlignment="Top" Height="18" Width="362" RenderTransformOrigin="0.5,0.733" Background="#FF162EC5" ValueChanged="Slider_ValueChanged_1" FontSize="36" ScrollViewer.HorizontalScrollBarVisibility="Visible">
       <Slider.RenderTransform>
         <TransformGroup>
           <ScaleTransform/>
           <SkewTransform/>
           <RotateTransform Angle="-90.755"/>
-          <TranslateTransform/>
+          <TranslateTransform X="6.99" Y="-7.082"/>
         </TransformGroup>
       </Slider.RenderTransform>
     </Slider>
-    <TextBox HorizontalAlignment="Left" Height="30" Margin="250,495,0,0" TextWrapping="Wrap" Text=" &lt;---- Ailron ----&gt;" VerticalAlignment="Top" Width="187" Background="{x:Null}" BorderBrush="{x:Null}" TextChanged="TextBox_TextChanged" FontSize="22" RenderTransformOrigin="0.573,0.443"/>
-    <TextBox HorizontalAlignment="Left" Height="27" Margin="8,276,0,0" TextWrapping="Wrap" Text="&lt;---- Throttle ----&gt;" VerticalAlignment="Top" Width="198" RenderTransformOrigin="0.5,0.5" FontSize="22" Background="{x:Null}" BorderBrush="{x:Null}">
+    <TextBox HorizontalAlignment="Left" Height="66" Margin="144,510,0,-5" TextWrapping="Wrap" Text=" &lt;---- Ailron ----&gt;" VerticalAlignment="Top" Width="416" Background="{x:Null}" BorderBrush="{x:Null}" TextChanged="TextBox_TextChanged" FontSize="48" RenderTransformOrigin="0.573,0.443"/>
+    <TextBox HorizontalAlignment="Left" Height="77" Margin="-174,251,0,0" TextWrapping="Wrap" Text="&lt;---- Throttle ----&gt;" VerticalAlignment="Top" Width="426" RenderTransformOrigin="0.5,0.5" FontSize="48" Background="{x:Null}" BorderBrush="{x:Null}" TextChanged="TextBox_TextChanged_1">
       <TextBox.RenderTransform>
         <TransformGroup>
           <ScaleTransform/>
@@ -158,8 +158,8 @@
         </TransformGroup>
       </TextBox.RenderTransform>
     </TextBox>
-    <TextBox HorizontalAlignment="Left" Height="32" Margin="249,73,0,0" TextWrapping="Wrap" Text="&lt;---- Rudder ----&gt;" VerticalAlignment="Top" Width="190" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="22"/>
-    <TextBox HorizontalAlignment="Left" Height="28" Margin="444,276,0,0" TextWrapping="Wrap" Text="&lt;---- Elavator ----&gt;" VerticalAlignment="Top" Width="209" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="22" RenderTransformOrigin="0.5,0.5">
+    <TextBox HorizontalAlignment="Left" Height="62" Margin="140,26,0,0" TextWrapping="Wrap" Text="&lt;---- Rudder ----&gt;" VerticalAlignment="Top" Width="410" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="48"/>
+    <TextBox HorizontalAlignment="Left" Height="78" Margin="392,249,-128,0" TextWrapping="Wrap" Text="&lt;---- Elavator ----&gt;" VerticalAlignment="Top" Width="425" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="48" RenderTransformOrigin="0.5,0.5" TextChanged="TextBox_TextChanged_2">
       <TextBox.RenderTransform>
         <TransformGroup>
           <ScaleTransform/>
