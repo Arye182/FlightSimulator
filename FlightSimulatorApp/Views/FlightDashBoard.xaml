@@ -37,5 +37,15 @@
         <Label Content="Ground Speed" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Height="60" Width="265" FontSize="36" FontWeight="Bold" FontStretch="Normal" />
         <Label Content="Vertical Speed" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Height="60" Width="265" FontSize="36" FontWeight="Bold" FontStretch="Normal"/>
 
+        <Label x:Name="air_speed_value" Content="0" Grid.Row="1" Grid.Column="1" HorizontalAlignment="right" Margin="0,33" VerticalAlignment="Center" Height="60" Width="165" FontSize="36" FontWeight="Bold" FontStretch="Normal"/>
+        <Label x:Name="altitude_value" Content="0" Grid.Row="2" Grid.Column="1" HorizontalAlignment="right" Margin="0,40,0,26" VerticalAlignment="Center" Height="60" Width="165" FontSize="36" FontWeight="Bold" FontStretch="Normal"/>
+        <Label x:Name="roll_value" Content="0"  Grid.Row="3" Grid.Column="1" HorizontalAlignment="right" Margin="0,33" VerticalAlignment="Center" Height="60" Width="165" FontSize="36" FontWeight="Bold" FontStretch="Normal"/>
+        <Label x:Name="pitch_value" Content="0" Grid.Row="4" Grid.Column="1"  HorizontalAlignment="right" Margin="0,33,20,33" VerticalAlignment="Center" Height="60" Width="145" FontSize="36" FontWeight="Bold" FontStretch="Normal"/>
+        <Label x:Name="altimeter_value" Content="0"  Grid.Row="1" Grid.Column="2" HorizontalAlignment="right" Margin="0,36,0,30" VerticalAlignment="Center" Height="60" Width="85" FontSize="36" FontWeight="Bold" FontStretch="Normal"/>
+        <Label x:Name="heading_value" Content="0" Grid.Row="2" Grid.Column="2" HorizontalAlignment="right" Margin="0,33" VerticalAlignment="Center" Height="60" Width="85" FontSize="36" FontWeight="Bold" FontStretch="Normal" />
+        <Label x:Name="ground_speed_value" Content="0" Grid.Row="3" Grid.Column="2" HorizontalAlignment="right" Margin="0,33" VerticalAlignment="Center" Height="60" Width="85" FontSize="36" FontWeight="Bold" FontStretch="Normal" />
+        <Label x:Name="vertical_speed_value" Content="0" Grid.Row="4" Grid.Column="2" HorizontalAlignment="right" Margin="0,33" VerticalAlignment="Center" Height="60" Width="85" FontSize="36" FontWeight="Bold" FontStretch="Normal"/>
+
+
     </Grid>
 </UserControl>
