@@ -7,7 +7,7 @@ namespace FlightSimulatorApp.Model
         void connect(string ip, int port);
         void disconnect();
         void start();
-
+        //b
         //dashboard properties
         double Altitude { get; set; }
         double Roll { get; set; }

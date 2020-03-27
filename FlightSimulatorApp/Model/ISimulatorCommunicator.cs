@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace FlightSimulatorApp.Model
-{
+{//b
     interface ISimulatorCommunicator
     {
         void connect(string ip, int port);
