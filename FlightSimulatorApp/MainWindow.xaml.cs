@@ -24,6 +24,7 @@ namespace FlightSimulatorApp
         public MainWindow()
         {
             InitializeComponent();
+            
         }
 
         private void Joystick_Loaded(object sender, RoutedEventArgs e)

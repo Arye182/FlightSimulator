@@ -17,12 +17,12 @@
 
 
 
-        <Viewbox Grid.Column="1" HorizontalAlignment="Center" Height="450"  VerticalAlignment="Center" Width="450" Stretch="Uniform">
-            <views:Map Grid.Column="1" Height="450" Width="450" Loaded="Map_Loaded" RenderTransformOrigin="0.5,0.5" Margin="0"/>
+        <Viewbox Grid.Column="1" HorizontalAlignment="Center" Height="500"  VerticalAlignment="Center" Width="500" Stretch="Uniform">
+            <views:Map Grid.Column="1" Height="700" Width="700" Loaded="Map_Loaded" RenderTransformOrigin="0.5,0.5" Margin="0"/>
         </Viewbox>
 
         <Viewbox Grid.Column="2" Height="275" Margin="0,0,96,24" VerticalAlignment="Bottom" Width="305" HorizontalAlignment="Right" Stretch="Uniform">
-            <views:Joystick Height="600" Width="687" RenderTransformOrigin="0.501,0.495" Loaded="Joystick_Loaded_3"></views:Joystick>
+            <views:MyJoystick Height="600" Width="687" RenderTransformOrigin="0.501,0.495" Loaded="Joystick_Loaded_3"></views:MyJoystick>
         </Viewbox>
 
         <Viewbox Grid.Column="2" HorizontalAlignment="Right" Margin="0,104,40,0" VerticalAlignment="Top" Stretch="Uniform" Width="430" Height="211">

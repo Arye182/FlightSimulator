@@ -6,10 +6,33 @@
              xmlns:local="clr-namespace:FlightSimulatorApp.Views"
              xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="450">
+             d:DesignHeight="700" d:DesignWidth="700">
     <Grid>
-        <Viewbox Width="450" Height="450">
-            <m:Map CredentialsProvider="0lorjGXdhAaoxKgm8ZCp~3iC811-s_dKqVi3oSUbISA~Aidta9Kv4580M0wRbDmjoWHM1I9mUw6JjmcT43tiNvyrUeAFDXmF9SIf4JLQ6pAu" Height="649" Width="645"/>
+        <Viewbox Width="700" Height="700" Stretch="Uniform">
+            <m:Map CredentialsProvider="0lorjGXdhAaoxKgm8ZCp~3iC811-s_dKqVi3oSUbISA~Aidta9Kv4580M0wRbDmjoWHM1I9mUw6JjmcT43tiNvyrUeAFDXmF9SIf4JLQ6pAu" 
+                   Margin="25,25,25,25"
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Stretch"
+                   Height="700" 
+                   Width="700"
+                   Center="31.1481402218342, 35.644248783588"
+                   ZoomLevel="8">
+                <m:Pushpin x:Name="pushpin" Location="31.1481402218342, 35.644248783588"/>
+
+            </m:Map>
         </Viewbox>
+        <Label Content="latitude:" HorizontalAlignment="Left" Margin="131,684,0,-29" VerticalAlignment="Top" Width="115" FontSize="30" Height="45" FontStyle="Italic"/>
+        <Label x:Name="coordinates" HorizontalAlignment="Left" VerticalAlignment="Top" Width="304" FontSize="30" Margin="316,684,0,-29" Height="45" Content="{Binding Location.Latitude, ElementName=pushpin}" FontStyle="Italic"></Label>
+        <Label Content="longtitude:" HorizontalAlignment="Left" Margin="130,720,0,-70" VerticalAlignment="Top" Width="160" FontSize="30" RenderTransformOrigin="0.5,0.5" FontStyle="Italic">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="-0.107"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="-0.165"/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <Label x:Name="coordinates_Copy" HorizontalAlignment="Left" VerticalAlignment="Top" Width="305" FontSize="30" Height="45" Content="{Binding Location.Longitude, ElementName=pushpin}" Margin="316,722,0,-67" FontStyle="Italic"/>
     </Grid>
 </UserControl>

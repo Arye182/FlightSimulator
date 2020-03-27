@@ -60,6 +60,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\IFlightSimulatorModel.cs" />
+    <Compile Include="Model\INotifyPropertyChanged.cs" />
     <Compile Include="Views\ConnectPannel.xaml.cs">
       <DependentUpon>ConnectPannel.xaml</DependentUpon>
     </Compile>
@@ -135,6 +137,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
