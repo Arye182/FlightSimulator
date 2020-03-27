@@ -60,9 +60,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Views\ConnectPannel.xaml.cs">
-      <DependentUpon>ConnectPannel.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Model\IFlightSimulatorModel.cs" />
+    <Compile Include="Model\INotifyPropertyChanged.cs" />
     <Compile Include="Views\FlightDashBoard.xaml.cs">
       <DependentUpon>FlightDashBoard.xaml</DependentUpon>
     </Compile>
