@@ -23,10 +23,7 @@ namespace FlightSimulatorApp.Model
             } catch (Exception ex)
             {
                 Console.WriteLine("EROR - failed to connect please try again");
-                // test
-                // test
-                // test
-                // test
+
 
             }
         }
