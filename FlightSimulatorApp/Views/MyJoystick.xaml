@@ -3,58 +3,40 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:FlightSimulatorApp.Views" xmlns:System="clr-namespace:System;assembly=mscorlib" x:Name="MyJoystick1" x:Class="FlightSimulatorApp.Views.MyJoystick" 
+             xmlns:local="clr-namespace:FlightSimulatorApp.Views" 
+             xmlns:System="clr-namespace:System;assembly=mscorlib" 
+             x:Name="MyJoystick1" 
+             x:Class="FlightSimulatorApp.Views.MyJoystick" 
              mc:Ignorable="d" Height="571.091" Width="688.727">
 
     <Grid>
-
-
+        <!--   inner joystick and its components  !-->
         <local:Joystick x:Name="innerJoystick" Width="600" HorizontalAlignment="Center" VerticalAlignment="Center" Height="600" />
-
-
-
-
-        <Slider x:Name="Ailron" HorizontalAlignment="Left" Margin="157,497,0,0" VerticalAlignment="Top" Width="375" Background="#FF162EC5" Foreground="#FFE5E5E5" ValueChanged="Slider_ValueChanged" Height="32" TickPlacement="Both" TickFrequency="0.1" Maximum="1"/>
-        <Slider x:Name="Throttle" HorizontalAlignment="Left" Margin="-98,270,0,0" VerticalAlignment="Top" Height="36" Width="362" RenderTransformOrigin="0.5,0.733" Background="#FF162EC5" ValueChanged="Slider_ValueChanged_1" FontSize="36" ScrollViewer.HorizontalScrollBarVisibility="Visible" TickPlacement="Both" TickFrequency="0.1" Maximum="1" Minimum="-1">
-            <Slider.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="-89.864"/>
-                    <TranslateTransform X="6.99" Y="-7.082"/>
-                </TransformGroup>
-            </Slider.RenderTransform>
-        </Slider>
-        <Viewbox HorizontalAlignment="Left" Height="9" Margin="338,287,0,0" VerticalAlignment="Top" Width="9" RenderTransformOrigin="1.972,-1.989">
-            <Viewbox.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="0.493"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Viewbox.RenderTransform>
-        </Viewbox>
-        <Label x:Name="throttle_value" Content="0.00" HorizontalAlignment="Left" Margin="303,582,0,-67" VerticalAlignment="Top" Background="{x:Null}" FontSize="36" Height="56" Width="93"/>
-        <Label x:Name="ailron_value" Content="0.00" HorizontalAlignment="Left" Margin="-91,259,0,0" VerticalAlignment="Top" Background="{x:Null}" FontSize="36" Height="65" Width="95"/>
-        <Label x:Name="elavator_value" HorizontalAlignment="Left" Margin="636,258,-41,0" VerticalAlignment="Top" Background="{x:Null}" FontSize="36" Width="94" Height="60" IsEnabled="False" Foreground="#FF0A0A0A" Content="{Binding ElevatorValue}">
-            <Label.DataContext>
-                <local:Joystick/>
-            </Label.DataContext>
-        </Label>
-        <Label x:Name="rudder_value" Content="0.00" HorizontalAlignment="Left" Margin="301,-12,0,0" VerticalAlignment="Top" Background="{x:Null}" FontSize="36" Height="70" Width="107"/>
-        <Label Content="&lt;----Throttle----&gt;" HorizontalAlignment="Left" Margin="148,527,0,-22" VerticalAlignment="Top" Height="66" Width="389" FontSize="48" FontFamily="Segoe UI Symbol"/>
+        <TextBlock 
+            x:Name="elavator_value" 
+            HorizontalAlignment="Left" 
+            Margin="636,258,-41,0"
+            VerticalAlignment="Top" 
+            Background="{x:Null}" 
+            FontSize="36" 
+            Width="94" 
+            Height="60" 
+            IsEnabled="False" 
+            Foreground="#FF0A0A0A" 
+            Text="{Binding Elevator}">
+        </TextBlock>
+        <TextBlock
+            x:Name="rudder_value" 
+            Text="0.00"
+            HorizontalAlignment="Left" 
+            Margin="301,-12,0,0" 
+            VerticalAlignment="Top" 
+            Background="{x:Null}" 
+            FontSize="36" 
+            Height="70" 
+            Width="107">
+        </TextBlock>
         <Label Content="&lt;----Rudder----&gt;" HorizontalAlignment="Left" Margin="155,26,0,0" VerticalAlignment="Top" Height="70" Width="380" FontSize="48" FontFamily="Segoe UI Symbol"/>
-        <Label Content="&lt;----Ailron----&gt;" HorizontalAlignment="Left" Margin="-140,255,0,0" VerticalAlignment="Top" Height="71" Width="344" FontSize="48" FontFamily="Segoe UI Symbol" RenderTransformOrigin="0.5,0.5">
-            <Label.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="89.848"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Label.RenderTransform>
-        </Label>
         <Label Content="&lt;----Elavator----&gt;" HorizontalAlignment="Left" Margin="409,255,-115,0" VerticalAlignment="Top" Height="71" Width="395" FontSize="48" FontFamily="Segoe UI Symbol" RenderTransformOrigin="0.5,0.5">
             <Label.RenderTransform>
                 <TransformGroup>
@@ -65,6 +47,37 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <TextBlock HorizontalAlignment="Left" Margin="636,311,-132,0" TextWrapping="Wrap" Text="{Binding ElevatorValue, ElementName=innerJoystick}" VerticalAlignment="Top" Width="185" Height="89"/>
+
+        <!--   slider of ailron  !-->
+        <Slider x:Name="Ailron" HorizontalAlignment="Left" Margin="157,497,0,0" VerticalAlignment="Top" Width="375" Background="#FF162EC5" Foreground="#FFE5E5E5" ValueChanged="Slider_ValueChanged" Height="32" TickPlacement="Both" TickFrequency="0.1" Maximum="1">
+        </Slider>
+        <Label x:Name="ailron_value" Content="0.00" HorizontalAlignment="Left" Margin="-91,259,0,0" VerticalAlignment="Top" Background="{x:Null}" FontSize="36" Height="65" Width="95"/>
+        <Label Content="&lt;----Ailron----&gt;" HorizontalAlignment="Left" Margin="-140,255,0,0" VerticalAlignment="Top" Height="71" Width="344" FontSize="48" FontFamily="Segoe UI Symbol" RenderTransformOrigin="0.5,0.5">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="89.848"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+
+        <!--   slider of throttle  !-->
+        <Slider x:Name="Throttle" HorizontalAlignment="Left" Margin="-98,270,0,0" VerticalAlignment="Top" Height="36" Width="362" RenderTransformOrigin="0.5,0.733" Background="#FF162EC5" ValueChanged="Slider_ValueChanged_1" FontSize="36" ScrollViewer.HorizontalScrollBarVisibility="Visible" TickPlacement="Both" TickFrequency="0.1" Maximum="1" Minimum="-1">
+            <Slider.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-89.864"/>
+                    <TranslateTransform X="6.99" Y="-7.082"/>
+                </TransformGroup>
+            </Slider.RenderTransform>
+        </Slider>
+        <Label x:Name="throttle_value" Content="0.00" HorizontalAlignment="Left" Margin="303,582,0,-67" VerticalAlignment="Top" Background="{x:Null}" FontSize="36" Height="56" Width="93"/>
+        <Label Content="&lt;----Throttle----&gt;" HorizontalAlignment="Left" Margin="148,527,0,-22" VerticalAlignment="Top" Height="66" Width="389" FontSize="48" FontFamily="Segoe UI Symbol"/>
+
+
+
     </Grid>
 </UserControl>
