@@ -14,7 +14,7 @@ namespace FlightSimulatorApp.Model
 
         private ISimulatorCommunicator communicator;
         volatile Boolean stop;
-        // b
+        // bbbbbb
         private double altitude;
         private double roll;
         private double pitch;
