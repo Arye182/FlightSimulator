@@ -25,6 +25,7 @@ namespace FlightSimulatorApp.Model
                 Console.WriteLine("EROR - failed to connect please try again");
                 // test
                 // test
+                // test
             }
         }
         public void write(string command)
