@@ -18,7 +18,7 @@ namespace FlightSimulatorApp.Model
         private double altitude;
         private double roll;
         private double pitch;
-        private double headinge;
+        private double heading;
         private double altimeter;
         private double groungSpeed;
         private double verticalSpeed;
@@ -38,16 +38,22 @@ namespace FlightSimulatorApp.Model
             }
         }
         //dashboard proprties
-        public double Altitude { get { throw new NotImplementedException(); } 
+        public double Altitude { get { return altitude; } 
                                  set { altitude = value;  NotifyPropertyChanged("Altitude"); } }
-        public double Roll { get { throw new NotImplementedException(); }
+        public double Roll { get { return roll; }
                              set { roll = value; NotifyPropertyChanged("Roll"); } }
-        public double Pitch { get { throw new NotImplementedException(); } set { pitch = value; NotifyPropertyChanged("Pitch"); } }
-        public double Altimeter { get { throw new NotImplementedException(); } set { altimeter = value; NotifyPropertyChanged("Altimeter"); } }
-        public double Heading { get { throw new NotImplementedException(); } set { } }
-        public double GroundSpeed { get { throw new NotImplementedException(); } set { } }
-        public double VerticalSpeed { get { throw new NotImplementedException(); } set { } }
-        public double AirSpeed { get { throw new NotImplementedException(); } set { } }
+        public double Pitch { get { return pitch; } 
+                              set { pitch = value; NotifyPropertyChanged("Pitch"); } }
+        public double Altimeter { get { return altimeter; } 
+                                  set { altimeter = value; NotifyPropertyChanged("Altimeter"); } }
+        public double Heading { get { return heading; } 
+                                set { heading = value; NotifyPropertyChanged("Heading"); } }
+        public double GroundSpeed { get { return groungSpeed; }
+                                    set { groungSpeed = value; NotifyPropertyChanged("GroungSpeed"); } }
+        public double VerticalSpeed { get { return verticalSpeed; }
+                                      set { verticalSpeed = value; NotifyPropertyChanged("VerticalSpeed"); } }
+        public double AirSpeed { get { return airSpeed; } 
+                                 set { airSpeed = value; NotifyPropertyChanged("AirSpeed"); } }
 
 
 
