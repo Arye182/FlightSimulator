@@ -32,37 +32,17 @@ namespace FlightSimulatorApp
 
         }
 
-        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-
-        }
-
-        private void Throttle_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-
-        }
-
         private void Joystick_Loaded_1(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void Joystick_Loaded_2(object sender, RoutedEventArgs e)
+        private void Map_Loaded(object sender, RoutedEventArgs e)
         {
 
         }
 
         private void Joystick_Loaded_3(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void UserControl1_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Map_Loaded(object sender, RoutedEventArgs e)
         {
 
         }

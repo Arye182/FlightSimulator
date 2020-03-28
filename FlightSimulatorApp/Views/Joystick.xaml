@@ -59,7 +59,7 @@
                 </Path.RenderTransform>
             </Path>
 
-            <Canvas  x:Name="Knob" VerticalAlignment="Top" HorizontalAlignment="Left" Width="0" Height="0" RenderTransformOrigin="0.5,0.5" Canvas.Left="125" Canvas.Top="125" MouseMove="Knob_MouseMove" MouseDown="Knob_MouseDown" MouseUp="Knob_MouseUp">
+            <Canvas  x:Name="Knob" VerticalAlignment="Top" HorizontalAlignment="Left" Width="0" Height="0" RenderTransformOrigin="0.5,0.5" Canvas.Left="125" Canvas.Top="125" MouseMove="Knob_MouseMove" MouseUp="Knob_MouseLeftButtonUp" MouseLeftButtonDown="Knob_MouseLeftButtonDown">
                 <Canvas.Resources>
 
                     <Storyboard x:Key="CenterKnob" x:Name="centerKnob" Completed="centerKnob_Completed">
