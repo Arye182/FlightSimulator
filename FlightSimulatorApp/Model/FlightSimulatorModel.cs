@@ -32,17 +32,17 @@ namespace FlightSimulatorApp.Model
         }
 
         #region Singleton
-        private static FlightSimulatorModel m_Instance = null;
-        public static FlightSimulatorModel Instance
-        {
-            get {
-                if (m_Instance == null)
-                {
-                    m_Instance = new FlightSimulatorModel(new MySimulatorCommunicator());
-                }
-                return m_Instance;
-            }
-        }
+       // private static FlightSimulatorModel m_Instance = null;
+        //public static FlightSimulatorModel Instance
+        //{
+          //  get {
+           //     if (m_Instance == null)
+          //      {
+         //           m_Instance = new FlightSimulatorModel(new MySimulatorCommunicator());
+         //       }
+         //       return m_Instance;
+        //    }
+        //}
         #endregion
 
         public void NotifyPropertyChanged(string propName)
