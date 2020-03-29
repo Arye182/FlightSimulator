@@ -24,12 +24,26 @@ namespace FlightSimulatorApp.Model
         private double groungSpeed;
         private double verticalSpeed;
         private double airSpeed;
-
+        
         public FlightSimulatorModel(ISimulatorCommunicator communicator)
         {
             this.communicator = communicator;
             this.stop = false;
         }
+
+        #region Singleton
+        private static FlightSimulatorModel m_Instance = null;
+        public static FlightSimulatorModel Instance
+        {
+            get {
+                if (m_Instance == null)
+                {
+                    m_Instance = new FlightSimulatorModel(new MySimulatorCommunicator());
+                }
+                return m_Instance;
+            }
+        }
+        #endregion
 
         public void NotifyPropertyChanged(string propName)
         {
