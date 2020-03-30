@@ -126,6 +126,7 @@ namespace FlightSimulatorApp.Model
 
         private void infoRequest()
         {
+            Console.WriteLine(this.PropertiesSimulatorPath["airSpeed"]);
             connector.write("get" + this.PropertiesSimulatorPath["airSpeed"] + "\n" +
                             "get" + this.PropertiesSimulatorPath["altimeter"] + "\n" +
                             "get" + this.PropertiesSimulatorPath["altitude"] + "\n" +

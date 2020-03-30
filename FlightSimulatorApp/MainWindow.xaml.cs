@@ -24,12 +24,12 @@ namespace FlightSimulatorApp
         public MainWindow()
         {
             InitializeComponent();
-            ISimulatorConnector s = new MySimulatorConnector();
+            IFlightSimulatorModel model = new FlightSimulatorModel(new MySimulatorConnector());
             try
             {
-                s.connect("127.0.0.1", 5402);
-                s.write("get /controls/flight/rudder\n");
-                s.read();
+                model.connect("127.0.0.1", 5402);
+                model.start();
+                model.disconnect();
             }
             catch(Exception ex)
             {
