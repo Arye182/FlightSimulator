@@ -4,30 +4,96 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:FlightSimulatorApp.Views"
-        mc:Ignorable="d"
-        Title="Flight Simulator App" Height="650" Width="1050" MaxWidth="1200" MaxHeight="720" FontSize="24" MinWidth="1050" MinHeight="650">
+        mc:Ignorable="d" 
+        Title="Flight Simulator App" Height="900" Width="1300">
 
-    <Grid RenderTransformOrigin="0.505,0.722" Background="#FF726B6B">
+    
+    <Grid >
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="14*"/>
+            <RowDefinition Height="13*"/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <ImageBrush ImageSource="C:\Users\aryea\source\repos\FlightSimulator\FlightSimulatorApp\Views\resources\2805915.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+
+        <!--   Top Bar  !-->
+        <Viewbox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"  Stretch="Uniform" HorizontalAlignment="Left" Margin="5,5,5,5">
+            <Menu  >
+                <MenuItem Header="Connect">
+                </MenuItem>
+                <MenuItem Header="Disconnect">
+                </MenuItem>
+                <MenuItem Header="Port Settings">
+                </MenuItem>
+                <MenuItem Header="Screen Resolution">
+                </MenuItem>
+                <MenuItem Header="Help">
+                </MenuItem>
+                <MenuItem Header="About">
+                </MenuItem>
+            </Menu>
 
 
 
-        <Viewbox Grid.Column="1" HorizontalAlignment="Center" Height="500"  VerticalAlignment="Center" Width="500" Stretch="Uniform">
-            <views:Map Grid.Column="1" Height="700" Width="700" Loaded="Map_Loaded" RenderTransformOrigin="0.5,0.5" Margin="0"/>
         </Viewbox>
 
-        <Viewbox Grid.Column="2" Height="275" Margin="0,0,96,24" VerticalAlignment="Bottom" Width="305" HorizontalAlignment="Right" Stretch="Uniform">
-            <views:MyJoystick Height="600" Width="687" RenderTransformOrigin="0.501,0.495" Loaded="Joystick_Loaded_3"></views:MyJoystick>
+        <!--   Map !-->
+        <Viewbox Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Stretch="Uniform" Margin="5,5,5,5">
+            <views:Map/>
         </Viewbox>
 
-        <Viewbox Grid.Column="2" HorizontalAlignment="Right" Margin="0,104,40,0" VerticalAlignment="Top" Stretch="Uniform" Width="430" Height="211">
-            <views:FlightData Height="398" Width="723" RenderTransformOrigin="0.493,0.407"></views:FlightData>
+
+        <!--  Joystick  !-->
+        <Viewbox Grid.Column="2" Grid.Row="2"  Stretch="Uniform" Margin="5,5,5,5" >
+            <views:MyJoystick   Width="716"/>
         </Viewbox>
+
+
+        <!--   Data  !-->
+        <Viewbox Grid.Column="2" Grid.Row="1" Stretch="Uniform" Margin="5,5,5,5">
+            <views:FlightData VerticalAlignment="Center"  Height="897" Width="854"  />
+        </Viewbox>
+
+
+        <!--   Bottom Bar  !-->
+        <Viewbox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Stretch="Uniform" HorizontalAlignment="center" Margin="0,5" >
+            <StatusBar Name="StatusBar">
+                <StatusBar.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="100" />
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                    </ItemsPanelTemplate>
+                </StatusBar.ItemsPanel>
+                <StatusBarItem>
+                    <TextBlock Name="lblCursorPosition" />
+                </StatusBarItem>
+                <Separator Grid.Column="1" />
+                <StatusBarItem Grid.Column="2">
+                    <TextBlock Text="this is our status bar of the application, here will be shown statuses of programm" />
+                </StatusBarItem>
+                <Separator Grid.Column="3" />
+                <StatusBarItem Grid.Column="4">
+                    <ProgressBar Value="50" Width="100" Height="16" />
+                </StatusBarItem>
+            </StatusBar>
+        </Viewbox>
+
 
     </Grid>
 </Window>

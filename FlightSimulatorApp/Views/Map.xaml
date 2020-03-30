@@ -5,34 +5,22 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FlightSimulatorApp.Views"
              xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
-             mc:Ignorable="d" 
-             d:DesignHeight="700" d:DesignWidth="700">
-    <Grid>
-        <Viewbox Width="700" Height="700" Stretch="Uniform">
-            <m:Map CredentialsProvider="0lorjGXdhAaoxKgm8ZCp~3iC811-s_dKqVi3oSUbISA~Aidta9Kv4580M0wRbDmjoWHM1I9mUw6JjmcT43tiNvyrUeAFDXmF9SIf4JLQ6pAu" 
-                   Margin="25,25,25,25"
-                   HorizontalAlignment="Stretch"
-                   VerticalAlignment="Stretch"
-                   Height="700" 
-                   Width="700"
-                   Center="31.1481402218342, 35.644248783588"
-                   ZoomLevel="8">
-                <m:Pushpin x:Name="pushpin" Location="31.1481402218342, 35.644248783588"/>
+             mc:Ignorable="d"  BorderBrush="DarkGray" BorderThickness="7"
+             d:DesignHeight="800" d:DesignWidth="800">
+    <Grid Width="800" Height="800">
+        
+        <m:Map 
+            CredentialsProvider="0lorjGXdhAaoxKgm8ZCp~3iC811-s_dKqVi3oSUbISA~Aidta9Kv4580M0wRbDmjoWHM1I9mUw6JjmcT43tiNvyrUeAFDXmF9SIf4JLQ6pAu" 
+            Center="31.1481402218342, 35.644248783588"
+            ZoomLevel="2" >
+            <m:Pushpin x:Name="pushpin" Location="31.1481402218342, 35.644248783588"/>
+            <Label Content="Lat:" HorizontalAlignment="Left" Margin="10,685,0,65" Width="60" FontSize="30" FontStyle="Italic" RenderTransformOrigin="0.5,0.5"/>
+            <Label x:Name="coordinates" HorizontalAlignment="Left" VerticalAlignment="Top" Width="304" FontSize="30" Margin="101,690,0,0" Height="45" Content="{Binding Location.Latitude, ElementName=pushpin}" FontStyle="Italic"></Label>
+            <Label Content="Long:" HorizontalAlignment="Left" Margin="10,725,0,0" VerticalAlignment="Top" Width="160" FontSize="30" RenderTransformOrigin="0.5,0.5" FontStyle="Italic"></Label>
+            <Label x:Name="coordinates_Copy" HorizontalAlignment="Left" VerticalAlignment="Top" Width="305" FontSize="30" Height="45" Content="{Binding Location.Longitude, ElementName=pushpin}" Margin="100,730,0,0" FontStyle="Italic"/>
+        </m:Map>
+        
 
-            </m:Map>
-        </Viewbox>
-        <Label Content="latitude:" HorizontalAlignment="Left" Margin="131,684,0,-29" VerticalAlignment="Top" Width="115" FontSize="30" Height="45" FontStyle="Italic"/>
-        <Label x:Name="coordinates" HorizontalAlignment="Left" VerticalAlignment="Top" Width="304" FontSize="30" Margin="316,684,0,-29" Height="45" Content="{Binding Location.Latitude, ElementName=pushpin}" FontStyle="Italic"></Label>
-        <Label Content="longtitude:" HorizontalAlignment="Left" Margin="130,720,0,-70" VerticalAlignment="Top" Width="160" FontSize="30" RenderTransformOrigin="0.5,0.5" FontStyle="Italic">
-            <Label.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleY="-0.107"/>
-                    <RotateTransform/>
-                    <TranslateTransform Y="-0.165"/>
-                </TransformGroup>
-            </Label.RenderTransform>
-        </Label>
-        <Label x:Name="coordinates_Copy" HorizontalAlignment="Left" VerticalAlignment="Top" Width="305" FontSize="30" Height="45" Content="{Binding Location.Longitude, ElementName=pushpin}" Margin="316,722,0,-67" FontStyle="Italic"/>
+        
     </Grid>
 </UserControl>

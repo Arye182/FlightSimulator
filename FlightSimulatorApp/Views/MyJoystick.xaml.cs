@@ -6,47 +6,20 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows;
+using FlightSimulatorApp.Model;
+using FlightSimulatorApp.ViewModel;
+using System.ComponentModel;
 
 namespace FlightSimulatorApp.Views
 {
     public partial class MyJoystick : UserControl
     {
-
-        private double x;
-        private double y;
-
-        public double X
-        {
-            get { return this.x; }
-            set { this.x = value; }
-        }
-
-        public double Y
-        {
-            get {return this.y;}
-            set { this.y = value; }
-        }
-
-        // this methods are for the joystick
+        MyJoystickVM vm;
         public MyJoystick()
         {
             InitializeComponent();
+            vm = new MyJoystickVM();
+            DataContext = vm;
         }
-        
-        // sliders change the value!
-        // throttle slider
-        private void Slider_ValueChanged(object sender, System.Windows.RoutedPropertyChangedEventArgs<double> e)
-        {
-            this.throttle_value.Content = e.NewValue.ToString("0.00");
-        }
-
-        // ailron slider
-        private void Slider_ValueChanged_1(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            this.ailron_value.Content = e.NewValue.ToString("0.00");
-        }
-
-
     }
-
 }
