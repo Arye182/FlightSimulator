@@ -12,10 +12,16 @@ namespace FlightSimulatorApp.Model
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private ISimulatorCommunicator communicator;
+        private ISimulatorConnector connector;
         volatile Boolean stop;
         // bbbbbb
         // nnnn
+        private double throttle;
+        private double aileron;
+        private double elevator;
+        private double rudder;
+        private double latitude;
+        private double longitude;
         private double altitude;
         private double roll;
         private double pitch;
@@ -24,91 +30,126 @@ namespace FlightSimulatorApp.Model
         private double groungSpeed;
         private double verticalSpeed;
         private double airSpeed;
-        
-        public FlightSimulatorModel(ISimulatorCommunicator communicator)
+        private SortedDictionary<string, string> PropertiesSimulatorPath = new SortedDictionary<string, string>()
         {
-            this.communicator = communicator;
+            {"throttle", "/controls/engines/current-engine/throttle" },
+            {"aileron", "/controls/flight/aileron" },
+            {"elevator", "/controls/flight/elevator" },
+            {"rudder", "/controls/flight/rudder" },
+            {"latitude", "/position/latitude-deg" },
+            {"longitude", "/position/longitude-deg" },
+            {"altitude" , "/instrumentation/gps/indicated-altitude-ft"},
+            {"roll", "/instrumentation/attitude-indicator/internal-roll-deg" },
+            {"pitch", "/instrumentation/attitude-indicator/internal-pitch-deg" },
+            {"heading", "/instrumentation/heading-indicator/indicated-heading-deg" },
+            {"alimeter", "/instrumentation/altimeter/indicated-altitude-ft" },
+            {"groungSpeed", "/instrumentation/gps/indicated-ground-speed-kt"},
+            {"verticalSpeed", "/instrumentation/gps/indicated-vertical-speed" },
+            {"airSpeed", "/instrumentation/airspeed-indicator/indicated-speed-kt" },
+        }
+        ;
+
+
+        public FlightSimulatorModel(ISimulatorConnector connector)
+        {
+            this.connector = connector;
             this.stop = false;
         }
 
         #region Singleton
-        private static FlightSimulatorModel m_Instance = null;
-        public static FlightSimulatorModel Instance
-        {
-            get {
-                if (m_Instance == null)
-                {
-                    m_Instance = new FlightSimulatorModel(new MySimulatorCommunicator());
-                }
-                return m_Instance;
-            }
-        }
+        // private static FlightSimulatorModel m_Instance = null;
+        //public static FlightSimulatorModel Instance
+        //{
+        //  get {
+        //     if (m_Instance == null)
+        //      {
+        //           m_Instance = new FlightSimulatorModel(new MySimulatorconnector());
+        //       }
+        //       return m_Instance;
+        //    }
+        //}
         #endregion
+
+
 
         public void NotifyPropertyChanged(string propName)
         {
-            if (this.PropertyChanged!= null)
+            if (this.PropertyChanged != null)
             {
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
         }
         //dashboard proprties
-        public double Altitude { get { return altitude; } 
-                                 set { altitude = value;  NotifyPropertyChanged("Altitude"); } }
+        public double Altitude { get { return altitude; }
+            set { altitude = value; NotifyPropertyChanged("Altitude"); } }
         public double Roll { get { return roll; }
-                             set { roll = value; NotifyPropertyChanged("Roll"); } }
-        public double Pitch { get { return pitch; } 
-                              set { pitch = value; NotifyPropertyChanged("Pitch"); } }
-        public double Altimeter { get { return altimeter; } 
-                                  set { altimeter = value; NotifyPropertyChanged("Altimeter"); } }
-        public double Heading { get { return heading; } 
-                                set { heading = value; NotifyPropertyChanged("Heading"); } }
+            set { roll = value; NotifyPropertyChanged("Roll"); } }
+        public double Pitch { get { return pitch; }
+            set { pitch = value; NotifyPropertyChanged("Pitch"); } }
+        public double Altimeter { get { return altimeter; }
+            set { altimeter = value; NotifyPropertyChanged("Altimeter"); } }
+        public double Heading { get { return heading; }
+            set { heading = value; NotifyPropertyChanged("Heading"); } }
         public double GroundSpeed { get { return groungSpeed; }
-                                    set { groungSpeed = value; NotifyPropertyChanged("GroungSpeed"); } }
+            set { groungSpeed = value; NotifyPropertyChanged("GroungSpeed"); } }
         public double VerticalSpeed { get { return verticalSpeed; }
-                                      set { verticalSpeed = value; NotifyPropertyChanged("VerticalSpeed"); } }
-        public double AirSpeed { get { return airSpeed; } 
-                                 set { airSpeed = value; NotifyPropertyChanged("AirSpeed"); } }
+            set { verticalSpeed = value; NotifyPropertyChanged("VerticalSpeed"); } }
+        public double AirSpeed { get { return airSpeed; }
+            set { airSpeed = value; NotifyPropertyChanged("AirSpeed"); } }
 
 
 
 
         public void connect(string ip, int port)
         {
-            this.communicator.connect(ip, port);
+            this.connector.connect(ip, port);
         }
         public void disconnect()
         {
             this.stop = true;
-            this.communicator.disconnect();
-            
+            this.connector.disconnect();
+
         }
         public void start()
         {
             new Thread(delegate ()
             {
-                while(!stop)
+                while (!stop)
                 {
-                    communicator.write("");
-                    Altitude = Double.Parse(communicator.read());
-                    communicator.write("");
-                    Roll = Double.Parse(communicator.read());
-                    communicator.write("");
-                    Pitch = Double.Parse(communicator.read());
-                    communicator.write("");
-                    Altimeter = Double.Parse(communicator.read());
-                    communicator.write("");
-                    Heading = Double.Parse(communicator.read());
-                    communicator.write("");
-                    GroundSpeed = Double.Parse(communicator.read());
-                    communicator.write("");
-                    VerticalSpeed = Double.Parse(communicator.read());
-                    communicator.write("");
-                    AirSpeed = Double.Parse(communicator.read());
-                    //TODO handle err
-                    Thread.Sleep(250);
+                    infoRequest();
+                    interpretInfo(this.connector.read());
+                     //TODO handle err
+                     Thread.Sleep(250);
                 }
             }).Start();
+        }
+
+        private void infoRequest()
+        {
+            connector.write("get" + this.PropertiesSimulatorPath["airSpeed"] + "\n" +
+                            "get" + this.PropertiesSimulatorPath["altimeter"] + "\n" +
+                            "get" + this.PropertiesSimulatorPath["altitude"] + "\n" +
+                            "get" + this.PropertiesSimulatorPath["heading"] + "\n" +
+                            "get" + this.PropertiesSimulatorPath["roll"] + "\n" +
+                            "get" + this.PropertiesSimulatorPath["groundSpeed"] + "\n" +
+                            "get" + this.PropertiesSimulatorPath["pitch"] + "\n" +
+                            "get" + this.PropertiesSimulatorPath["verticalSpeed"] + "\n"
+                            );                
+        }
+
+        private void interpretInfo(string info) {
+            string[] values = info.Split('\n');
+            AirSpeed = Double.Parse(values[0]);
+            Altimeter = Double.Parse(values[1]);
+            Altitude = Double.Parse(values[2]);
+            Heading = Double.Parse(values[3]);
+            Roll = Double.Parse(values[4]);
+            GroundSpeed = Double.Parse(values[5]);
+            Pitch = Double.Parse(values[6]);
+
+
+
+
         }
     }
 }
