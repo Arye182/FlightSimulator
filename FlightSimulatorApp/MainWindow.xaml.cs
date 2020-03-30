@@ -34,6 +34,7 @@ namespace FlightSimulatorApp
             catch(Exception ex)
             {
                 Console.WriteLine("eror connecting");
+
             }
         }
     }
