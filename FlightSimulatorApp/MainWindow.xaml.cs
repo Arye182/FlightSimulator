@@ -12,9 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using FlightSimulatorApp.Views;
 using FlightSimulatorApp.Model;
-
 
 namespace FlightSimulatorApp
 {
@@ -23,19 +21,41 @@ namespace FlightSimulatorApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        MyJoystick mj;
-        Map m;
-        FlightData db;
-        IFlightSimulatorModel model;
-
-
         public MainWindow()
         {
-            DataContext = this; 
-            mj = new MyJoystick();
-            m = new Map();
-            db = new FlightData();
             InitializeComponent();
+            ISimulatorConnector s = new MySimulatorConnector();
+            try
+            {
+                s.connect("127.0.0.1", 5402);
+                s.write("get /controls/flight/rudder\n");
+                s.read();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("eror connecting");
+            }
+
+        }
+
+        private void Joystick_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Joystick_Loaded_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Map_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Joystick_Loaded_3(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
