@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:FlightSimulatorApp.Views"
         mc:Ignorable="d" 
-        Title="Flight Simulator App" Height="900" Width="1300">
+        Title="Flight Simulator App" Height="900" Width="1300" Background="CadetBlue">
 
     
     <Grid >
@@ -21,9 +21,7 @@
             <RowDefinition Height="13*"/>
             <RowDefinition Height="35"/>
         </Grid.RowDefinitions>
-        <Grid.Background>
-            <ImageBrush ImageSource="C:\Users\aryea\source\repos\FlightSimulator\FlightSimulatorApp\Views\resources\2805915.jpg" Stretch="UniformToFill"/>
-        </Grid.Background>
+
 
         <!--   Top Bar  !-->
         <Viewbox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"  Stretch="Uniform" HorizontalAlignment="Left" Margin="5,5,5,5">

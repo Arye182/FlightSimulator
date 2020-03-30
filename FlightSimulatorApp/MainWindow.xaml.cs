@@ -35,27 +35,6 @@ namespace FlightSimulatorApp
             {
                 Console.WriteLine("eror connecting");
             }
-
-        }
-
-        private void Joystick_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Joystick_Loaded_1(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Map_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Joystick_Loaded_3(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
