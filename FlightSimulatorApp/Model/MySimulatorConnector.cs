@@ -42,7 +42,6 @@ namespace FlightSimulatorApp.Model
             {
                 this.read_stream.Read(buffer, 0, 1024);
                 string incomingInfo = Encoding.ASCII.GetString(buffer, 0, buffer.Length);
-                Console.WriteLine(incomingInfo);
             }
             catch (Exception ex)
             {

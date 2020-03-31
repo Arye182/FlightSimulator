@@ -8,6 +8,21 @@ using System.Threading;
 
 namespace FlightSimulatorApp.Model
 {
+    static class PropertiesIndex
+    {
+        public const int AIRSPEED = 0;
+        public const string AIRSPEEDPATH = "/instrumentation/airspeed-indicator/indicated-speed-kt";
+        public const int ALTIMETER = 1;
+        public const int ALTITUDE = 2;
+        public const int HEADING = 3;
+        public const int ROLL = 4;
+        public const int GROUNGSPEED = 5;
+        public const int PITCH = 6;
+        public const int VERTICALSPEED = 7;
+    }
+
+
+
     public class FlightSimulatorModel : IFlightSimulatorModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -30,6 +45,10 @@ namespace FlightSimulatorApp.Model
         private double groungSpeed;
         private double verticalSpeed;
         private double airSpeed;
+
+        private bool connectionStatus;
+        private string warningMessage;
+
         private SortedDictionary<string, string> PropertiesSimulatorPath = new SortedDictionary<string, string>()
         {
             {"throttle", "/controls/engines/current-engine/throttle" },
@@ -55,7 +74,7 @@ namespace FlightSimulatorApp.Model
             this.stop = false;
         }
 
-        
+
         // private static FlightSimulatorModel m_Instance = null;
         //public static FlightSimulatorModel Instance
         //{
@@ -96,8 +115,25 @@ namespace FlightSimulatorApp.Model
         public double AirSpeed { get { return airSpeed; }
             set { airSpeed = value; NotifyPropertyChanged("AirSpeed"); } }
 
+        public double Latitude { get { return latitude; }
+                                 set { latitude = value; NotifyPropertyChanged("Latitude"); } }
+        public bool ConnectionStatus
+        {
+            get { return connectionStatus; }
+            set { connectionStatus = value; NotifyPropertyChanged("ConnectionStatus"); }
+        }
 
+        public string WarningMessage
+        {
+            get { return warningMessage; }
+            set { warningMessage = value; NotifyPropertyChanged("WorningStatus"); }
+        }
 
+        public double Longitude
+        {
+            get { return longitude; }
+            set { longitude = value; NotifyPropertyChanged("Longitude"); }
+        }
 
         public void connect(string ip, int port)
         {
@@ -142,23 +178,42 @@ namespace FlightSimulatorApp.Model
         }
 
         private void interpretInfo(string info) {
+            Console.WriteLine(info);
             string[] values = info.Split('\n');
-            try { 
-            AirSpeed = Double.Parse(values[0]);
-        } catch(Exception ex) {
-                Console.WriteLine(ex.Message);
-            }
-            Console.WriteLine("airSpeed:"+this.PropertiesSimulatorPath["airSpeed"]);
-            foreach (string s in values)
+            try
             {
-                Console.WriteLine(s);
+                AirSpeed = Double.Parse(values[PropertiesIndex.AIRSPEED]);
+                Altimeter = Double.Parse(values[PropertiesIndex.ALTIMETER]);
+                Altitude = Double.Parse(values[PropertiesIndex.ALTITUDE]);
+                Heading = Double.Parse(values[PropertiesIndex.HEADING]);
+                Roll = Double.Parse(values[PropertiesIndex.ROLL]);
+                GroundSpeed = Double.Parse(values[PropertiesIndex.GROUNGSPEED]);
+                Pitch = Double.Parse(values[PropertiesIndex.PITCH]);
+                VerticalSpeed = Double.Parse(values[PropertiesIndex.VERTICALSPEED]);
+
             }
-            Altimeter = Double.Parse(values[1]);
-            Altitude = Double.Parse(values[2]);
-            Heading = Double.Parse(values[3]);
-            Roll = Double.Parse(values[4]);
-            GroundSpeed = Double.Parse(values[5]);
-            Pitch = Double.Parse(values[6]);
+            catch(Exception e)
+            { 
+               warningMessage = "eror getting updated airspeed value";
+            }
+
+            // Console.WriteLine(values.Length);
+            /*  try { 
+              AirSpeed = Double.Parse(values[0]);
+          } catch(Exception ex) {
+                  Console.WriteLine(ex.Message);
+              }
+              Console.WriteLine("airSpeed:"+this.PropertiesSimulatorPath["airSpeed"]);
+              foreach (string s in values)
+              {
+                  Console.WriteLine(s);
+              }
+              Altimeter = Double.Parse(values[1]);
+              Altitude = Double.Parse(values[2]);
+              Heading = Double.Parse(values[3]);
+              Roll = Double.Parse(values[4]);
+              GroundSpeed = Double.Parse(values[5]);
+              Pitch = Double.Parse(values[6]);*/
             this.stop = true;
 
 
