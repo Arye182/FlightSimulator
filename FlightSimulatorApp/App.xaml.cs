@@ -17,7 +17,7 @@ namespace FlightSimulatorApp
     public partial class App : Application
     {
         // properties of view models and the model
-        public IFlightSimulatorModel Model { get; internal set; }
+        public FlightSimulatorModel Model { get; internal set; }
         public MyJoystickVM JoystickVM { get; internal set; }
         public DashBaordViewModel DashVM { get ; internal set; }
         public StatusBarViewModel SBVM { get; internal set; }
