@@ -66,6 +66,7 @@
     <Compile Include="Model\MySimulatorConnector.cs" />
     <Compile Include="ViewModel\DashBaordViewModel.cs" />
     <Compile Include="ViewModel\MyJoystickVM.cs" />
+    <Compile Include="ViewModel\StatusBarViewModel.cs" />
     <Compile Include="Views\FlightDashBoard.xaml.cs">
       <DependentUpon>FlightDashBoard.xaml</DependentUpon>
     </Compile>

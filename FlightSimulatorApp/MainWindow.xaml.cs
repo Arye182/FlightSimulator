@@ -28,7 +28,7 @@ namespace FlightSimulatorApp
             IFlightSimulatorModel model = (Application.Current as App).Model; ;
             try
             {
-                model.connect("127.0.0.1", 5402);
+                model.connect("127.0.0.1", 5402);                
                 model.start();
 
             }
