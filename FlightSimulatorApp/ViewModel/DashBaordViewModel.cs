@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using FlightSimulatorApp.Model;
 namespace FlightSimulatorApp.ViewModel
 {
-    class DashBaordViewModel : INotifyPropertyChanged
+     public class DashBaordViewModel : INotifyPropertyChanged
     {
         private IFlightSimulatorModel model;
 
