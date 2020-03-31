@@ -12,8 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FlightSimulatorApp.Views;
 using FlightSimulatorApp.Model;
-using FlightSimulatorApp;
 
 namespace FlightSimulatorApp
 {
@@ -25,18 +25,27 @@ namespace FlightSimulatorApp
         public MainWindow()
         {
             InitializeComponent();
-            IFlightSimulatorModel model = (Application.Current as App).Model; ;
+            ISimulatorConnector s = new MySimulatorConnector();
             try
             {
-                model.connect("127.0.0.1", 5402);                
-                model.start();
-
+                s.connect("127.0.0.1", 5402);
+                s.write("get /controls/flight/rudder\n");
+                s.read();
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 Console.WriteLine("eror connecting");
-
             }
+
+        }
+
+        public MainWindow()
+        {
+            DataContext = this; 
+            mj = new MyJoystick();
+            m = new Map();
+            db = new FlightData();
+            InitializeComponent();
         }
     }
 }
