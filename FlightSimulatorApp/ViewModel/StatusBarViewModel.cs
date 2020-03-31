@@ -12,7 +12,7 @@ namespace FlightSimulatorApp.ViewModel
 {
     public class StatusBarViewModel : INotifyPropertyChanged
     {
-        private IFlightSimulatorModel model;
+        private FlightSimulatorModel model;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
