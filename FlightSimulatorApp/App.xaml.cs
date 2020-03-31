@@ -5,6 +5,9 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using FlightSimulatorApp.Model;
+using FlightSimulatorApp.ViewModel;
+using FlightSimulatorApp.Views;
 
 namespace FlightSimulatorApp
 {
@@ -13,5 +16,23 @@ namespace FlightSimulatorApp
     /// </summary>
     public partial class App : Application
     {
+        // model
+        //public MySimulatorConnector Model { get; internal set; }
+        public MyJoystickVM JoystickVM { get; internal set; }
+        //public DashBaordViewModel DashVM { get ; internal set; }
+
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+
+            //Model = new MySimulatorConnector();
+            JoystickVM = new MyJoystickVM();
+            //DashVM = new DashBaordViewModel();
+            // Create main application window, starting minimized if specified
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+
+        }
+
+
     }
 }

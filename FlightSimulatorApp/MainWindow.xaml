@@ -58,7 +58,7 @@
 
         <!--   Data  !-->
         <Viewbox Grid.Column="2" Grid.Row="1" Stretch="Uniform" Margin="5,5,5,5">
-            <views:FlightData VerticalAlignment="Center"  Height="897" Width="854"  />
+            <views:FlightDashBoard VerticalAlignment="Center"  Height="897" Width="854"  />
         </Viewbox>
 
 
@@ -69,11 +69,11 @@
                     <ItemsPanelTemplate>
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="500" />
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="500" />
                             </Grid.ColumnDefinitions>
                         </Grid>
                     </ItemsPanelTemplate>
@@ -86,7 +86,7 @@
                     <TextBlock Text="this is our status bar of the application, here will be shown statuses of programm" />
                 </StatusBarItem>
                 <Separator Grid.Column="3" />
-                <StatusBarItem Grid.Column="4">
+                <StatusBarItem Grid.Column="4" HorizontalAlignment="Right" >
                     <ProgressBar Value="50" Width="100" Height="16" />
                 </StatusBarItem>
             </StatusBar>
