@@ -8,7 +8,7 @@ using System.Threading;
 
 namespace FlightSimulatorApp.Model
 {
-    class FlightSimulatorModel : IFlightSimulatorModel
+    public class FlightSimulatorModel : IFlightSimulatorModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -42,12 +42,11 @@ namespace FlightSimulatorApp.Model
             {"roll", "/instrumentation/attitude-indicator/internal-roll-deg" },
             {"pitch", "/instrumentation/attitude-indicator/internal-pitch-deg" },
             {"heading", "/instrumentation/heading-indicator/indicated-heading-deg" },
-            {"alimeter", "/instrumentation/altimeter/indicated-altitude-ft" },
-            {"groungSpeed", "/instrumentation/gps/indicated-ground-speed-kt"},
+            {"altimeter", "/instrumentation/altimeter/indicated-altitude-ft" },
+            {"groundSpeed", "/instrumentation/gps/indicated-ground-speed-kt"},
             {"verticalSpeed", "/instrumentation/gps/indicated-vertical-speed" },
             {"airSpeed", "/instrumentation/airspeed-indicator/indicated-speed-kt" },
-        }
-        ;
+        };
 
 
         public FlightSimulatorModel(ISimulatorConnector connector)
@@ -56,7 +55,7 @@ namespace FlightSimulatorApp.Model
             this.stop = false;
         }
 
-        #region Singleton
+        
         // private static FlightSimulatorModel m_Instance = null;
         //public static FlightSimulatorModel Instance
         //{
@@ -112,41 +111,55 @@ namespace FlightSimulatorApp.Model
         }
         public void start()
         {
-            new Thread(delegate ()
+            Thread t = new Thread(delegate ()
             {
                 while (!stop)
                 {
                     infoRequest();
                     interpretInfo(this.connector.read());
-                     //TODO handle err
-                     Thread.Sleep(250);
+                    //TODO handle err
+                    Thread.Sleep(250);
                 }
-            }).Start();
+                disconnect();
+            });
+            t.Start();
+            t.Join();
+
         }
 
         private void infoRequest()
         {
-            Console.WriteLine(this.PropertiesSimulatorPath["airSpeed"]);
-            connector.write("get" + this.PropertiesSimulatorPath["airSpeed"] + "\n" +
-                            "get" + this.PropertiesSimulatorPath["altimeter"] + "\n" +
-                            "get" + this.PropertiesSimulatorPath["altitude"] + "\n" +
-                            "get" + this.PropertiesSimulatorPath["heading"] + "\n" +
-                            "get" + this.PropertiesSimulatorPath["roll"] + "\n" +
-                            "get" + this.PropertiesSimulatorPath["groundSpeed"] + "\n" +
-                            "get" + this.PropertiesSimulatorPath["pitch"] + "\n" +
-                            "get" + this.PropertiesSimulatorPath["verticalSpeed"] + "\n"
-                            );                
+            Console.WriteLine(PropertiesSimulatorPath["roll"]);
+            connector.write("get" + PropertiesSimulatorPath["airSpeed"] + "\n" +
+                            "get" + PropertiesSimulatorPath["altimeter"] + "\n" +
+                            "get" + PropertiesSimulatorPath["altitude"] + "\n" +
+                            "get" + PropertiesSimulatorPath["heading"] + "\n" +
+                            "get" + PropertiesSimulatorPath["roll"] + "\n" +
+                            "get" + PropertiesSimulatorPath["groundSpeed"] + "\n" +
+                            "get" + PropertiesSimulatorPath["pitch"] + "\n" +
+                            "get" + PropertiesSimulatorPath["verticalSpeed"] + "\n"
+                            );
         }
 
         private void interpretInfo(string info) {
             string[] values = info.Split('\n');
+            try { 
             AirSpeed = Double.Parse(values[0]);
+        } catch(Exception ex) {
+                Console.WriteLine(ex.Message);
+            }
+            Console.WriteLine("airSpeed:"+this.PropertiesSimulatorPath["airSpeed"]);
+            foreach (string s in values)
+            {
+                Console.WriteLine(s);
+            }
             Altimeter = Double.Parse(values[1]);
             Altitude = Double.Parse(values[2]);
             Heading = Double.Parse(values[3]);
             Roll = Double.Parse(values[4]);
             GroundSpeed = Double.Parse(values[5]);
             Pitch = Double.Parse(values[6]);
+            this.stop = true;
 
 
 

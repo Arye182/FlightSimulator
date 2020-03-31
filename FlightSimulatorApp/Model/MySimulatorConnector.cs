@@ -7,7 +7,7 @@ using System.Net.Sockets;
 
 namespace FlightSimulatorApp.Model
 {
-    class MySimulatorConnector : ISimulatorConnector
+    public class MySimulatorConnector : ISimulatorConnector
     {
         TcpClient my_client;
         private NetworkStream write_stream = null;
@@ -52,6 +52,7 @@ namespace FlightSimulatorApp.Model
         }
         public void disconnect()
         {
+            Console.WriteLine("disconnect");
             this.write_stream.Close();
             this.read_stream.Close();
         }

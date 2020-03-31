@@ -29,7 +29,7 @@ namespace FlightSimulatorApp
             {
                 model.connect("127.0.0.1", 5402);
                 model.start();
-                model.disconnect();
+
             }
             catch(Exception ex)
             {
