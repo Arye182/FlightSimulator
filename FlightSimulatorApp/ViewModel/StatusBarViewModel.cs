@@ -6,19 +6,20 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using FlightSimulatorApp.Model;
 using System.Windows;
+using FlightSimulatorApp;
 
 namespace FlightSimulatorApp.ViewModel
 {
-    class StatusBarViewModel : INotifyPropertyChanged
+    public class StatusBarViewModel : INotifyPropertyChanged
     {
-        private FlightSimulatorModel model;
+        private IFlightSimulatorModel model;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
 
         public StatusBarViewModel()
         {
-            this.model = (Application.Current as App).Model; ;
+            this.model = (Application.Current as App).Model;
             model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
                 NotifyPropertyChanged("VM_" + e.PropertyName);
