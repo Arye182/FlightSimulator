@@ -17,14 +17,14 @@ namespace FlightSimulatorApp
     public partial class App : Application
     {
         // properties of view models and the model
-        public MySimulatorConnector Model { get; internal set; }
+        public IFlightSimulatorModel Model { get; internal set; }
         public MyJoystickVM JoystickVM { get; internal set; }
         public DashBaordViewModel DashVM { get ; internal set; }
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
 
-            Model = new MySimulatorConnector();
+            Model = new FlightSimulatorModel(new MySimulatorConnector());
             JoystickVM = new MyJoystickVM();
             DashVM = new DashBaordViewModel();
 

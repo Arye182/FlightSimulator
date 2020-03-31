@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FlightSimulatorApp.Model;
+using FlightSimulatorApp;
 
 namespace FlightSimulatorApp
 {
@@ -24,7 +25,7 @@ namespace FlightSimulatorApp
         public MainWindow()
         {
             InitializeComponent();
-            IFlightSimulatorModel model = new FlightSimulatorModel(new MySimulatorConnector());
+            IFlightSimulatorModel model = (Application.Current as App).Model; ;
             try
             {
                 model.connect("127.0.0.1", 5402);

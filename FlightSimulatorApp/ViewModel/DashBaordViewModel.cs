@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FlightSimulatorApp.Model;
+using FlightSimulatorApp;
+using System.Windows;
+
 namespace FlightSimulatorApp.ViewModel
 {
      public class DashBaordViewModel : INotifyPropertyChanged
@@ -14,9 +17,9 @@ namespace FlightSimulatorApp.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
 
 
-        public DashBaordViewModel(IFlightSimulatorModel model)
+        public DashBaordViewModel()
         {
-            this.model = model;
+            this.model = (Application.Current as App).Model; ;
             model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
                 NotifyPropertyChanged("VM_" + e.PropertyName);
