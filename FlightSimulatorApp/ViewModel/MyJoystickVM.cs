@@ -8,7 +8,7 @@ using FlightSimulatorApp.Model;
 
 namespace FlightSimulatorApp.ViewModel
 {
-    class MyJoystickVM : INotifyPropertyChanged
+    public class MyJoystickVM : INotifyPropertyChanged
     {
 
         // data members

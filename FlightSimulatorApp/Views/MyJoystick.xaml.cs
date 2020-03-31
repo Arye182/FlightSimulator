@@ -8,18 +8,17 @@ using System.Windows.Input;
 using System.Windows;
 using FlightSimulatorApp.Model;
 using FlightSimulatorApp.ViewModel;
+using FlightSimulatorApp;
 using System.ComponentModel;
 
 namespace FlightSimulatorApp.Views
 {
     public partial class MyJoystick : UserControl
     {
-        MyJoystickVM vm;
         public MyJoystick()
         {
             InitializeComponent();
-            vm = new MyJoystickVM();
-            DataContext = vm;
+            DataContext = (Application.Current as App).JoystickVM;
         }
     }
 }

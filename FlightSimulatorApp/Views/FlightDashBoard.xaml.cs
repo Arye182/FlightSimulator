@@ -12,17 +12,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FlightSimulatorApp.ViewModel;
 
 namespace FlightSimulatorApp.Views
 {
     /// <summary>
     /// Interaction logic for FlightData.xaml
     /// </summary>
-    public partial class FlightData : UserControl
+    public partial class FlightDashBoard : UserControl
     {
-        public FlightData()
+        DashBaordViewModel vm;
+        public FlightDashBoard()
         {
             InitializeComponent();
+            
         }
+
+
     }
 }
