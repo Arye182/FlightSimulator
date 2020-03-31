@@ -12,21 +12,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using FlightSimulatorApp.ViewModel;
 
 namespace FlightSimulatorApp.Views
 {
     /// <summary>
-    /// Interaction logic for FlightData.xaml
+    /// Interaction logic for StatusBar.xaml
     /// </summary>
-    public partial class FlightDashBoard : UserControl
+    public partial class StatusBar : UserControl
     {
-        public FlightDashBoard()
+        private bool connectionStatus = false;
+        public bool Connected { get { return this.connectionStatus; } set { this.connectionStatus = value; } }
+        public StatusBar()
         {
             InitializeComponent();
-            DataContext = (Application.Current as App).DashVM;
         }
-
-
     }
 }

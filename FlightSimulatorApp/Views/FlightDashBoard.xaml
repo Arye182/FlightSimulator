@@ -33,9 +33,6 @@
         <Label Content="Vertical Speed" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center"  FontSize="36" FontWeight="Bold" Foreground="#FF5AD316"/>
 
 
-
-
-
         <Label x:Name="air_speed_value" Content="0" Grid.Row="1" Grid.Column="1" HorizontalAlignment="right" Margin="0,33,13,33" VerticalAlignment="Center"  FontSize="36" FontWeight="Bold" Foreground="#FF5AD316"/>
         <Label x:Name="altitude_value" Content="0" Grid.Row="2" Grid.Column="1" HorizontalAlignment="right" Margin="0,40,15,26" VerticalAlignment="Center" FontSize="36" FontWeight="Bold" Foreground="#FF5AD316"/>
         <Label x:Name="roll_value" Content="0"  Grid.Row="3" Grid.Column="1" HorizontalAlignment="right" Margin="0,33,15,33" VerticalAlignment="Center"  FontSize="36" FontWeight="Bold" Foreground="#FF5AD316"/>

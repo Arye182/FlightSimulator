@@ -14,10 +14,6 @@
             Center="31.1481402218342, 35.644248783588"
             ZoomLevel="2" >
             <m:Pushpin x:Name="pushpin" Location="31.1481402218342, 35.644248783588"/>
-            <Label Content="Lat:" HorizontalAlignment="Left" Margin="10,685,0,65" Width="60" FontSize="30" FontStyle="Italic" RenderTransformOrigin="0.5,0.5"/>
-            <Label x:Name="coordinates" HorizontalAlignment="Left" VerticalAlignment="Top" Width="304" FontSize="30" Margin="101,690,0,0" Height="45" Content="{Binding Location.Latitude, ElementName=pushpin}" FontStyle="Italic"></Label>
-            <Label Content="Long:" HorizontalAlignment="Left" Margin="10,725,0,0" VerticalAlignment="Top" Width="160" FontSize="30" RenderTransformOrigin="0.5,0.5" FontStyle="Italic"></Label>
-            <Label x:Name="coordinates_Copy" HorizontalAlignment="Left" VerticalAlignment="Top" Width="305" FontSize="30" Height="45" Content="{Binding Location.Longitude, ElementName=pushpin}" Margin="100,730,0,0" FontStyle="Italic"/>
         </m:Map>
         
 

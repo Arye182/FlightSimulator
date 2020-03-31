@@ -32,7 +32,7 @@ namespace FlightSimulatorApp
                 model.start();
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine("eror connecting");
 
