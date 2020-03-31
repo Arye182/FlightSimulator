@@ -16,18 +16,19 @@ namespace FlightSimulatorApp
     /// </summary>
     public partial class App : Application
     {
-        // model
-        //public MySimulatorConnector Model { get; internal set; }
+        // properties of view models and the model
+        public MySimulatorConnector Model { get; internal set; }
         public MyJoystickVM JoystickVM { get; internal set; }
-        //public DashBaordViewModel DashVM { get ; internal set; }
+        public DashBaordViewModel DashVM { get ; internal set; }
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
 
-            //Model = new MySimulatorConnector();
+            Model = new MySimulatorConnector();
             JoystickVM = new MyJoystickVM();
-            //DashVM = new DashBaordViewModel();
-            // Create main application window, starting minimized if specified
+            DashVM = new DashBaordViewModel();
+
+            // Create main application window
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
 
