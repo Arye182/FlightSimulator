@@ -20,6 +20,7 @@ namespace FlightSimulatorApp
         public IFlightSimulatorModel Model { get; internal set; }
         public MyJoystickVM JoystickVM { get; internal set; }
         public DashBaordViewModel DashVM { get ; internal set; }
+        public StatusBarViewModel SBVM { get; internal set; }
 
 
         private void Application_Startup(object sender, StartupEventArgs e)
@@ -28,6 +29,7 @@ namespace FlightSimulatorApp
             Model = new FlightSimulatorModel(new MySimulatorConnector());
             JoystickVM = new MyJoystickVM();
             DashVM = new DashBaordViewModel();
+            SBVM = new StatusBarViewModel();
             // Create main application window
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();

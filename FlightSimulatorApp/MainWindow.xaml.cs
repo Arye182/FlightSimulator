@@ -36,16 +36,6 @@ namespace FlightSimulatorApp
             {
                 Console.WriteLine("eror connecting");
             }
-
-        }
-
-        public MainWindow()
-        {
-            DataContext = this; 
-            mj = new MyJoystick();
-            m = new Map();
-            db = new FlightData();
-            InitializeComponent();
         }
     }
 }
