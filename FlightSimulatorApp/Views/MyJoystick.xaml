@@ -7,9 +7,11 @@
              xmlns:System="clr-namespace:System;assembly=mscorlib" 
              x:Name="MyJoystick1" 
              x:Class="FlightSimulatorApp.Views.MyJoystick" 
+    
              mc:Ignorable="d" Height="800" Width="1100"  Background="#323C54">
 
     <Grid>
+
 
         <!--   inner joystick and its components  !-->
         <local:Joystick 
@@ -18,7 +20,7 @@
             VerticalAlignment="Center" 
             X="{Binding VM_Rudder, Mode=OneWayToSource}"
             Y="{Binding VM_Elevator, Mode=OneWayToSource}"/>
-        <TextBlock 
+        <Label 
             x:Name="elavator_value" 
             HorizontalAlignment="Right" 
             VerticalAlignment="Center" 
@@ -28,11 +30,11 @@
             Height="60" 
             IsEnabled="False" 
             Foreground="#747E96"
-            Text="{Binding ElevatorString}" Margin="0,89,10,537">
-        </TextBlock>
-        <TextBlock
+            Content="{Binding ElevatorString}" Margin="0,89,10,537">
+        </Label>
+        <Label
             x:Name="rudder_value" 
-            Text="{Binding RudderString}"
+            Content="{Binding RudderString}"
             HorizontalAlignment="Center" 
             VerticalAlignment="Top" 
             Background="{x:Null}" 
@@ -40,7 +42,7 @@
             Foreground="#747E96"
             Height="50" 
             Width="125" Margin="285,40,276,0">
-        </TextBlock>
+        </Label>
         <Label Content="&lt;----Rudder----&gt;" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="48" FontFamily="Segoe UI Symbol" Margin="154,80,158,0" Foreground="#FFFFFB"/>
         <Label Content="&lt;----Elavator----&gt;" HorizontalAlignment="Right"  VerticalAlignment="Center" FontSize="48" FontFamily="Segoe UI Symbol" RenderTransformOrigin="0.5,0.5" Margin="0,311,-128,311" Foreground="#FFFFFB" >
             <Label.RenderTransform>

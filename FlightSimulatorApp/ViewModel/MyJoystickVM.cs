@@ -31,9 +31,8 @@ namespace FlightSimulatorApp.ViewModel
             set
             {
                 elevator = value;
-                model.Elevator = value;
-                //NotifyPropertyChanged("ElevatorString");
-                NotifyPropertyChanged("Elevator");
+                OnPropertyChanged("ElevatorString");
+                OnPropertyChanged("Elevator");
             }
         }
         public double VM_Aileron
@@ -45,9 +44,8 @@ namespace FlightSimulatorApp.ViewModel
             set
             {
                 aileron = value;
-                model.Aileron = value;
-                //NotifyPropertyChanged("AileronString");
-                NotifyPropertyChanged("Aileron");
+                OnPropertyChanged("AileronString");
+                OnPropertyChanged("Aileron");
                 
             }
         }
@@ -60,9 +58,8 @@ namespace FlightSimulatorApp.ViewModel
             set
             {
                 rudder = value;
-                model.Rudder = value;
-                //NotifyPropertyChanged("RudderString");
-                NotifyPropertyChanged("Rudder");
+                OnPropertyChanged("RudderString");
+                OnPropertyChanged("Rudder");
             }
         }
         public double VM_Throttle
@@ -74,9 +71,8 @@ namespace FlightSimulatorApp.ViewModel
             set
             {
                 throttle = value;
-                model.Throttle = value;
-                NotifyPropertyChanged("ThrottleString");
-                NotifyModelPropertyChanged("Throttle");
+                OnPropertyChanged("ThrottleString");
+                OnPropertyChanged("Throttle");
             }
         }
 
@@ -126,14 +122,10 @@ namespace FlightSimulatorApp.ViewModel
         public MyJoystickVM()
         {
             this.model = (Application.Current as App).Model;
-            PropertyChanged += delegate (object sender, PropertyChangedEventArgs e)
-            {
-                NotifyPropertyChanged(e.PropertyName);
-            };
+            //PropertyChanged += NotifyPropertyChanged;
         }
-        public void NotifyPropertyChanged(string propName)
+        public void OnPropertyChanged(string propName)
         {
-            model.SendControlInfo(propName);
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
 

@@ -5,10 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FlightSimulatorApp.Views"
              xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
-             mc:Ignorable="d" Width="1000" Height="800" Background="#323C54">
+             mc:Ignorable="d" Width="1100" Height="900" Background="#323C54">
     <Grid>
+        <Label Content="Flight Map" FontSize="65" FontWeight="Bold" Grid.ColumnSpan="5" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" FontStretch="Normal"  Foreground="#FFFFFB"/>
 
-        <m:Map  Width="950" Height="750"
+        <m:Map  Width="1000" Height="750" Margin="0,70,0,0"
             CredentialsProvider="0lorjGXdhAaoxKgm8ZCp~3iC811-s_dKqVi3oSUbISA~Aidta9Kv4580M0wRbDmjoWHM1I9mUw6JjmcT43tiNvyrUeAFDXmF9SIf4JLQ6pAu" 
             Center="31.1481402218342, 35.644248783588"
             ZoomLevel="2" HorizontalAlignment="Center" VerticalAlignment="Center" Mode="Road">
