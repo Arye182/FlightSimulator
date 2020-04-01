@@ -72,6 +72,7 @@ namespace FlightSimulatorApp.Model
         {
             this.connector = connector;
             this.stop = false;
+            this.WarningMessage = "no message yet";
         }
 
 
@@ -196,24 +197,7 @@ namespace FlightSimulatorApp.Model
             { 
                warningMessage = "eror getting updated airspeed value";
             }
-
-            // Console.WriteLine(values.Length);
-            /*  try { 
-              AirSpeed = Double.Parse(values[0]);
-          } catch(Exception ex) {
-                  Console.WriteLine(ex.Message);
-              }
-              Console.WriteLine("airSpeed:"+this.PropertiesSimulatorPath["airSpeed"]);
-              foreach (string s in values)
-              {
-                  Console.WriteLine(s);
-              }
-              Altimeter = Double.Parse(values[1]);
-              Altitude = Double.Parse(values[2]);
-              Heading = Double.Parse(values[3]);
-              Roll = Double.Parse(values[4]);
-              GroundSpeed = Double.Parse(values[5]);
-              Pitch = Double.Parse(values[6]);*/
+            Console.WriteLine(warningMessage);
             this.stop = true;
 
 
