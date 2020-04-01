@@ -310,13 +310,15 @@ namespace FlightSimulatorApp.Model
 
        public void SendControlInfo(string propName)
         {
-            connector.write("set " + PropertiesSimulatorPath[propName] + " " + typeof(FlightSimulatorModel).GetProperty(propName).ToString());
-            Console.WriteLine(typeof(FlightSimulatorModel).GetProperty(propName).GetValue(this, null));
-            if (connector.read() == "ERR")
+            //Console.WriteLine("set " + PropertiesSimulatorPath[propName] + " " + typeof(FlightSimulatorModel).GetProperty(propName) + "\n");
+            connector.write("set " + PropertiesSimulatorPath[propName] + " " + typeof(FlightSimulatorModel).GetProperty(propName).GetValue(this, null) + "\n");
+            //Console.WriteLine(typeof(FlightSimulatorModel).GetProperty(propName).GetValue(this, null));
+            string output = connector.read();
+            if (output == "ERR")
             {
                 warningMessage = "eror responding to " + propName;
             }
-            Console.WriteLine(connector.read());
+            Console.WriteLine(output);
         }
     }
 }
