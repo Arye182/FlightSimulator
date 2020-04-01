@@ -17,6 +17,7 @@ namespace FlightSimulatorApp.Model
         double GroundSpeed { get; set; }
         double VerticalSpeed { get; set; }
         double AirSpeed { get; set; }
+        //void interpretInfo(string info);
     }
  
 }
