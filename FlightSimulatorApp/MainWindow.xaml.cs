@@ -25,11 +25,6 @@ namespace FlightSimulatorApp
         public MainWindow()
         {
             InitializeComponent();
-          
-            FlightSimulatorModel m = (Application.Current as App).Model;
-            m.connect("127.0.0.1", 5402);
-            ISimulatorConnector s = m.connector;
-            m.start();
         }
         public void item_Click(Object sender, RoutedEventArgs e)
         {
