@@ -37,17 +37,21 @@ namespace FlightSimulatorApp.Model
         }
         public string read()
         {
+            string incomingInfo;
             byte[] buffer = new byte[1024];
             try
             {
                 this.read_stream.Read(buffer, 0, 1024);
-                string incomingInfo = Encoding.ASCII.GetString(buffer, 0, buffer.Length);
+                incomingInfo = Encoding.ASCII.GetString(buffer, 0, buffer.Length);
+                
             }
             catch (Exception ex)
             {
-                Console.WriteLine("eror reading from server");
+                incomingInfo = "eror reading from server";
+
             }
-            return "v";
+            return incomingInfo;
+            
         }
         public void disconnect()
         {

@@ -25,20 +25,12 @@ namespace FlightSimulatorApp
         public MainWindow()
         {
             InitializeComponent();
-            ISimulatorConnector s = new MySimulatorConnector();
-
-            try
-            {
-                s.connect("127.0.0.1", 5402);
-                s.write("get /controls/flight/rudder\n");
-                s.read();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("eror connecting");
-            }
+          
+            FlightSimulatorModel m = (Application.Current as App).Model;
+            m.connect("127.0.0.1", 5402);
+            ISimulatorConnector s = m.connector;
+            m.start();
         }
-
         public void item_Click(Object sender, RoutedEventArgs e)
         {
             

@@ -72,6 +72,7 @@ namespace FlightSimulatorApp.Model
         {
             this.connector = connector;
             this.stop = false;
+            this.WarningMessage = "no message yet";
         }
 
 
@@ -159,21 +160,21 @@ namespace FlightSimulatorApp.Model
                 disconnect();
             });
             t.Start();
-            t.Join();
+            //t.Join();
 
         }
 
         private void infoRequest()
         {
             Console.WriteLine(PropertiesSimulatorPath["roll"]);
-            connector.write("get" + PropertiesSimulatorPath["airSpeed"] + "\n" +
-                            "get" + PropertiesSimulatorPath["altimeter"] + "\n" +
-                            "get" + PropertiesSimulatorPath["altitude"] + "\n" +
-                            "get" + PropertiesSimulatorPath["heading"] + "\n" +
-                            "get" + PropertiesSimulatorPath["roll"] + "\n" +
-                            "get" + PropertiesSimulatorPath["groundSpeed"] + "\n" +
-                            "get" + PropertiesSimulatorPath["pitch"] + "\n" +
-                            "get" + PropertiesSimulatorPath["verticalSpeed"] + "\n"
+            connector.write("get " + PropertiesSimulatorPath["airSpeed"] + "\n" +
+                            "get " + PropertiesSimulatorPath["altimeter"] + "\n" +
+                            "get " + PropertiesSimulatorPath["altitude"] + "\n" +
+                            "get " + PropertiesSimulatorPath["heading"] + "\n" +
+                            "get " + PropertiesSimulatorPath["roll"] + "\n" +
+                            "get " + PropertiesSimulatorPath["groundSpeed"] + "\n" +
+                            "get " + PropertiesSimulatorPath["pitch"] + "\n" +
+                            "get " + PropertiesSimulatorPath["verticalSpeed"] + "\n"
                             );
         }
 
@@ -183,42 +184,73 @@ namespace FlightSimulatorApp.Model
             try
             {
                 AirSpeed = Double.Parse(values[PropertiesIndex.AIRSPEED]);
+            }
+            catch (Exception e)
+            {
+                warningMessage = "eror getting updated airspeed value";
+            }
+            try {
                 Altimeter = Double.Parse(values[PropertiesIndex.ALTIMETER]);
+            }
+            catch (Exception e)
+            {
+                warningMessage = "eror getting updated altimeter value";
+            }
+            try
+            {
                 Altitude = Double.Parse(values[PropertiesIndex.ALTITUDE]);
+            }
+            catch (Exception e)
+            {
+                warningMessage = "eror getting updated altitude value";
+            }
+            try
+            {
                 Heading = Double.Parse(values[PropertiesIndex.HEADING]);
+            }
+            catch (Exception e)
+            {
+                warningMessage = "eror getting updated heading value";
+            }
+            try
+            {
                 Roll = Double.Parse(values[PropertiesIndex.ROLL]);
+            }
+            catch (Exception e)
+            {
+                warningMessage = "eror getting updated roll value";
+            }
+            try {
                 GroundSpeed = Double.Parse(values[PropertiesIndex.GROUNGSPEED]);
+            }
+            catch (Exception e)
+            {
+                warningMessage = "eror getting updated groundSpeed value";
+            }
+            try
+            {
                 Pitch = Double.Parse(values[PropertiesIndex.PITCH]);
+            }
+            catch (Exception e)
+            {
+                warningMessage = "eror getting updated pitch value";
+            }
+            try
+            { 
                 VerticalSpeed = Double.Parse(values[PropertiesIndex.VERTICALSPEED]);
-
             }
             catch(Exception e)
             { 
-               warningMessage = "eror getting updated airspeed value";
+                WarningMessage = "eror getting updated verticalSpeed value";
             }
-
-            // Console.WriteLine(values.Length);
-            /*  try { 
-              AirSpeed = Double.Parse(values[0]);
-          } catch(Exception ex) {
-                  Console.WriteLine(ex.Message);
-              }
-              Console.WriteLine("airSpeed:"+this.PropertiesSimulatorPath["airSpeed"]);
-              foreach (string s in values)
-              {
-                  Console.WriteLine(s);
-              }
-              Altimeter = Double.Parse(values[1]);
-              Altitude = Double.Parse(values[2]);
-              Heading = Double.Parse(values[3]);
-              Roll = Double.Parse(values[4]);
-              GroundSpeed = Double.Parse(values[5]);
-              Pitch = Double.Parse(values[6]);*/
-            this.stop = true;
+            Console.WriteLine(warningMessage);
+            //this.stop = true;
 
 
 
 
         }
+
+        
     }
 }
