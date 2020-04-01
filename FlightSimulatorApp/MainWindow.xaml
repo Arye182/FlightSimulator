@@ -5,24 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:FlightSimulatorApp.Views"
         mc:Ignorable="d" 
-        Title="Flight Simulator App" Height="900" Width="1300">
+        Title="Flight Simulator App" Height="900" Width="1600" FontSize="18" Background="#1F1F36">
 
     <DockPanel>
         <!--   Menu  !-->
         <StackPanel DockPanel.Dock="Top">
-            <Menu  >
-                <MenuItem Header="Connect">
+            <Menu x:Name="MenuePannel">
+                <MenuItem Header="S_tart">
+                    <MenuItem Header="Connect To Server"></MenuItem>
+                    <MenuItem Header="Disconnect"></MenuItem>
+                    <MenuItem Header="Exit"></MenuItem>
                 </MenuItem>
-                <MenuItem Header="Disconnect">
-                </MenuItem>
-                <MenuItem Header="Port Settings">
-                </MenuItem>
-                <MenuItem Header="Screen Resolution">
+                <MenuItem Header="Settings">
+                    <MenuItem Header="Port and IP"></MenuItem>
+                    <MenuItem Header="Screen Resolution">
+                        <MenuItem Header="Screen Resolution"></MenuItem>
+                        <MenuItem Header="800 × 600"></MenuItem>
+                        <MenuItem Header="Screen Resolution"></MenuItem>
+                        <MenuItem Header="1280 × 720"></MenuItem>
+                        <MenuItem Header="1920 × 1080"></MenuItem>
+                    </MenuItem>
                 </MenuItem>
                 <MenuItem Header="Help">
+                    <MenuItem Header="How To Play?"></MenuItem>
+                    <MenuItem Header="About"></MenuItem>
                 </MenuItem>
-                <MenuItem Header="About">
-                </MenuItem>
+
             </Menu>
         </StackPanel>
         <!--   Bottom Status Bar  !-->
@@ -31,28 +39,25 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1.5*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="10"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="14*"/>
+                <RowDefinition Height="13*"/>
                 <RowDefinition Height="13*"/>
             </Grid.RowDefinitions>
-            <Grid.Background>
-                <ImageBrush ImageSource="Views/Resources/2805914.jpg"  Stretch="UniformToFill"/>
-            </Grid.Background>
             <!--   Map !-->
-            <Viewbox Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Stretch="Uniform" Margin="0,5,5,5">
+            <Viewbox Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Stretch="Uniform" Margin="20,20,20,20" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <views:Map/>
             </Viewbox>
             <!--  Joystick  !-->
-            <Viewbox Grid.Column="2" Grid.Row="1"  Stretch="Uniform" Margin="5,5,5,5">
-                <views:MyJoystick Width="716"/>
+            <Viewbox Grid.Column="2" Grid.Row="1"  Stretch="Uniform" Margin="20,20,20,20" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                <views:MyJoystick/>
             </Viewbox>
             <!--   Data  !-->
-            <Viewbox Grid.Column="2" Grid.Row="0" Stretch="Uniform" Margin="5,5,5,5">
-                <views:FlightDashBoard VerticalAlignment="Center"  Height="897" Width="854"/>
+            <Viewbox Grid.Column="2" Grid.Row="0" Stretch="Uniform" Margin="20,20,20,20" VerticalAlignment="Top" HorizontalAlignment="Center">
+                <views:FlightDashBoard/>
             </Viewbox>
         </Grid>
     </DockPanel>

@@ -143,12 +143,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Views\Resources\2805914.jpg" />
-    <Resource Include="Views\Resources\2805915.jpg" />
-    <Resource Include="Views\Resources\34174.jpg" />
+    <Resource Include="Views\Resources\disconnected.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Views\Resources\disconnected.png" />
+    <Resource Include="Views\Resources\connected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Resources\error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Resources\warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Resources\appbg.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

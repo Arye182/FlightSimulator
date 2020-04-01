@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FlightSimulatorApp.Model;
+using FlightSimulatorApp;
+using System.Windows;
 
 namespace FlightSimulatorApp.ViewModel
 {
@@ -17,7 +19,7 @@ namespace FlightSimulatorApp.ViewModel
         double rudder=0;
         double throttle=0;
         public event PropertyChangedEventHandler PropertyChanged;
-        FlightSimulatorModel model;
+        private FlightSimulatorModel model;
 
         // properties
         public double VM_Elevator
@@ -29,8 +31,8 @@ namespace FlightSimulatorApp.ViewModel
             set
             {
                 elevator = value;
-                OnPropertyChanged("ElevatorString");
-                OnPropertyChanged("Elevator");
+                NotifyPropertyChanged("ElevatorString");
+                NotifyPropertyChanged("Elevator");
             }
         }
         public double VM_Aileron
@@ -42,8 +44,9 @@ namespace FlightSimulatorApp.ViewModel
             set
             {
                 aileron = value;
-                OnPropertyChanged("AileronString");
-                OnPropertyChanged("Aileron");
+                NotifyPropertyChanged("AileronString");
+                NotifyPropertyChanged("Aileron");
+                
             }
         }
         public double VM_Rudder
@@ -55,8 +58,8 @@ namespace FlightSimulatorApp.ViewModel
             set
             {
                 rudder = value;
-                OnPropertyChanged("RudderString");
-                OnPropertyChanged("Rudder");
+                NotifyPropertyChanged("RudderString");
+                NotifyPropertyChanged("Rudder");
             }
         }
         public double VM_Throttle
@@ -68,8 +71,8 @@ namespace FlightSimulatorApp.ViewModel
             set
             {
                 throttle = value;
-                OnPropertyChanged("ThrottleString");
-                OnPropertyChanged("Throttle");
+                NotifyPropertyChanged("ThrottleString");
+                NotifyPropertyChanged("Throttle");
             }
         }
 
@@ -118,10 +121,10 @@ namespace FlightSimulatorApp.ViewModel
         // methods
         public MyJoystickVM()
         {
-            //this.model = FlightSimulatorModel.Instance;
-            //PropertyChanged += OnPropertyChanged;
+            this.model = (Application.Current as App).Model;
+            //PropertyChanged += NotifyPropertyChanged;
         }
-        public void OnPropertyChanged(string propName)
+        public void NotifyPropertyChanged(string propName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }

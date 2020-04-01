@@ -7,9 +7,10 @@
              xmlns:System="clr-namespace:System;assembly=mscorlib" 
              x:Name="MyJoystick1" 
              x:Class="FlightSimulatorApp.Views.MyJoystick" 
-             mc:Ignorable="d" Height="700" Width="700" BorderBrush="DarkGray" BorderThickness="7" Background="DarkSlateGray">
+             mc:Ignorable="d" Height="800" Width="1100"  Background="#323C54">
 
     <Grid>
+
         <!--   inner joystick and its components  !-->
         <local:Joystick 
             x:Name="innerJoystick"
@@ -26,7 +27,7 @@
             Width="130" 
             Height="60" 
             IsEnabled="False" 
-            Foreground="#FF5AD316"
+            Foreground="#747E96"
             Text="{Binding ElevatorString}" Margin="0,89,10,537">
         </TextBlock>
         <TextBlock
@@ -36,12 +37,12 @@
             VerticalAlignment="Top" 
             Background="{x:Null}" 
             FontSize="36" 
-            Foreground="#FF5AD316"
+            Foreground="#747E96"
             Height="50" 
             Width="125" Margin="285,40,276,0">
         </TextBlock>
-        <Label Content="&lt;----Rudder----&gt;" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="48" FontFamily="Segoe UI Symbol" Margin="156,80,156,0" Foreground="#FF5AD316"/>
-        <Label Content="&lt;----Elavator----&gt;" HorizontalAlignment="Right"  VerticalAlignment="Center" FontSize="48" FontFamily="Segoe UI Symbol" RenderTransformOrigin="0.5,0.5" Margin="0,311,-128,311" Foreground="#FF5AD316" >
+        <Label Content="&lt;----Rudder----&gt;" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="48" FontFamily="Segoe UI Symbol" Margin="154,80,158,0" Foreground="#FFFFFB"/>
+        <Label Content="&lt;----Elavator----&gt;" HorizontalAlignment="Right"  VerticalAlignment="Center" FontSize="48" FontFamily="Segoe UI Symbol" RenderTransformOrigin="0.5,0.5" Margin="0,311,-128,311" Foreground="#FFFFFB" >
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -54,8 +55,8 @@
 
         <!--   slider of Throttle  !-->
 
-        <Slider x:Name="ThrottleSlider" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="36" Width="362" Background="#FF162EC5"  FontSize="36" ScrollViewer.HorizontalScrollBarVisibility="Visible" 
-                TickPlacement="Both" TickFrequency="0.1" Value="{Binding VM_Throttle}" Maximum="1" Minimum="0" Margin="79,526,0,134">
+        <Slider x:Name="ThrottleSlider" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="35" Width="362" Background="#3976F7"  FontSize="36" ScrollViewer.HorizontalScrollBarVisibility="Visible" 
+                TickPlacement="Both" TickFrequency="0.1" Value="{Binding VM_Throttle}" Maximum="1" Minimum="0" Margin="79,521,0,130">
             <Slider.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -65,8 +66,8 @@
                 </TransformGroup>
             </Slider.RenderTransform>
         </Slider>
-        <Label x:Name="throttle_value" Content="{Binding ThrottleString}" HorizontalAlignment="Left" Margin="28,85,0,0" VerticalAlignment="Top" Background="{x:Null}" FontSize="36" Height="65" Width="95" Foreground="#FF5AD316"/>
-        <Label Content="&lt;----Throttle----&gt;" HorizontalAlignment="Left"  VerticalAlignment="Center" FontSize="48" FontFamily="Segoe UI Symbol" RenderTransformOrigin="0.5,0.5" Margin="-152,311,0,311" Foreground="#FF5AD316">
+        <Label x:Name="throttle_value" Content="{Binding ThrottleString}" HorizontalAlignment="Left" Margin="28,85,0,0" VerticalAlignment="Top" Background="{x:Null}" FontSize="36" Height="65" Width="95" Foreground="#747E96"/>
+        <Label Content="&lt;----Throttle----&gt;" HorizontalAlignment="Left"  VerticalAlignment="Center" FontSize="48" FontFamily="Segoe UI Symbol" RenderTransformOrigin="0.5,0.5" Margin="-152,311,0,311" Foreground="#FFFFFB">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -78,11 +79,11 @@
         </Label>
 
         <!--   slider of Aileron  !-->
-        <Slider x:Name="AileronSlider" HorizontalAlignment="Center" VerticalAlignment="Bottom"  Width="376" Background="#FF162EC5"
+        <Slider x:Name="AileronSlider" HorizontalAlignment="Center" VerticalAlignment="Bottom"  Width="376" Background="#3976F7"
                 Foreground="#FFE5E5E5"  Height="32" TickPlacement="Both" TickFrequency="0.1" Minimum ="-1" Maximum="1" Value="{Binding VM_Aileron}" Margin="160,0,160,103">
         </Slider>
-        <Label x:Name="aileron_value" Content="{Binding AileronString}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="{x:Null}" FontSize="48" Height="65" Margin="546,0,17,56" Width="123" Foreground="#FF5AD316"/>
-        <Label Content="&lt;----Aileron----&gt;" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="48" FontFamily="Segoe UI Symbol" Margin="157,0,155,38" Foreground="#FF5AD316" Width="374"/>
+        <Label x:Name="aileron_value" Content="{Binding AileronString}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="{x:Null}" FontSize="48" Height="65" Margin="546,0,17,56" Width="123" Foreground="#747E96"/>
+        <Label Content="&lt;----Aileron----&gt;" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="48" FontFamily="Segoe UI Symbol" Margin="157,0,155,38" Foreground="#FFFFFB" Width="374"/>
 
 
 
