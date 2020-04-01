@@ -10,6 +10,8 @@ using FlightSimulatorApp.Model;
 using FlightSimulatorApp.ViewModel;
 using FlightSimulatorApp;
 using System.ComponentModel;
+using System.Windows.Data;
+using System.Globalization;
 
 namespace FlightSimulatorApp.Views
 {
