@@ -33,6 +33,8 @@ namespace FlightSimulatorApp.ViewModel
                 elevator = value;
                 OnPropertyChanged("ElevatorString");
                 OnPropertyChanged("Elevator");
+                model.Elevator = value;
+                NotifyPropertyChanged("Elevator");
             }
         }
         public double VM_Aileron
@@ -46,6 +48,8 @@ namespace FlightSimulatorApp.ViewModel
                 aileron = value;
                 OnPropertyChanged("AileronString");
                 OnPropertyChanged("Aileron");
+                model.Aileron = value;
+                NotifyPropertyChanged("Aileron");
                 
             }
         }
@@ -60,6 +64,9 @@ namespace FlightSimulatorApp.ViewModel
                 rudder = value;
                 OnPropertyChanged("RudderString");
                 OnPropertyChanged("Rudder");
+                model.Rudder = value;
+                NotifyPropertyChanged("Rudder");
+                
             }
         }
         public double VM_Throttle
@@ -73,10 +80,12 @@ namespace FlightSimulatorApp.ViewModel
                 throttle = value;
                 OnPropertyChanged("ThrottleString");
                 OnPropertyChanged("Throttle");
+                model.Throttle = value;
+                NotifyPropertyChanged("Throttle");
             }
         }
 
-
+       
 
         public string ElevatorString
         {
@@ -127,6 +136,11 @@ namespace FlightSimulatorApp.ViewModel
         public void OnPropertyChanged(string propName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
+        }
+
+        public void NotifyPropertyChanged(string propName)
+        {
+            model.SendControlInfo(propName);
         }
 
     }
