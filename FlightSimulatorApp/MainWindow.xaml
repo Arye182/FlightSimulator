@@ -5,34 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:FlightSimulatorApp.Views"
         mc:Ignorable="d" 
-        Title="Flight Simulator App" Height="800" Width="1200" FontSize="18" Background="#1F1F36">
+        Title="Flight Simulator App" 
+        Height="{Binding SystemParameters.PrimaryScreenHeight}" 
+        Width="{Binding SystemParameters.PrimaryScreenWidth}" 
+        WindowStartupLocation="CenterScreen"
+        FontSize="18" 
+        Background="#1F1F36">
 
     <DockPanel>
         <!--   Menu  !-->
-        <StackPanel DockPanel.Dock="Top">
-            <Menu x:Name="MenuePannel">
-                <MenuItem Header="S_tart">
-                    <MenuItem Header="Connect To Server"></MenuItem>
-                    <MenuItem Header="Disconnect"></MenuItem>
-                    <MenuItem Header="Exit"></MenuItem>
-                </MenuItem>
-                <MenuItem Header="Settings">
-                    <MenuItem Header="Port and IP"></MenuItem>
-                    <MenuItem Header="Screen Resolution">
-                        <MenuItem Header="Screen Resolution"></MenuItem>
-                        <MenuItem Header="800 × 600"></MenuItem>
-                        <MenuItem Header="Screen Resolution"></MenuItem>
-                        <MenuItem Header="1280 × 720"></MenuItem>
-                        <MenuItem Header="1920 × 1080"></MenuItem>
-                    </MenuItem>
-                </MenuItem>
-                <MenuItem Header="Help">
-                    <MenuItem Header="How To Play?"></MenuItem>
-                    <MenuItem Header="About"></MenuItem>
-                </MenuItem>
-
-            </Menu>
-        </StackPanel>
+        <views:MenuBar DockPanel.Dock="Top"></views:MenuBar>
         <!--   Bottom Status Bar  !-->
         <views:StatusBar x:Name="StatusBar" DockPanel.Dock="Bottom"></views:StatusBar>
         <!--   App Elements (Gui)  !-->

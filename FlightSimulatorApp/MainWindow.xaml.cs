@@ -25,19 +25,6 @@ namespace FlightSimulatorApp
         public MainWindow()
         {
             InitializeComponent();
-          
-            FlightSimulatorModel m = (Application.Current as App).Model;
-            m.connect("127.0.0.1", 5402);
-           // m.start();
-        }
-        public void item_Click(Object sender, RoutedEventArgs e)
-        {
-            
-            if (e.ToString().Equals("800 × 600"))
-            {
-                MessageBox.Show("800 × 600!");
-            }
-            
         }
     }
 }

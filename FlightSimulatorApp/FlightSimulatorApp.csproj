@@ -65,6 +65,7 @@
     <Compile Include="Model\ISimulatorConnector.cs" />
     <Compile Include="Model\MySimulatorConnector.cs" />
     <Compile Include="ViewModel\DashBaordViewModel.cs" />
+    <Compile Include="ViewModel\MapViewModel.cs" />
     <Compile Include="ViewModel\MyJoystickVM.cs" />
     <Compile Include="ViewModel\StatusBarViewModel.cs" />
     <Compile Include="Views\FlightDashBoard.xaml.cs">
@@ -72,6 +73,9 @@
     </Compile>
     <Compile Include="Views\Joystick.xaml.cs">
       <DependentUpon>Joystick.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MenuBar.xaml.cs">
+      <DependentUpon>MenuBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MyJoystick.xaml.cs">
       <DependentUpon>MyJoystick.xaml</DependentUpon>
@@ -100,6 +104,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Joystick.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MenuBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

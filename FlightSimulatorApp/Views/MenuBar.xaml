@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="FlightSimulatorApp.Views.MenuBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FlightSimulatorApp.Views"
+             mc:Ignorable="d"
+             Name="MainMenu">
+              
+    <Grid>
+        <StackPanel DockPanel.Dock="Top">
+            <Menu x:Name="MenuePannel" DataContext="{Binding ElementName=MainMenu}">
+                
+                <MenuItem Header="S_tart">
+                    <MenuItem Name="Connect" Header="Connect To Server" InputGestureText="Ctrl+C" Click="MenuConnect_Click"></MenuItem>
+                    <MenuItem Name="Disconnect" Header="Disconnect" Click="MenuDisconnect_Click"></MenuItem>
+                    <MenuItem Name="Exit" Header="Exit" InputGestureText="Ctrl+E" Click="MenuExit_Click"></MenuItem>
+                    <Separator></Separator>
+                </MenuItem>
+                
+                
+                
+                <MenuItem Header="Settings">
+                    <MenuItem Header="Port and IP"></MenuItem>
+                    <MenuItem Header="Screen Resolution">
+                        <MenuItem Header="Screen Resolution"></MenuItem>
+                        <MenuItem Header="800 × 600"></MenuItem>
+                        <MenuItem Header="1024 × 768 "></MenuItem>
+                        <MenuItem Header="1280 × 720"></MenuItem>
+                        <MenuItem Header="1920 × 1080"></MenuItem>
+                        <MenuItem Header="Full Screen" InputGestureText="Alt + Enter" Click="FullScreen_Click" ></MenuItem>
+                    </MenuItem>
+                    <Separator></Separator>
+                </MenuItem>
+                
+                
+                
+                <MenuItem Header="Help">
+                    <MenuItem Header="How To Play?"></MenuItem>
+                    <MenuItem Header="About"></MenuItem>
+                    <Separator></Separator>
+                </MenuItem>
+                
+                
+                
+
+            </Menu>
+        </StackPanel>
+    </Grid>
+</UserControl>

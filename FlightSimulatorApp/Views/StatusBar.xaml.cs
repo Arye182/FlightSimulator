@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FlightSimulatorApp.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -23,14 +24,14 @@ namespace FlightSimulatorApp.Views
     /// </summary>
     public partial class StatusBar : UserControl, INotifyPropertyChanged
     {
-
-        private bool connectionStatus = false;
         private string _currenttime;
         private TimeZoneInfo _selectedTimeZone;
-        public bool Connected { get { return this.connectionStatus; } set { this.connectionStatus = value; } }
+
         public StatusBar()
         {
+
             InitializeComponent();
+            DataContext = (Application.Current as App).SBVM;
             DispatcherTimer timer = new DispatcherTimer(DispatcherPriority.Background);
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.IsEnabled = true;
@@ -38,6 +39,7 @@ namespace FlightSimulatorApp.Views
             {
                 UpdateTime();
             };
+
         }
         public List<TimeZoneInfo> TimeZones
         {
@@ -67,10 +69,7 @@ namespace FlightSimulatorApp.Views
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string property)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(property));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
 
     }
