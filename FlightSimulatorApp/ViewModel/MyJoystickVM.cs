@@ -31,7 +31,8 @@ namespace FlightSimulatorApp.ViewModel
             set
             {
                 elevator = value;
-                NotifyPropertyChanged("ElevatorString");
+                model.Elevator = value;
+                //NotifyPropertyChanged("ElevatorString");
                 NotifyPropertyChanged("Elevator");
             }
         }
@@ -44,7 +45,8 @@ namespace FlightSimulatorApp.ViewModel
             set
             {
                 aileron = value;
-                NotifyPropertyChanged("AileronString");
+                model.Aileron = value;
+                //NotifyPropertyChanged("AileronString");
                 NotifyPropertyChanged("Aileron");
                 
             }
@@ -58,7 +60,8 @@ namespace FlightSimulatorApp.ViewModel
             set
             {
                 rudder = value;
-                NotifyPropertyChanged("RudderString");
+                model.Rudder = value;
+                //NotifyPropertyChanged("RudderString");
                 NotifyPropertyChanged("Rudder");
             }
         }
@@ -71,8 +74,9 @@ namespace FlightSimulatorApp.ViewModel
             set
             {
                 throttle = value;
+                model.Throttle = value;
                 NotifyPropertyChanged("ThrottleString");
-                NotifyPropertyChanged("Throttle");
+                NotifyModelPropertyChanged("Throttle");
             }
         }
 
@@ -122,10 +126,14 @@ namespace FlightSimulatorApp.ViewModel
         public MyJoystickVM()
         {
             this.model = (Application.Current as App).Model;
-            //PropertyChanged += NotifyPropertyChanged;
+            PropertyChanged += delegate (object sender, PropertyChangedEventArgs e)
+            {
+                NotifyPropertyChanged(e.PropertyName);
+            };
         }
         public void NotifyPropertyChanged(string propName)
         {
+            model.SendControlInfo(propName);
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
 

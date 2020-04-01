@@ -65,6 +65,10 @@ namespace FlightSimulatorApp.Model
             {"groundSpeed", "/instrumentation/gps/indicated-ground-speed-kt"},
             {"verticalSpeed", "/instrumentation/gps/indicated-vertical-speed" },
             {"airSpeed", "/instrumentation/airspeed-indicator/indicated-speed-kt" },
+            {"Elevator","/controls/flight/elevator" },
+            {"Aileron","/controls/flight/aileron" },
+            {"Rudder","/controls/flight/rudder" },
+            {"Throttle", "/controls/engines/current-engine/throttle"},
         };
 
 
@@ -93,10 +97,7 @@ namespace FlightSimulatorApp.Model
 
         public void NotifyPropertyChanged(string propName)
         {
-            if (this.PropertyChanged != null)
-            {
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
-            }
+ 
         }
         //dashboard proprties
         public double Altitude { get { return altitude; }
@@ -135,6 +136,61 @@ namespace FlightSimulatorApp.Model
             get { return longitude; }
             set { longitude = value; NotifyPropertyChanged("Longitude"); }
         }
+
+        //joistick properties
+        public double Elevator
+        {
+            get
+            {
+                return elevator;
+            }
+            set
+            {
+                elevator = value;
+                
+                
+            }
+        }
+        public double Aileron
+        {
+            get
+            {
+                return aileron;
+            }
+            set
+            {
+                aileron = value;
+                
+
+            }
+        }
+        public double Rudder
+        {
+            get
+            {
+                return rudder;
+            }
+            set
+            {
+                rudder = value;
+            }
+        }
+        public double Throttle
+        {
+            get
+            {
+                return throttle;
+            }
+            set
+            {
+                throttle = value;
+            }
+        }
+
+
+
+
+
 
         public void connect(string ip, int port)
         {
@@ -181,6 +237,7 @@ namespace FlightSimulatorApp.Model
         private void interpretInfo(string info) {
             Console.WriteLine(info);
             string[] values = info.Split('\n');
+            warningMessage = "";
             try
             {
                 AirSpeed = Double.Parse(values[PropertiesIndex.AIRSPEED]);
@@ -251,6 +308,15 @@ namespace FlightSimulatorApp.Model
 
         }
 
-        
+       public void SendControlInfo(string propName)
+        {
+            connector.write("set " + PropertiesSimulatorPath[propName] + " " + typeof(FlightSimulatorModel).GetProperty(propName).ToString());
+            Console.WriteLine(typeof(FlightSimulatorModel).GetProperty(propName).GetValue(this, null));
+            if (connector.read() == "ERR")
+            {
+                warningMessage = "eror responding to " + propName;
+            }
+            Console.WriteLine(connector.read());
+        }
     }
 }
