@@ -32,8 +32,13 @@ namespace FlightSimulatorApp.Model
         }
         public void write(string command)
         {
-            byte[] buffer = Encoding.ASCII.GetBytes(command+"\r\n");
+            
+            byte[] buffer = Encoding.ASCII.GetBytes(command + "\r\n");
+            try { 
             this.write_stream.Write(buffer, 0, buffer.Length);
+            }  catch(Exception ex) {
+                
+            }
         }
         public string read()
         {

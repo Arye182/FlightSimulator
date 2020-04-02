@@ -77,6 +77,7 @@ namespace FlightSimulatorApp.Model
             this.connector = connector;
             this.stop = false;
             this.WarningMessage = "no message yet";
+            this.connectionStatus = false;
         }
 
 
@@ -97,28 +98,59 @@ namespace FlightSimulatorApp.Model
 
         public void NotifyPropertyChanged(string propName)
         {
- 
+            if (PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+
+            }
         }
         //dashboard proprties
-        public double Altitude { get { return altitude; }
-            set { altitude = value; NotifyPropertyChanged("Altitude"); } }
-        public double Roll { get { return roll; }
-            set { roll = value; NotifyPropertyChanged("Roll"); } }
-        public double Pitch { get { return pitch; }
-            set { pitch = value; NotifyPropertyChanged("Pitch"); } }
-        public double Altimeter { get { return altimeter; }
-            set { altimeter = value; NotifyPropertyChanged("Altimeter"); } }
-        public double Heading { get { return heading; }
-            set { heading = value; NotifyPropertyChanged("Heading"); } }
-        public double GroundSpeed { get { return groungSpeed; }
-            set { groungSpeed = value; NotifyPropertyChanged("GroungSpeed"); } }
-        public double VerticalSpeed { get { return verticalSpeed; }
-            set { verticalSpeed = value; NotifyPropertyChanged("VerticalSpeed"); } }
-        public double AirSpeed { get { return airSpeed; }
-            set { airSpeed = value; NotifyPropertyChanged("AirSpeed"); } }
+        public double Altitude
+        {
+            get { return altitude; }
+            set { altitude = value; NotifyPropertyChanged("Altitude"); }
+        }
+        public double Roll
+        {
+            get { return roll; }
+            set { roll = value; NotifyPropertyChanged("Roll"); }
+        }
+        public double Pitch
+        {
+            get { return pitch; }
+            set { pitch = value; NotifyPropertyChanged("Pitch"); }
+        }
+        public double Altimeter
+        {
+            get { return altimeter; }
+            set { altimeter = value; NotifyPropertyChanged("Altimeter"); }
+        }
+        public double Heading
+        {
+            get { return heading; }
+            set { heading = value; NotifyPropertyChanged("Heading"); }
+        }
+        public double GroundSpeed
+        {
+            get { return groungSpeed; }
+            set { groungSpeed = value; NotifyPropertyChanged("GroungSpeed"); }
+        }
+        public double VerticalSpeed
+        {
+            get { return verticalSpeed; }
+            set { verticalSpeed = value; NotifyPropertyChanged("VerticalSpeed"); }
+        }
+        public double AirSpeed
+        {
+            get { return airSpeed; }
+            set { airSpeed = value; NotifyPropertyChanged("AirSpeed"); }
+        }
 
-        public double Latitude { get { return latitude; }
-                                 set { latitude = value; NotifyPropertyChanged("Latitude"); } }
+        public double Latitude
+        {
+            get { return latitude; }
+            set { latitude = value; NotifyPropertyChanged("Latitude"); }
+        }
         public bool ConnectionStatus
         {
             get { return connectionStatus; }
@@ -128,7 +160,10 @@ namespace FlightSimulatorApp.Model
         public string WarningMessage
         {
             get { return warningMessage; }
-            set { warningMessage = value; NotifyPropertyChanged("WorningStatus"); }
+            set
+            {
+                warningMessage = value; NotifyPropertyChanged("WarningMessage");
+            }
         }
 
         public double Longitude
@@ -147,8 +182,8 @@ namespace FlightSimulatorApp.Model
             set
             {
                 elevator = value;
-                
-                
+
+
             }
         }
         public double Aileron
@@ -160,7 +195,7 @@ namespace FlightSimulatorApp.Model
             set
             {
                 aileron = value;
-                
+
 
             }
         }
@@ -195,6 +230,7 @@ namespace FlightSimulatorApp.Model
         public void connect(string ip, int port)
         {
             this.connector.connect(ip, port);
+            connectionStatus = true;
         }
         public void disconnect()
         {
@@ -234,7 +270,8 @@ namespace FlightSimulatorApp.Model
                             );
         }
 
-        private void interpretInfo(string info) {
+        private void interpretInfo(string info)
+        {
             Console.WriteLine(info);
             string[] values = info.Split('\n');
             warningMessage = "";
@@ -246,7 +283,8 @@ namespace FlightSimulatorApp.Model
             {
                 warningMessage = "eror getting updated airspeed value";
             }
-            try {
+            try
+            {
                 Altimeter = Double.Parse(values[PropertiesIndex.ALTIMETER]);
             }
             catch (Exception e)
@@ -277,7 +315,8 @@ namespace FlightSimulatorApp.Model
             {
                 warningMessage = "eror getting updated roll value";
             }
-            try {
+            try
+            {
                 GroundSpeed = Double.Parse(values[PropertiesIndex.GROUNGSPEED]);
             }
             catch (Exception e)
@@ -293,11 +332,11 @@ namespace FlightSimulatorApp.Model
                 warningMessage = "eror getting updated pitch value";
             }
             try
-            { 
+            {
                 VerticalSpeed = Double.Parse(values[PropertiesIndex.VERTICALSPEED]);
             }
-            catch(Exception e)
-            { 
+            catch (Exception e)
+            {
                 WarningMessage = "eror getting updated verticalSpeed value";
             }
             Console.WriteLine(warningMessage);
@@ -308,17 +347,37 @@ namespace FlightSimulatorApp.Model
 
         }
 
-       public void SendControlInfo(string propName)
+        public void SendControlInfo(string propName)
         {
-            //Console.WriteLine("set " + PropertiesSimulatorPath[propName] + " " + typeof(FlightSimulatorModel).GetProperty(propName) + "\n");
-            connector.write("set " + PropertiesSimulatorPath[propName] + " " + typeof(FlightSimulatorModel).GetProperty(propName).GetValue(this, null) + "\n");
-            //Console.WriteLine(typeof(FlightSimulatorModel).GetProperty(propName).GetValue(this, null));
-            string output = connector.read();
-            if (output == "ERR")
+            if (connectionStatus)
             {
-                warningMessage = "eror responding to " + propName;
+                
+                
+                    //Console.WriteLine("set " + PropertiesSimulatorPath[propName] + " " + typeof(FlightSimulatorModel).GetProperty(propName) + "\n");
+                    connector.write("set " + PropertiesSimulatorPath[propName] + " " + typeof(FlightSimulatorModel).GetProperty(propName).GetValue(this, null) + "\n");
+                
+                
+                    if (!(this.ConnectionStatus))
+                    {
+                        warningMessage = "please connect";
+                    }
+                
+                //Console.WriteLine(typeof(FlightSimulatorModel).GetProperty(propName).GetValue(this, null));
+                
+                
+                    string output = connector.read();
+                    if (output == "ERR")
+                    {
+                        warningMessage = "eror responding to " + propName;
+                    }
+                    Console.WriteLine(output);
+                
+               
             }
-            Console.WriteLine(output);
+            else
+            {
+                warningMessage = "please connect";
+            }
         }
     }
 }
