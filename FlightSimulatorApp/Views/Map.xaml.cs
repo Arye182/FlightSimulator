@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Maps.MapControl.WPF;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FlightSimulatorApp;
 
 namespace FlightSimulatorApp.Views
 {
@@ -23,6 +25,7 @@ namespace FlightSimulatorApp.Views
         public Map()
         {
             InitializeComponent();
+            DataContext = (Application.Current as App).SBVM;
         }
     }
 }
