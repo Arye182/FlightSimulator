@@ -65,7 +65,6 @@
     <Compile Include="Model\ISimulatorConnector.cs" />
     <Compile Include="Model\MySimulatorConnector.cs" />
     <Compile Include="ViewModel\DashBaordViewModel.cs" />
-    <Compile Include="ViewModel\MapViewModel.cs" />
     <Compile Include="ViewModel\MyJoystickVM.cs" />
     <Compile Include="ViewModel\StatusBarViewModel.cs" />
     <Compile Include="Views\FlightDashBoard.xaml.cs">
@@ -164,6 +163,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Views\Resources\appbg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Resources\plane-icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -7,6 +7,7 @@ using System.ComponentModel;
 using FlightSimulatorApp.Model;
 using System.Windows;
 using FlightSimulatorApp;
+using Microsoft.Maps.MapControl.WPF;
 
 namespace FlightSimulatorApp.ViewModel
 {
@@ -53,5 +54,12 @@ namespace FlightSimulatorApp.ViewModel
         {
             get { return model.Latitude; }
         }
+
+        public Location VM_Location
+        {
+            get { return new Location(model.Latitude, model.Longitude); }
+        }
+
+
     }
 }

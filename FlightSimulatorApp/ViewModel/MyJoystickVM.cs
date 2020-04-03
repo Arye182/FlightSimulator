@@ -18,6 +18,7 @@ namespace FlightSimulatorApp.ViewModel
         double aileron=0;
         double rudder=0;
         double throttle=0;
+        double _angle = -85;
         public event PropertyChangedEventHandler PropertyChanged;
         private FlightSimulatorModel model;
 
@@ -78,6 +79,10 @@ namespace FlightSimulatorApp.ViewModel
             set
             {
                 throttle = value;
+                // arccos(x- 0.5Pi) - 0.5Pi
+                // Angle = (180 / Math.PI ) * (Math.Acos(value - 0.5 * Math.PI) - (0.5*Math.PI)) ;
+                Angle = 180 * value - 85;
+
                 OnPropertyChanged("ThrottleString");
                 OnPropertyChanged("Throttle");
                 model.Throttle = value;
@@ -125,7 +130,19 @@ namespace FlightSimulatorApp.ViewModel
             return String.Format("{0:N2}", intermediate);
         }
 
+        public double Angle
+        {
+            get
+            {
+                return _angle;
+            }
 
+            private set
+            {
+                _angle = value;
+                OnPropertyChanged("Angle");
+            }
+        }
 
         // methods
         public MyJoystickVM()
@@ -142,6 +159,5 @@ namespace FlightSimulatorApp.ViewModel
         {
             model.SendControlInfo(propName);
         }
-
     }
 }

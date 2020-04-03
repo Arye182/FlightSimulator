@@ -6,6 +6,21 @@
              xmlns:local="clr-namespace:FlightSimulatorApp.Views"
              xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
              mc:Ignorable="d" Width="1100" Height="900" Background="#323C54">
+
+    <UserControl.Resources>
+        <ControlTemplate x:Key="PushpinControlTemplate" TargetType="m:Pushpin">
+            <Grid Width="16" Height="16">
+                <Image>
+                    <Image.Source>
+                        <BitmapImage UriSource="/Views/Resources/plane-icon.png"/>
+                    </Image.Source>
+                </Image>
+            </Grid>
+        </ControlTemplate>
+    </UserControl.Resources>
+    
+    
+    
     <Grid>
         <Label Content="Flight Map" FontSize="65" FontWeight="Bold" Grid.ColumnSpan="5" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" FontStretch="Normal"  Foreground="#FFFFFB"/>
 
@@ -14,12 +29,12 @@
             Height="750" 
             Margin="0,70,0,0"
             CredentialsProvider="0lorjGXdhAaoxKgm8ZCp~3iC811-s_dKqVi3oSUbISA~Aidta9Kv4580M0wRbDmjoWHM1I9mUw6JjmcT43tiNvyrUeAFDXmF9SIf4JLQ6pAu" 
-            Center="32.003339, 34.886817"
-            ZoomLevel="12" 
+            Center="{Binding VM_Location}"
+            ZoomLevel="2" 
             HorizontalAlignment="Center" 
             VerticalAlignment="Center" 
             Mode="Road">
-            <m:Pushpin x:Name="pushpin" Location="31.1481402218342, 35.644248783588"/>
+            <m:Pushpin x:Name="pushpin" Location="{Binding VM_Location}" Template="{StaticResource PushpinControlTemplate}" />
         </m:Map>
 
 
