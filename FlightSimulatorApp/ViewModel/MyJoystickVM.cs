@@ -34,7 +34,7 @@ namespace FlightSimulatorApp.ViewModel
                 OnPropertyChanged("ElevatorString");
                 OnPropertyChanged("Elevator");
                 model.Elevator = value;
-                NotifyPropertyChanged("Elevator");
+                //NotifyPropertyChanged("Elevator");
             }
         }
         public double VM_Aileron
@@ -49,7 +49,7 @@ namespace FlightSimulatorApp.ViewModel
                 OnPropertyChanged("AileronString");
                 OnPropertyChanged("Aileron");
                 model.Aileron = value;
-                NotifyPropertyChanged("Aileron");
+                //NotifyPropertyChanged("Aileron");
                 
             }
         }
@@ -65,7 +65,7 @@ namespace FlightSimulatorApp.ViewModel
                 OnPropertyChanged("RudderString");
                 OnPropertyChanged("Rudder");
                 model.Rudder = value;
-                NotifyPropertyChanged("Rudder");
+                //NotifyPropertyChanged("Rudder");
                 
             }
         }
@@ -81,7 +81,7 @@ namespace FlightSimulatorApp.ViewModel
                 OnPropertyChanged("ThrottleString");
                 OnPropertyChanged("Throttle");
                 model.Throttle = value;
-                NotifyPropertyChanged("Throttle");
+                //NotifyPropertyChanged("Throttle");
             }
         }
 

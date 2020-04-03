@@ -4,11 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Sockets;
+using System.Threading;
 
 namespace FlightSimulatorApp.Model
 {
     public class MySimulatorConnector : ISimulatorConnector
     {
+
+        private static Mutex mut = new Mutex();
         TcpClient my_client;
         private NetworkStream write_stream = null;
         private NetworkStream read_stream = null;
@@ -21,7 +24,7 @@ namespace FlightSimulatorApp.Model
                 write_stream.Flush();
                 read_stream = my_client.GetStream();
                 read_stream.Flush();
-                //isConnected = true;
+                
                 Console.WriteLine("Connected!");
             } catch (Exception ex)
             {
@@ -32,8 +35,8 @@ namespace FlightSimulatorApp.Model
         }
         public void write(string command)
         {
-            
-            byte[] buffer = Encoding.ASCII.GetBytes(command + "\r\n");
+            mut.WaitOne();
+            byte[] buffer = Encoding.ASCII.GetBytes(command + "\n");
             try { 
             this.write_stream.Write(buffer, 0, buffer.Length);
             }  catch(Exception ex) {
@@ -56,7 +59,7 @@ namespace FlightSimulatorApp.Model
 
             }
             return incomingInfo;
-            
+            mut.ReleaseMutex();
         }
         public void disconnect()
         {
