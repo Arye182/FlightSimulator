@@ -40,7 +40,7 @@ namespace FlightSimulatorApp.Model
             try {
                 NetworkStream stream = this.my_client.GetStream();
                 stream.Write(buffer, 0, buffer.Length);
-                stream.Close();
+                //stream.Close();
             }  catch(Exception ex) {
                 
             }
@@ -54,7 +54,7 @@ namespace FlightSimulatorApp.Model
                 NetworkStream stream = this.my_client.GetStream();
                 stream.Read(buffer, 0, 1024);
                 incomingInfo = Encoding.ASCII.GetString(buffer, 0, buffer.Length);
-                stream.Close();
+                //stream.Close();
             }
             catch (Exception ex)
             {

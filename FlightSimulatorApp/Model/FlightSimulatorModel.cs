@@ -235,7 +235,7 @@ namespace FlightSimulatorApp.Model
         }
         public void disconnect()
         {
-            connectionStatus = false;
+            //connectionStatus = false;
             this.connector.disconnect();
 
         }
