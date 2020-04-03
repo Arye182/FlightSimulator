@@ -34,12 +34,42 @@ namespace FlightSimulatorApp.ViewModel
             }
         }
 
-        
+        // connection status properties
         public bool VM_ConnectionStatus
         {
             get { return model.ConnectionStatus; }
         }
-        
+
+        public string VM_ConnectionImagePath
+        {
+            get
+            {
+                if (model.ConnectionStatus == true)
+                {
+                    return "/Views/Resources/connected.png";
+                }
+                else
+                {
+                    return "/Views/Resources/disconnected.png";
+                }
+            }
+        }
+
+        public string VM_ConnectionMessage
+        {
+            get
+            {
+                if (model.ConnectionStatus)
+                {
+                    return "Connected";
+                }
+                else
+                {
+                    return "Disconnected";
+                }
+            }
+        }
+
         public string VM_WarningMessage
         {
             get { return model.WarningMessage; }
