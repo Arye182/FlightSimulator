@@ -35,10 +35,12 @@ namespace FlightSimulatorApp.Model
         }
         public void write(string command)
         {
-            mut.WaitOne();
+            //mut.WaitOne();
             byte[] buffer = Encoding.ASCII.GetBytes(command + "\n");
-            try { 
-            this.write_stream.Write(buffer, 0, buffer.Length);
+            try {
+                NetworkStream stream = this.my_client.GetStream();
+                stream.Write(buffer, 0, buffer.Length);
+                stream.Close();
             }  catch(Exception ex) {
                 
             }
@@ -49,23 +51,24 @@ namespace FlightSimulatorApp.Model
             byte[] buffer = new byte[1024];
             try
             {
-                this.read_stream.Read(buffer, 0, 1024);
+                NetworkStream stream = this.my_client.GetStream();
+                stream.Read(buffer, 0, 1024);
                 incomingInfo = Encoding.ASCII.GetString(buffer, 0, buffer.Length);
-                
+                stream.Close();
             }
             catch (Exception ex)
             {
                 incomingInfo = "eror reading from server";
 
             }
+            
+           // mut.ReleaseMutex();
             return incomingInfo;
-            mut.ReleaseMutex();
         }
         public void disconnect()
         {
             Console.WriteLine("disconnect");
-            this.write_stream.Close();
-            this.read_stream.Close();
+            this.my_client.Close();
         }
     }
 }

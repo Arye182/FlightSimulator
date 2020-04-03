@@ -235,7 +235,7 @@ namespace FlightSimulatorApp.Model
         }
         public void disconnect()
         {
-            this.stop = true;
+            connectionStatus = false;
             this.connector.disconnect();
 
         }
@@ -245,13 +245,13 @@ namespace FlightSimulatorApp.Model
             {
                 Thread t = new Thread(delegate ()
                 {
-                    while (!stop)
+                    while (connectionStatus)
                     {
                         infoRequest();
                         string output = this.connector.read();
                         interpretInfo(output);
-                    //TODO handle err
-                    Thread.Sleep(250);
+                        //TODO handle err
+                        Thread.Sleep(250);
                     }
                     
                 });
@@ -354,14 +354,23 @@ namespace FlightSimulatorApp.Model
 
         public void SendControlInfo(string propName)
         {
-            if (connectionStatus)
+            if (!connectionStatus)
+            {
+                return;
+            }
+            Task send = Task.Run(() => {
+             
+             connector.write("set " + PropertiesSimulatorPath[propName] + " " + typeof(FlightSimulatorModel).GetProperty(propName).GetValue(this, null) + "\n");
+                });
+            send.Wait();
+            if (connector.read() == "ERR")
+            {
+                warningMessage = "eror writing to the simulator";
+            }
+           /* if (connectionStatus)
             {
 
-                Task send = Task.Run(() => {
-                    Console.WriteLine("Task={0}, FlightSimulatorModel, Thread={1}",
-                              Task.CurrentId, 
-                               Thread.CurrentThread.ManagedThreadId);
-                });
+                
                 send.Wait();
                 //Console.WriteLine("set " + PropertiesSimulatorPath[propName] + " " + typeof(FlightSimulatorModel).GetProperty(propName) + "\n");
                 connector.write("set " + PropertiesSimulatorPath[propName] + " " + typeof(FlightSimulatorModel).GetProperty(propName).GetValue(this, null) + "\n");
@@ -381,8 +390,8 @@ namespace FlightSimulatorApp.Model
             else
             {
                 warningMessage = "please connect";
-            }
-            
+            }*/
+
         }
-    }
+}
 }
