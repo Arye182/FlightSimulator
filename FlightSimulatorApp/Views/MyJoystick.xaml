@@ -164,7 +164,7 @@
 
 
         <!--   slider of Aileron  !-->
-        <Slider Grid.Row="2"  Grid.ColumnSpan="3" Grid.Column="3" x:Name="AileronSlider" Width="500"
+        <Slider Grid.Row="2"  Grid.ColumnSpan="3" Grid.Column="3" x:Name="AileronSlider" Width="500" VerticalAlignment="Center"
                 Foreground="#FFE5E5E5" TickPlacement="BottomRight"
                 TickFrequency="0.1" Minimum ="-1" Maximum="1" Value="{Binding VM_Aileron}" Template="{StaticResource simpleSlider}"/>
         
