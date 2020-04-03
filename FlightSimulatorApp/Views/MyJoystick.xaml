@@ -10,7 +10,49 @@
              xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
              mc:Ignorable="d" Height="800" Width="1100"  Background="#323C54">
 
+
+    <UserControl.Resources>
+        <ControlTemplate x:Key="simpleSlider" TargetType="{x:Type Slider}">
+            <Border SnapsToDevicePixels="true " Background="#3976F7"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Rectangle x:Name="PART_SelectionRange" Fill="Beige" />
+
+                    <Track x:Name="PART_Track" Grid.Row="1" Orientation="Horizontal" >
+                        
+                        <Track.Thumb>
+                            <Thumb x:Name="Thumb">
+                                <Thumb.Template>
+                                    <ControlTemplate TargetType="Thumb">
+                                        <Rectangle Fill="Red"
+                                    Stroke="Black"
+                                    StrokeThickness="3"
+                                    Width="30"
+                                    Height="60"
+                                    SnapsToDevicePixels="True"/>
+                                    </ControlTemplate>
+                                </Thumb.Template>
+                            </Thumb>
+                        </Track.Thumb>
+                    </Track>
+                </Grid>
+            </Border>
+        </ControlTemplate>
+    </UserControl.Resources>
+
+
+
+
+
     <Grid>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -82,8 +124,8 @@
 
 
         <!--   slider of Throttle  !-->
-        <Slider  Grid.Row="1"  Grid.ColumnSpan="3" Grid.Column="3"  x:Name="ThrottleSlider"  Height="34" Background="#3976F7"  FontSize="36" 
-                TickPlacement="BottomRight" TickFrequency="0.1" Value="{Binding Path=VM_Throttle}" Maximum="1" Minimum="0" VerticalAlignment="Center" Width="500"/>
+        <Slider  Grid.Row="1"  Grid.ColumnSpan="3" Grid.Column="3"  x:Name="ThrottleSlider"   Background="#3976F7"  FontSize="36" 
+                TickPlacement="BottomRight" TickFrequency="0.1" Value="{Binding Path=VM_Throttle}" Maximum="1" Minimum="0" VerticalAlignment="Center" Width="500" Template="{StaticResource simpleSlider}" />
 
         <Grid Grid.Column="4" Margin="90,44,0,34" Grid.Row="3" Grid.ColumnSpan="2">
             <Border HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="120" Width="240" BorderBrush="#FFCF5D1D"
@@ -122,8 +164,14 @@
 
 
         <!--   slider of Aileron  !-->
-        <Slider Grid.Row="2"  Grid.ColumnSpan="3" Grid.Column="3" x:Name="AileronSlider"  Background="#3976F7"  Width="500"
-                Foreground="#FFE5E5E5"  Height="35" TickPlacement="BottomRight"  TickFrequency="0.1" Minimum ="-1" Maximum="1" Value="{Binding VM_Aileron}"/>
+        <Slider Grid.Row="2"  Grid.ColumnSpan="3" Grid.Column="3" x:Name="AileronSlider" Width="500"
+                Foreground="#FFE5E5E5" TickPlacement="BottomRight"
+                TickFrequency="0.1" Minimum ="-1" Maximum="1" Value="{Binding VM_Aileron}" Template="{StaticResource simpleSlider}"/>
+        
+        
+        
+        
+        
         <Label Grid.Row="1"  Grid.ColumnSpan="3" Grid.Column="0" x:Name="aileron_value" Content="{Binding AileronString}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="{x:Null}" FontSize="48" Height="65" Margin="546,0,17,56" Width="123" Foreground="#747E96"/>
         <Label Grid.Row="2"  Grid.ColumnSpan="3" Grid.Column="3" Content="&lt;- Aileron -&gt;" FontSize="36" FontFamily="Segoe UI Symbol" Foreground="#747E96" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 

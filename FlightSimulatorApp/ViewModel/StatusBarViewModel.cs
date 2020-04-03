@@ -44,7 +44,7 @@ namespace FlightSimulatorApp.ViewModel
         {
             get
             {
-                if (model.ConnectionStatus == true)
+                if (VM_ConnectionStatus == true)
                 {
                     return "/Views/Resources/connected.png";
                 }
@@ -59,7 +59,7 @@ namespace FlightSimulatorApp.ViewModel
         {
             get
             {
-                if (model.ConnectionStatus)
+                if (VM_ConnectionStatus)
                 {
                     return "Connected";
                 }
