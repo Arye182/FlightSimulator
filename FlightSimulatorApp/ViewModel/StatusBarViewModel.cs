@@ -16,7 +16,8 @@ namespace FlightSimulatorApp.ViewModel
         private FlightSimulatorModel model;
 
         public event PropertyChangedEventHandler PropertyChanged;
-
+        string connected_message = "Disconnected";
+        string connnection_image = "/Views/Resources/disconnected.png";
 
         public StatusBarViewModel()
         {
@@ -31,6 +32,18 @@ namespace FlightSimulatorApp.ViewModel
             if (PropertyChanged != null)
             {
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+                if (propName ==  "VM_ConnectionStatus")
+                {
+                    if (VM_ConnectionStatus)
+                    {
+                        VM_ConnectionImagePath = "/Views/Resources/connected.png";
+                        VM_ConnectionMessage = "Connected";
+                    } else
+                    {
+                        VM_ConnectionImagePath = "/Views/Resources/disconnected.png";
+                        VM_ConnectionMessage = "Disconnected";
+                    }
+                }
             }
         }
 
@@ -42,32 +55,16 @@ namespace FlightSimulatorApp.ViewModel
 
         public string VM_ConnectionImagePath
         {
-            get
-            {
-                if (VM_ConnectionStatus == true)
-                {
-                    return "/Views/Resources/connected.png";
-                }
-                else
-                {
-                    return "/Views/Resources/disconnected.png";
-                }
-            }
+            get { return this.connnection_image; }
+            set { this.connnection_image = value; }
         }
 
         public string VM_ConnectionMessage
         {
-            get
-            {
-                if (VM_ConnectionStatus)
-                {
-                    return "Connected";
-                }
-                else
-                {
-                    return "Disconnected";
-                }
-            }
+            get { return this.connected_message; }
+            set { this.connected_message = value; }
+            
+
         }
 
         public string VM_WarningMessage
