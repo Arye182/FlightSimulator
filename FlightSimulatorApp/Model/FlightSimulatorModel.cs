@@ -21,22 +21,26 @@ namespace FlightSimulatorApp.Model
         public const int VERTICALSPEED = 7;
     }
 
+    
 
 
     public class FlightSimulatorModel : IFlightSimulatorModel
     {
+
+        
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private ISimulatorConnector connector;
         volatile Boolean stop;
-        // bbbbbb
-        // nnnn
+        
         private double throttle;
         private double aileron;
         private double elevator;
         private double rudder;
-        private double latitude;
-        private double longitude;
+        
+
+        //Dashboard
         private double altitude;
         private double roll;
         private double pitch;
@@ -46,8 +50,11 @@ namespace FlightSimulatorApp.Model
         private double verticalSpeed;
         private double airSpeed;
 
-        private bool connectionStatus;
+        //statusBar
+        private bool connectionStatus = false;
         private string warningMessage;
+        private double latitude;
+        private double longitude;
 
         private SortedDictionary<string, string> PropertiesSimulatorPath = new SortedDictionary<string, string>()
         {
@@ -71,7 +78,7 @@ namespace FlightSimulatorApp.Model
             {"Throttle", "/controls/engines/current-engine/throttle"},
         };
 
-
+        //constructor
         public FlightSimulatorModel(ISimulatorConnector connector)
         {
             this.connector = connector;
@@ -81,18 +88,7 @@ namespace FlightSimulatorApp.Model
         }
 
 
-        // private static FlightSimulatorModel m_Instance = null;
-        //public static FlightSimulatorModel Instance
-        //{
-        //  get {
-        //     if (m_Instance == null)
-        //      {
-        //           m_Instance = new FlightSimulatorModel(new MySimulatorconnector());
-        //       }
-        //       return m_Instance;
-        //    }
-        //}
-        //#endregion
+    
 
 
 
@@ -146,6 +142,7 @@ namespace FlightSimulatorApp.Model
             set { airSpeed = value; NotifyPropertyChanged("AirSpeed"); }
         }
 
+        //StatusBar properties
         public double Latitude
         {
             get { return latitude; }
@@ -182,7 +179,7 @@ namespace FlightSimulatorApp.Model
             set
             {
                 elevator = value;
-
+                SendControlInfo("Elevator");
 
             }
         }
@@ -191,10 +188,12 @@ namespace FlightSimulatorApp.Model
             get
             {
                 return aileron;
+                
             }
             set
             {
                 aileron = value;
+                SendControlInfo("Aileron");
 
 
             }
@@ -208,6 +207,7 @@ namespace FlightSimulatorApp.Model
             set
             {
                 rudder = value;
+                SendControlInfo("Rudder");
             }
         }
         public double Throttle
@@ -219,6 +219,7 @@ namespace FlightSimulatorApp.Model
             set
             {
                 throttle = value;
+                SendControlInfo("Throttle");
             }
         }
 
@@ -240,20 +241,24 @@ namespace FlightSimulatorApp.Model
         }
         public void start()
         {
-            Thread t = new Thread(delegate ()
+            if (this.ConnectionStatus)
             {
-                while (!stop)
+                Thread t = new Thread(delegate ()
                 {
-                    infoRequest();
-                    interpretInfo(this.connector.read());
+                    while (!stop)
+                    {
+                        infoRequest();
+                        string output = this.connector.read();
+                        interpretInfo(output);
                     //TODO handle err
                     Thread.Sleep(250);
-                }
-                disconnect();
-            });
-            t.Start();
-            //t.Join();
+                    }
+                    
+                });
+                t.Start();
+               
 
+            }
         }
 
         private void infoRequest()
@@ -351,16 +356,15 @@ namespace FlightSimulatorApp.Model
         {
             if (connectionStatus)
             {
-                
-                
-                    //Console.WriteLine("set " + PropertiesSimulatorPath[propName] + " " + typeof(FlightSimulatorModel).GetProperty(propName) + "\n");
-                    connector.write("set " + PropertiesSimulatorPath[propName] + " " + typeof(FlightSimulatorModel).GetProperty(propName).GetValue(this, null) + "\n");
-                
-                
-                    if (!(this.ConnectionStatus))
-                    {
-                        warningMessage = "please connect";
-                    }
+
+                Task send = Task.Run(() => {
+                    Console.WriteLine("Task={0}, FlightSimulatorModel, Thread={1}",
+                              Task.CurrentId, 
+                               Thread.CurrentThread.ManagedThreadId);
+                });
+                send.Wait();
+                //Console.WriteLine("set " + PropertiesSimulatorPath[propName] + " " + typeof(FlightSimulatorModel).GetProperty(propName) + "\n");
+                connector.write("set " + PropertiesSimulatorPath[propName] + " " + typeof(FlightSimulatorModel).GetProperty(propName).GetValue(this, null) + "\n");
                 
                 //Console.WriteLine(typeof(FlightSimulatorModel).GetProperty(propName).GetValue(this, null));
                 
@@ -378,6 +382,7 @@ namespace FlightSimulatorApp.Model
             {
                 warningMessage = "please connect";
             }
+            
         }
     }
 }
