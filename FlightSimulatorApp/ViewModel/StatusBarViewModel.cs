@@ -32,18 +32,7 @@ namespace FlightSimulatorApp.ViewModel
             if (PropertyChanged != null)
             {
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
-                if (propName ==  "VM_ConnectionStatus")
-                {
-                    if (VM_ConnectionStatus)
-                    {
-                        VM_ConnectionImagePath = "/Views/Resources/connected.png";
-                        VM_ConnectionMessage = "Connected";
-                    } else
-                    {
-                        VM_ConnectionImagePath = "/Views/Resources/disconnected.png";
-                        VM_ConnectionMessage = "Disconnected";
-                    }
-                }
+
             }
         }
 
@@ -56,14 +45,15 @@ namespace FlightSimulatorApp.ViewModel
         public string VM_ConnectionImagePath
         {
             get { return this.connnection_image; }
-            set { this.connnection_image = value; }
+            set { this.connnection_image = value; OnPropertyChanged("VM_ConnectionImagePath"); }
         }
 
         public string VM_ConnectionMessage
         {
             get { return this.connected_message; }
-            set { this.connected_message = value; }
-            
+            set { this.connected_message = value; OnPropertyChanged("VM_ConnectionMessage"); }
+
+
 
         }
 
@@ -87,6 +77,22 @@ namespace FlightSimulatorApp.ViewModel
             get { return new Location(model.Latitude, model.Longitude); }
         }
 
-
+        public void OnPropertyChanged(string propName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
+            if (propName == "VM_ConnectionStatus")
+            {
+                if (VM_ConnectionStatus)
+                {
+                    VM_ConnectionImagePath = "/Views/Resources/connected.png";
+                    VM_ConnectionMessage = "Connected";
+                }
+                else
+                {
+                    VM_ConnectionImagePath = "/Views/Resources/disconnected.png";
+                    VM_ConnectionMessage = "Disconnected";
+                }
+            }
+        }
     }
 }
