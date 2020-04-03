@@ -55,12 +55,10 @@
                 </Label>
                 <Image Height="16" Width="37">
                     <Image.Source>
-                        <BitmapImage UriSource="/Views/Resources/disconnected.png"/>
+                        <BitmapImage UriSource="{Binding VM_ConnectionImagePath}"/>
                     </Image.Source>
                 </Image>
-                <Label>
-                    Disconnected
-                </Label>
+                <Label Content="{Binding VM_ConnectionMessage}"/>
             </WrapPanel>
         </StatusBarItem>
     </StatusBar>

@@ -19,8 +19,9 @@ namespace FlightSimulatorApp.Views
     {
         public MyJoystick()
         {
-            InitializeComponent();
             DataContext = (Application.Current as App).JoystickVM;
+            InitializeComponent();
+            
         }
     }
 }

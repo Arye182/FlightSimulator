@@ -29,9 +29,9 @@ namespace FlightSimulatorApp.Views
 
         public StatusBar()
         {
-
-            InitializeComponent();
             DataContext = (Application.Current as App).SBVM;
+            InitializeComponent();
+            
             DispatcherTimer timer = new DispatcherTimer(DispatcherPriority.Background);
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.IsEnabled = true;
