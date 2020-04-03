@@ -241,21 +241,24 @@ namespace FlightSimulatorApp.Model
         }
         public void start()
         {
-            Thread t = new Thread(delegate ()
+            if (this.ConnectionStatus)
             {
-                while (!stop)
+                Thread t = new Thread(delegate ()
                 {
-                    infoRequest();
-                    string output = this.connector.read();
-                    interpretInfo(output);
+                    while (!stop)
+                    {
+                        infoRequest();
+                        string output = this.connector.read();
+                        interpretInfo(output);
                     //TODO handle err
                     Thread.Sleep(250);
-                }
-                disconnect();
-            });
-            t.Start();
-            //t.Join();
+                    }
+                    
+                });
+                t.Start();
+               
 
+            }
         }
 
         private void infoRequest()
@@ -354,9 +357,14 @@ namespace FlightSimulatorApp.Model
             if (connectionStatus)
             {
 
-                
-                    //Console.WriteLine("set " + PropertiesSimulatorPath[propName] + " " + typeof(FlightSimulatorModel).GetProperty(propName) + "\n");
-                    connector.write("set " + PropertiesSimulatorPath[propName] + " " + typeof(FlightSimulatorModel).GetProperty(propName).GetValue(this, null) + "\n");
+                Task send = Task.Run(() => {
+                    Console.WriteLine("Task={0}, FlightSimulatorModel, Thread={1}",
+                              Task.CurrentId, 
+                               Thread.CurrentThread.ManagedThreadId);
+                });
+                send.Wait();
+                //Console.WriteLine("set " + PropertiesSimulatorPath[propName] + " " + typeof(FlightSimulatorModel).GetProperty(propName) + "\n");
+                connector.write("set " + PropertiesSimulatorPath[propName] + " " + typeof(FlightSimulatorModel).GetProperty(propName).GetValue(this, null) + "\n");
                 
                 //Console.WriteLine(typeof(FlightSimulatorModel).GetProperty(propName).GetValue(this, null));
                 
