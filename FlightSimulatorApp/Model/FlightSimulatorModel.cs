@@ -19,6 +19,8 @@ namespace FlightSimulatorApp.Model
         public const int GROUNGSPEED = 5;
         public const int PITCH = 6;
         public const int VERTICALSPEED = 7;
+        public const int LATITUDE = 8;
+        public const int LONGITUDE = 9;
     }
 
     
@@ -238,7 +240,7 @@ namespace FlightSimulatorApp.Model
             
             this.connector.disconnect();
             WarningMessage = "Disconnected";
-            connectionStatus = false;
+            ConnectionStatus = false;
         }
         public void start()
         {
@@ -272,7 +274,9 @@ namespace FlightSimulatorApp.Model
                             "get " + PropertiesSimulatorPath["roll"] + "\n" +
                             "get " + PropertiesSimulatorPath["groundSpeed"] + "\n" +
                             "get " + PropertiesSimulatorPath["pitch"] + "\n" +
-                            "get " + PropertiesSimulatorPath["verticalSpeed"] + "\n"
+                            "get " + PropertiesSimulatorPath["verticalSpeed"] + "\n" +
+                            "get " + PropertiesSimulatorPath["longitude"] + "\n" +
+                            "get " + PropertiesSimulatorPath["latitude"] + "\n"
                             );
         }
 
@@ -345,6 +349,23 @@ namespace FlightSimulatorApp.Model
             {
                 WarningMessage = "eror getting updated verticalSpeed value";
             }
+            try
+            {
+                VerticalSpeed = Double.Parse(values[PropertiesIndex.LONGITUDE]);
+            }
+            catch (Exception e)
+            {
+                WarningMessage = "eror getting updated longitude value";
+            }
+            try
+            {
+                VerticalSpeed = Double.Parse(values[PropertiesIndex.LATITUDE]);
+            }
+            catch (Exception e)
+            {
+                WarningMessage = "eror getting updated latitude value";
+            }
+            
             Console.WriteLine(warningMessage);
             //this.stop = true;
 
