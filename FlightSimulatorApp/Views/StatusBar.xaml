@@ -8,7 +8,8 @@
              d:DesignHeight="30" d:DesignWidth="1300" Name="StatusBarView" FontSize="18"  >
 
     <UserControl.Resources>
-        <local:ImageConverter x:Key="ImagePathConverterKey"/>
+        <local:ValueConverter x:Key="ImagePathConverterKey"/>
+        <local:DoubleConverter x:Key="DoubleConverter"/>
     </UserControl.Resources>
     
     <StatusBar >
@@ -46,9 +47,9 @@
         <StatusBarItem Grid.Column="4" HorizontalAlignment="Left">
             <TextBlock >
                     <Label Content="Lat:"></Label>
-                    <Label Content="{Binding VM_Latitude}"></Label>
+                    <Label Content="{Binding VM_Latitude, Converter={StaticResource DoubleConverter}}"></Label>
                     <Label Content="Lon:"></Label>
-                    <Label Content="{Binding VM_Longitude}"></Label>
+                    <Label Content="{Binding VM_Longitude , Converter={StaticResource DoubleConverter}}"></Label>
             </TextBlock>
         </StatusBarItem>
         <Separator Grid.Column="5" />

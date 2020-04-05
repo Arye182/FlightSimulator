@@ -122,6 +122,7 @@ namespace FlightSimulatorApp.ViewModel
 
         public double  VM_Latitude
         {
+
             get { return this.latitude; }
             set
             {
