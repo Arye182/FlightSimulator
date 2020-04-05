@@ -59,7 +59,7 @@
                 </Label>
                 <Image Height="16" Width="37">
                     <Image.Source>
-                        <BitmapImage UriSource="{Binding VM_ConnectionImagePath, Converter={StaticResource ImagePathConverterKey}}"/>
+                        <BitmapImage UriSource="{Binding VM_ConnectionImagePath}"/>
                     </Image.Source>
                 </Image>
                 <Label Content="{Binding VM_ConnectionMessage}"/>
