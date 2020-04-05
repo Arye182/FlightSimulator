@@ -17,7 +17,6 @@ namespace FlightSimulatorApp.ViewModel
     public class StatusBarViewModel : INotifyPropertyChanged
     {
         private FlightSimulatorModel model;
-
         public event PropertyChangedEventHandler PropertyChanged;
         private string connected_message = "Disconnected";
         private string connnection_image = "/Views/Resources/disconnected.png";
@@ -34,8 +33,6 @@ namespace FlightSimulatorApp.ViewModel
                 NotifyPropertyChanged("VM_" + e.PropertyName);
             };
         }
-
-
 
         public void NotifyPropertyChanged(string propName)
         {

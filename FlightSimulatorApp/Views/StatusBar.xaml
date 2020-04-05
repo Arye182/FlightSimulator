@@ -7,6 +7,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="1300" Name="StatusBarView" FontSize="18"  >
 
+    <UserControl.Resources>
+        <local:ImageConverter x:Key="ImagePathConverterKey"/>
+    </UserControl.Resources>
+    
     <StatusBar >
         <StatusBar.ItemsPanel>
             <ItemsPanelTemplate>
@@ -55,7 +59,7 @@
                 </Label>
                 <Image Height="16" Width="37">
                     <Image.Source>
-                        <BitmapImage UriSource="{Binding VM_ConnectionImagePath}"/>
+                        <BitmapImage UriSource="{Binding VM_ConnectionImagePath, Converter={StaticResource ImagePathConverterKey}}"/>
                     </Image.Source>
                 </Image>
                 <Label Content="{Binding VM_ConnectionMessage}"/>
