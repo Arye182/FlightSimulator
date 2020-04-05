@@ -231,7 +231,7 @@ namespace FlightSimulatorApp.Model
         public void connect(string ip, int port)
         {
             this.connector.connect(ip, port);
-            connectionStatus = true;
+            ConnectionStatus = true;
         }
         public void disconnect()
         {

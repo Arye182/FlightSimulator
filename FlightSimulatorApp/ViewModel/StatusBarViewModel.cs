@@ -16,8 +16,8 @@ namespace FlightSimulatorApp.ViewModel
         private FlightSimulatorModel model;
 
         public event PropertyChangedEventHandler PropertyChanged;
-        string connected_message = "Disconnected";
-        string connnection_image = "/Views/Resources/disconnected.png";
+        private string connected_message = "Disconnected";
+        private string connnection_image = "/Views/Resources/disconnected.png";
 
         public StatusBarViewModel()
         {
@@ -27,33 +27,66 @@ namespace FlightSimulatorApp.ViewModel
                 NotifyPropertyChanged("VM_" + e.PropertyName);
             };
         }
+
+
+
         public void NotifyPropertyChanged(string propName)
         {
             if (PropertyChanged != null)
             {
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
-
             }
+            if (propName == "VM_ConnectionStatus")
+            {
+                if (model.ConnectionStatus == true)
+                {
+                    VM_ConnectionImagePath = "/Views/Resources/connected.png";
+                    VM_ConnectionMessage = "Connected";
+                }
+                else
+                {
+                    VM_ConnectionImagePath = "/Views/Resources/disconnected.png";
+                    VM_ConnectionMessage = "Disconnected";
+                }
+            }
+            
         }
 
         // connection status properties
         public bool VM_ConnectionStatus
         {
             get { return model.ConnectionStatus; }
+
         }
 
         public string VM_ConnectionImagePath
         {
-            get { return this.connnection_image; }
-            set { this.connnection_image = value; OnPropertyChanged("VM_ConnectionImagePath"); }
+            get 
+            {
+                return this.connnection_image;
+            }
+            set
+            {
+                this.connnection_image = value;
+                OnPropertyChanged("VM_ConnectionImagePath");
+            }
+            
         }
 
         public string VM_ConnectionMessage
         {
-            get { return this.connected_message; }
-            set { this.connected_message = value; OnPropertyChanged("VM_ConnectionMessage"); }
+            get
+            {
+                return this.connected_message;
 
 
+            }
+
+            set
+            {
+                this.connected_message = value;
+                OnPropertyChanged("VM_ConnectionMessage");
+            }
 
         }
 
@@ -80,7 +113,7 @@ namespace FlightSimulatorApp.ViewModel
         public void OnPropertyChanged(string propName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
-            
+
         }
     }
 }
