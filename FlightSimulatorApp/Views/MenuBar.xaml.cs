@@ -28,7 +28,7 @@ namespace FlightSimulatorApp.Views
         }
         private void MenuDisconnect_Click(object sender, RoutedEventArgs e)
         {
-
+            m.disconnect();
         }
         private void MenuConnect_Click(object sender, RoutedEventArgs e)
         {
