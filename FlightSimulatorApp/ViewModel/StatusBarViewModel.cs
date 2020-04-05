@@ -80,19 +80,7 @@ namespace FlightSimulatorApp.ViewModel
         public void OnPropertyChanged(string propName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
-            if (propName == "VM_ConnectionStatus")
-            {
-                if (VM_ConnectionStatus)
-                {
-                    VM_ConnectionImagePath = "/Views/Resources/connected.png";
-                    VM_ConnectionMessage = "Connected";
-                }
-                else
-                {
-                    VM_ConnectionImagePath = "/Views/Resources/disconnected.png";
-                    VM_ConnectionMessage = "Disconnected";
-                }
-            }
+            
         }
     }
 }

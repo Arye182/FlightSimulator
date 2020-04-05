@@ -235,9 +235,10 @@ namespace FlightSimulatorApp.Model
         }
         public void disconnect()
         {
-            //connectionStatus = false;
+            
             this.connector.disconnect();
-
+            WarningMessage = "Disconnected";
+            connectionStatus = false;
         }
         public void start()
         {
@@ -247,9 +248,9 @@ namespace FlightSimulatorApp.Model
                 {
                     while (connectionStatus)
                     {
-                        infoRequest();
-                        string output = this.connector.read();
-                        interpretInfo(output);
+                        
+                        
+                        interpretInfo(infoRequest());
                         //TODO handle err
                         Thread.Sleep(250);
                     }
@@ -261,10 +262,10 @@ namespace FlightSimulatorApp.Model
             }
         }
 
-        private void infoRequest()
+        private string infoRequest()
         {
             Console.WriteLine(PropertiesSimulatorPath["roll"]);
-            connector.write("get " + PropertiesSimulatorPath["airSpeed"] + "\n" +
+            return connector.WriteCommand("get " + PropertiesSimulatorPath["airSpeed"] + "\n" +
                             "get " + PropertiesSimulatorPath["altimeter"] + "\n" +
                             "get " + PropertiesSimulatorPath["altitude"] + "\n" +
                             "get " + PropertiesSimulatorPath["heading"] + "\n" +
@@ -279,14 +280,14 @@ namespace FlightSimulatorApp.Model
         {
             Console.WriteLine(info);
             string[] values = info.Split('\n');
-            warningMessage = "";
+            WarningMessage = "";
             try
             {
                 AirSpeed = Double.Parse(values[PropertiesIndex.AIRSPEED]);
             }
             catch (Exception e)
             {
-                warningMessage = "eror getting updated airspeed value";
+                WarningMessage = "eror getting updated airspeed value";
             }
             try
             {
@@ -294,7 +295,7 @@ namespace FlightSimulatorApp.Model
             }
             catch (Exception e)
             {
-                warningMessage = "eror getting updated altimeter value";
+                WarningMessage = "eror getting updated altimeter value";
             }
             try
             {
@@ -302,7 +303,7 @@ namespace FlightSimulatorApp.Model
             }
             catch (Exception e)
             {
-                warningMessage = "eror getting updated altitude value";
+                WarningMessage = "eror getting updated altitude value";
             }
             try
             {
@@ -310,7 +311,7 @@ namespace FlightSimulatorApp.Model
             }
             catch (Exception e)
             {
-                warningMessage = "eror getting updated heading value";
+                WarningMessage = "eror getting updated heading value";
             }
             try
             {
@@ -318,7 +319,7 @@ namespace FlightSimulatorApp.Model
             }
             catch (Exception e)
             {
-                warningMessage = "eror getting updated roll value";
+                WarningMessage = "eror getting updated roll value";
             }
             try
             {
@@ -326,7 +327,7 @@ namespace FlightSimulatorApp.Model
             }
             catch (Exception e)
             {
-                warningMessage = "eror getting updated groundSpeed value";
+                WarningMessage = "eror getting updated groundSpeed value";
             }
             try
             {
@@ -334,7 +335,7 @@ namespace FlightSimulatorApp.Model
             }
             catch (Exception e)
             {
-                warningMessage = "eror getting updated pitch value";
+                WarningMessage = "eror getting updated pitch value";
             }
             try
             {
@@ -358,14 +359,15 @@ namespace FlightSimulatorApp.Model
             {
                 return;
             }
+            string output ="";
             Task send = Task.Run(() => {
              
-             connector.write("set " + PropertiesSimulatorPath[propName] + " " + typeof(FlightSimulatorModel).GetProperty(propName).GetValue(this, null) + "\n");
+             output = connector.WriteCommand("set " + PropertiesSimulatorPath[propName] + " " + typeof(FlightSimulatorModel).GetProperty(propName).GetValue(this, null) + "\n");
                 });
             send.Wait();
-            if (connector.read() == "ERR")
+            if (output == "ERR")
             {
-                warningMessage = "eror writing to the simulator";
+                WarningMessage = "eror writing to the simulator";
             }
            /* if (connectionStatus)
             {

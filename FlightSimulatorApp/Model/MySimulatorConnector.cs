@@ -70,5 +70,14 @@ namespace FlightSimulatorApp.Model
             Console.WriteLine("disconnect");
             this.my_client.Close();
         }
+
+        public string WriteCommand(string command)
+        {
+            mut.WaitOne();
+            write(command);
+            string output = read();
+            mut.ReleaseMutex();
+            return output;
+        }
     }
 }

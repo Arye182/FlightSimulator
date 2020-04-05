@@ -12,5 +12,6 @@ namespace FlightSimulatorApp.Model
         void write(string command);
         string read();
         void disconnect();
+        string WriteCommand(string command);
     }
 }

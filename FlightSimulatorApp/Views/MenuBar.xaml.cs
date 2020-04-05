@@ -33,7 +33,7 @@ namespace FlightSimulatorApp.Views
         private void MenuConnect_Click(object sender, RoutedEventArgs e)
         {
             m.connect("127.0.0.1", 5402);
-           // m.start();
+            m.start();
         }
         private void MenuExit_Click(object sender, RoutedEventArgs e)
         {
