@@ -148,7 +148,7 @@
                     <TransformGroup>
                         <ScaleTransform/>
                         <SkewTransform/>
-                        <RotateTransform Angle="{Binding Path=Angle}"/>
+                        <RotateTransform Angle="{Binding Path=ThrottleAngle}"/>
                         <TranslateTransform/>
                     </TransformGroup>
                 </Border.RenderTransform>
@@ -200,7 +200,7 @@
                     <TransformGroup>
                         <ScaleTransform/>
                         <SkewTransform/>
-                        <RotateTransform Angle="{Binding Path=Angle}"/>
+                        <RotateTransform Angle="{Binding Path=AileronAngle}"/>
                         <TranslateTransform/>
                     </TransformGroup>
                 </Border.RenderTransform>
