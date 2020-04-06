@@ -21,6 +21,18 @@ namespace FlightSimulatorApp.Views
     /// </summary>
     public partial class MenuBar : UserControl
     {
+        // settings:
+        private string ip;
+        private int port;
+        private string windowHeight;
+        private string windowWidth;
+
+
+
+
+
+
+
         FlightSimulatorModel m = (Application.Current as App).Model;
         public MenuBar()
         {
@@ -43,5 +55,20 @@ namespace FlightSimulatorApp.Views
         {
             // TODO
         }
+        private void MenuExit_About(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("all rights reserved Arye & Miri 2020");
+        }
+
+        private void PortIP_Click(object sender, RoutedEventArgs e)
+        {
+            ConnectionSettings cs = new ConnectionSettings();
+            cs.Show();
+        }
+
+
+        
+
+
     }
 }

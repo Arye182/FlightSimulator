@@ -14,6 +14,14 @@
                     <Image.Source>
                         <BitmapImage UriSource="/Views/Resources/plane-icon.png"/>
                     </Image.Source>
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="{Binding VM_Heading}"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
                 </Image>
             </Grid>
         </ControlTemplate>
@@ -29,12 +37,13 @@
             Height="750" 
             Margin="0,70,0,0"
             CredentialsProvider="0lorjGXdhAaoxKgm8ZCp~3iC811-s_dKqVi3oSUbISA~Aidta9Kv4580M0wRbDmjoWHM1I9mUw6JjmcT43tiNvyrUeAFDXmF9SIf4JLQ6pAu" 
-            Center="{Binding VM_Location}"
             ZoomLevel="2" 
             HorizontalAlignment="Center" 
             VerticalAlignment="Center" 
             Mode="Road">
-            <m:Pushpin x:Name="pushpin" Location="{Binding VM_Location}" Template="{StaticResource PushpinControlTemplate}" />
+            <m:Pushpin x:Name="pushpin" m:MapLayer.Position="{Binding VM_Location}" Template="{StaticResource PushpinControlTemplate}" >
+
+            </m:Pushpin>
         </m:Map>
 
 

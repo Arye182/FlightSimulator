@@ -11,8 +11,8 @@
         <StackPanel DockPanel.Dock="Top">
             <Menu x:Name="MenuePannel" DataContext="{Binding ElementName=MainMenu}">
                 
-                <MenuItem Header="S_tart">
-                    <MenuItem Name="Connect" Header="Connect To Server" InputGestureText="Ctrl+C" Click="MenuConnect_Click"></MenuItem>
+                <MenuItem Header="_Start">
+                    <MenuItem Name="Connect" Header="Connect" InputGestureText="Ctrl+C" Click="MenuConnect_Click"></MenuItem>
                     <MenuItem Name="Disconnect" Header="Disconnect" Click="MenuDisconnect_Click"></MenuItem>
                     <MenuItem Name="Exit" Header="Exit" InputGestureText="Ctrl+E" Click="MenuExit_Click"></MenuItem>
                     <Separator></Separator>
@@ -20,24 +20,28 @@
                 
                 
                 
-                <MenuItem Header="Settings">
-                    <MenuItem Header="Port and IP"></MenuItem>
+                <MenuItem Header="S_ettings">
+                    <MenuItem Header="_Connection Settings" InputGestureText="Ctrl + P" Click="PortIP_Click"></MenuItem>
                     <MenuItem Header="Screen Resolution">
-                        <MenuItem Header="Screen Resolution"></MenuItem>
                         <MenuItem Header="800 × 600"></MenuItem>
                         <MenuItem Header="1024 × 768 "></MenuItem>
                         <MenuItem Header="1280 × 720"></MenuItem>
                         <MenuItem Header="1920 × 1080"></MenuItem>
                         <MenuItem Header="Full Screen" InputGestureText="Alt + Enter" Click="FullScreen_Click" ></MenuItem>
                     </MenuItem>
+                    <MenuItem Header="Map Mode">
+                        <MenuItem Header="Roads"></MenuItem>
+                        <MenuItem Header="Aerial"></MenuItem>
+                        <MenuItem Header="Aerial With Labels"></MenuItem>
+                    </MenuItem>
                     <Separator></Separator>
                 </MenuItem>
                 
                 
                 
-                <MenuItem Header="Help">
+                <MenuItem Header="_Help">
                     <MenuItem Header="How To Play?"></MenuItem>
-                    <MenuItem Header="About"></MenuItem>
+                    <MenuItem Header="About" Click="MenuExit_About"></MenuItem>
                     <Separator></Separator>
                 </MenuItem>
                 

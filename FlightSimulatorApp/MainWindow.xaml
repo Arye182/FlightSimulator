@@ -10,7 +10,8 @@
         Width="{Binding SystemParameters.PrimaryScreenWidth}" 
         WindowStartupLocation="CenterScreen"
         FontSize="18" 
-        Background="#1F1F36">
+        Background="#1F1F36"
+        Icon="/Views/Resources/app-icon.png">
 
     <DockPanel>
         <!--   Menu  !-->

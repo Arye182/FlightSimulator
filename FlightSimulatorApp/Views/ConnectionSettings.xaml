@@ -1,0 +1,28 @@
+﻿<Window x:Class="FlightSimulatorApp.Views.ConnectionSettings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FlightSimulatorApp.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="400" Width="400" Height="400">
+    <Grid Background="AliceBlue">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Content="Settings" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48"></Label>
+        <Label Grid.Column="0" Grid.Row="1" Content="IP:" FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+        <TextBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBox>
+        <Label Grid.Column="0" Grid.Row="2" Content="PORT:" FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+        <TextBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBox>
+        
+            
+    </Grid>
+</Window>

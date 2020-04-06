@@ -22,12 +22,12 @@ namespace FlightSimulatorApp.ViewModel
         private string connnection_image = "/Views/Resources/disconnected.png";
         private double longtitude;
         private double latitude;
-        private Location loc;
+        private string loc;
 
         public StatusBarViewModel()
         {
             this.model = (Application.Current as App).Model;
-            this.loc = new Location();
+            
             model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
                 NotifyPropertyChanged("VM_" + e.PropertyName);
@@ -44,7 +44,7 @@ namespace FlightSimulatorApp.ViewModel
             {
                 if (model.ConnectionStatus == true)
                 {
-                    VM_ConnectionImagePath = "/Views/Resources/connected.png";
+                    VM_ConnectionImagePath = "C:/Users/aryea/source/repos/FlightSimulator/FlightSimulatorApp/Views/Resources/connected.png";
                     VM_ConnectionMessage = "Connected";
                 }
                 else
@@ -56,12 +56,12 @@ namespace FlightSimulatorApp.ViewModel
             if (propName == "VM_Longitude")
             {
                 VM_Longitude = model.Longitude;
-                this.loc.Longitude = model.Longitude;
+                VM_Location =  model.Longitude.ToString()+ "," + model.Latitude.ToString(); ;
             }
             if (propName == "VM_Latitude")
             {
                 VM_Latitude = model.Latitude;
-                this.loc.Latitude = model.Latitude;
+                VM_Location = model.Longitude.ToString()+ "," +  model.Latitude.ToString();
             }
 
         }
@@ -131,7 +131,7 @@ namespace FlightSimulatorApp.ViewModel
             }
         }
 
-        public Location VM_Location
+        public string VM_Location
         {
             get { return this.loc; }
             set
@@ -139,6 +139,11 @@ namespace FlightSimulatorApp.ViewModel
                 this.loc = value;
                 OnPropertyChanged("VM_Location");
             }
+        }
+
+        public double VM_Heading
+        {
+            get { return model.Heading; }
         }
 
         public void OnPropertyChanged(string propName)
