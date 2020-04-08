@@ -14,15 +14,18 @@ using System.Windows.Data;
 
 namespace FlightSimulatorApp.ViewModel
 {
+
+    // this is the view model for status bar, map.
     public class StatusBarViewModel : INotifyPropertyChanged
     {
         private FlightSimulatorModel model;
         public event PropertyChangedEventHandler PropertyChanged;
         private string connected_message = "Disconnected";
-        private string connnection_image = "/Views/Resources/disconnected.png";
+        private Uri connection_image = new Uri(@"/Views/Resources/disconnected.png", UriKind.RelativeOrAbsolute);
         private double longtitude;
         private double latitude;
         private string loc;
+        private MapMode map_mode = new RoadMode();
 
         public StatusBarViewModel()
         {
@@ -44,12 +47,12 @@ namespace FlightSimulatorApp.ViewModel
             {
                 if (model.ConnectionStatus == true)
                 {
-                    VM_ConnectionImagePath = "C:/Users/aryea/source/repos/FlightSimulator/FlightSimulatorApp/Views/Resources/connected.png";
+                    VM_ConnectionImagePath = new Uri(@"/Views/Resources/connected.png", UriKind.RelativeOrAbsolute);
                     VM_ConnectionMessage = "Connected";
                 }
                 else
                 {
-                    VM_ConnectionImagePath = "/Views/Resources/disconnected.png";
+                    VM_ConnectionImagePath = new Uri(@"/Views/Resources/disconnected.png", UriKind.RelativeOrAbsolute);
                     VM_ConnectionMessage = "Disconnected";
                 }
             }
@@ -73,15 +76,15 @@ namespace FlightSimulatorApp.ViewModel
 
         }
 
-        public string VM_ConnectionImagePath
+        public Uri VM_ConnectionImagePath
         {
             get 
             {
-                return this.connnection_image;
+                return this.connection_image;
             }
             set
             {
-                this.connnection_image = value;
+                this.connection_image = value;
                 OnPropertyChanged("VM_ConnectionImagePath");
             }
             
@@ -146,12 +149,46 @@ namespace FlightSimulatorApp.ViewModel
             get { return model.Heading; }
         }
 
+        public string VM_MapModeString 
+        {
+            get
+            {
+                return Properties.Settings.Default.MapMode;
+            }
+            set
+            {
+                Properties.Settings.Default.MapMode = value;
+                if (value == "Aerial")
+                {
+                    VM_MapMode = new AerialMode();
+                } else if (value == "Roads")
+                {
+                    VM_MapMode = new RoadMode();
+
+                } else if (value == "AerialWithLabels")
+                {
+                    VM_MapMode = new MercatorMode();
+                }
+                OnPropertyChanged("VM_MapMode");
+            }
+        }
+
+        public MapMode VM_MapMode
+        {
+            get
+            {
+                return this.map_mode;
+            }
+            set
+            {
+                this.map_mode = value;
+            }
+        } 
+
         public void OnPropertyChanged(string propName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
 
         }
     }
-
-
 }

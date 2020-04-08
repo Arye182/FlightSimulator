@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FlightSimulatorApp.Views"
              xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+             xmlns:settings="clr-namespace:FlightSimulatorApp.Properties"
              mc:Ignorable="d" Width="1100" Height="900" Background="#323C54">
 
     <UserControl.Resources>
@@ -25,6 +26,7 @@
                 </Image>
             </Grid>
         </ControlTemplate>
+        
     </UserControl.Resources>
     
     
@@ -32,7 +34,7 @@
     <Grid>
         <Label Content="Flight Map" FontSize="65" FontWeight="Bold" Grid.ColumnSpan="5" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" FontStretch="Normal"  Foreground="#FFFFFB"/>
 
-        <m:Map  
+        <m:Map
             Width="1000" 
             Height="750" 
             Margin="0,70,0,0"
@@ -40,7 +42,7 @@
             ZoomLevel="2" 
             HorizontalAlignment="Center" 
             VerticalAlignment="Center" 
-            Mode="Road">
+            Mode="{Binding VM_MapMode, Mode=TwoWay}" >
             <m:Pushpin x:Name="pushpin" m:MapLayer.Position="{Binding VM_Location}" Template="{StaticResource PushpinControlTemplate}" >
 
             </m:Pushpin>

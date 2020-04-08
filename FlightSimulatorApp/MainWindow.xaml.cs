@@ -24,6 +24,7 @@ namespace FlightSimulatorApp
     {
         public MainWindow()
         {
+            DataContext = (Application.Current as App).SVM;
             InitializeComponent();
         }
     }

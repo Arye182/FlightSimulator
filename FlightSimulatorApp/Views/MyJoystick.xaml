@@ -189,7 +189,7 @@
                 </Border.Effect>
             </Border>
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="48" 
-                   FontFamily="Agency FB" Foreground="#FF95D4FF" Text="{Binding ThrottleString}" Grid.RowSpan="2">
+                   FontFamily="Agency FB" Foreground="#FF95D4FF" Text="{Binding AileronString}" Grid.RowSpan="2">
                 <TextBlock.Effect>
                     <DropShadowEffect BlurRadius="20" Color="#FF91DEFB" ShadowDepth="0"/>
                 </TextBlock.Effect>

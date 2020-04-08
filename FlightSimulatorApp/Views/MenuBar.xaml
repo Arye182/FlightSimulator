@@ -23,16 +23,16 @@
                 <MenuItem Header="S_ettings">
                     <MenuItem Header="_Connection Settings" InputGestureText="Ctrl + P" Click="PortIP_Click"></MenuItem>
                     <MenuItem Header="Screen Resolution">
-                        <MenuItem Header="800 × 600"></MenuItem>
-                        <MenuItem Header="1024 × 768 "></MenuItem>
-                        <MenuItem Header="1280 × 720"></MenuItem>
-                        <MenuItem Header="1920 × 1080"></MenuItem>
+                        <MenuItem Header="800 × 600" Click="res1_Click"></MenuItem>
+                        <MenuItem Header="1024 × 768" Click="res2_Click"></MenuItem>
+                        <MenuItem Header="1280 × 720" Click="res3_Click"></MenuItem>
+                        <MenuItem Header="1920 × 1080" Click="res4_Click"></MenuItem>
                         <MenuItem Header="Full Screen" InputGestureText="Alt + Enter" Click="FullScreen_Click" ></MenuItem>
                     </MenuItem>
                     <MenuItem Header="Map Mode">
-                        <MenuItem Header="Roads"></MenuItem>
-                        <MenuItem Header="Aerial"></MenuItem>
-                        <MenuItem Header="Aerial With Labels"></MenuItem>
+                        <MenuItem Header="Roads" Click="Roads_Click"></MenuItem>
+                        <MenuItem Header="Aerial" Click="Aerial_Click"></MenuItem>
+                        <MenuItem Header="Aerial With Labels" Click="AerialLabels_Click"></MenuItem>
                     </MenuItem>
                     <Separator></Separator>
                 </MenuItem>
