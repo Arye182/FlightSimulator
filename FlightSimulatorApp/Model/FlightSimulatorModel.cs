@@ -259,7 +259,7 @@ namespace FlightSimulatorApp.Model
                     
                 });
                 t.Start();
-                t.Join();
+               // t.Join();
                
 
             }
