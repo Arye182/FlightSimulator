@@ -9,9 +9,9 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="1.5*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="1.5*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
@@ -25,28 +25,28 @@
 
 
         <!--   header  !-->
-        <Label Content="Flight Dash Board"  Grid.Row="0" Margin="0" FontSize="65" FontWeight="Bold" Grid.ColumnSpan="5" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontStretch="Normal"  Foreground="#FFFFFB"/>
+        <Label Content="Flight Dash Board"  Grid.Row="0" Margin="0" FontSize="65" FontWeight="Bold" Grid.ColumnSpan="5" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontStretch="Normal" Foreground="#FFFFFB"/>
         
         
         <!--   labels  !-->
-        <Label Content="Air Speed" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Center"   FontStretch="Normal" Foreground="#747E96"/>
-        <Label Content="Altitude" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Center"   FontStretch="Normal" Foreground="#747E96"/>
-        <Label Content="Roll"  Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Center"   FontStretch="Normal" Foreground="#747E96"/>
-        <Label Content="Pitch" Grid.Row="4" Grid.Column="1"  HorizontalAlignment="Left"  VerticalAlignment="Center"  FontStretch="Normal" Foreground="#747E96"/>
-        <Label Content="Altimeter"  Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left"  VerticalAlignment="Center"    FontStretch="Normal" Foreground="#747E96"/>
-        <Label Content="Heading" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Left"  VerticalAlignment="Center"   FontStretch="Normal" Foreground="#747E96"/>
-        <Label Content="Ground Speed" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Left"  VerticalAlignment="Center"    FontStretch="Normal" Foreground="#747E96"/>
-        <Label Content="Vertical Speed" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Left"  VerticalAlignment="Center"   Foreground="#747E96"/>
+        <Label Content="Air Speed" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Center"   FontStretch="Normal" Foreground="#747e96"/>
+        <Label Content="Altitude" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Center"   FontStretch="Normal"  Foreground="#747e96"/>
+        <Label Content="Roll"  Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Center"   FontStretch="Normal"  Foreground="#747e96"/>
+        <Label Content="Pitch" Grid.Row="4" Grid.Column="1"  HorizontalAlignment="Left"  VerticalAlignment="Center"  FontStretch="Normal"  Foreground="#747e96"/>
+        <Label Content="Altimeter"  Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left"  VerticalAlignment="Center"    FontStretch="Normal"  Foreground="#747e96"/>
+        <Label Content="Heading" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Left"  VerticalAlignment="Center"   FontStretch="Normal" Foreground="#747e96"/>
+        <Label Content="Ground Speed" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Left"  VerticalAlignment="Center"    FontStretch="Normal" Foreground="#747e96"/>
+        <Label Content="Vertical Speed" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Left"  VerticalAlignment="Center"   Foreground="#747e96"/>
 
         <!--   values  !-->
-        <Label x:Name="air_speed_value" Content="{Binding VM_AirSpeed}" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left"  VerticalAlignment="Center"   FontWeight="Bold" Foreground="#747E96"/>
-        <Label x:Name="altitude_value" Content="{Binding VM_Altitude}" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left"  VerticalAlignment="Center"  FontWeight="Bold" Foreground="#747E96"/>
-        <Label x:Name="roll_value" Content="{Binding VM_Roll}"  Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left"  VerticalAlignment="Center"   FontWeight="Bold" Foreground="#747E96"/>
-        <Label x:Name="pitch_value" Content="{Binding VM_Pitch}" Grid.Row="4" Grid.Column="2"  HorizontalAlignment="Left"  VerticalAlignment="Center"  FontWeight="Bold" Foreground="#747E96"/>
-        <Label x:Name="altimeter_value" Content="{Binding VM_Altimeter}"  Grid.Row="1" Grid.Column="4" HorizontalAlignment="Center"  VerticalAlignment="Center"   FontWeight="Bold" Foreground="#747E96"/>
-        <Label x:Name="heading_value" Content="{Binding VM_Heading}" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Center"  VerticalAlignment="Center"   FontWeight="Bold" Foreground="#747E96"/>
-        <Label x:Name="ground_speed_value" Content="{Binding VM_GroundSpeed}" Grid.Row="3" Grid.Column="4" HorizontalAlignment="Center"  VerticalAlignment="Center"  FontWeight="Bold" Foreground="#747E96"/>
-        <Label x:Name="vertical_speed_value" Content="{Binding VM_VerticalSpeed}" Grid.Row="4" Grid.Column="4" HorizontalAlignment="Center"  VerticalAlignment="Center"  FontWeight="Bold" Foreground="#747E96"/>
+        <Label x:Name="air_speed_value" Content="{Binding VM_AirSpeed}" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left"  VerticalAlignment="Center"   FontWeight="Bold" FontFamily="Agency FB" Foreground="#FF95D4FF"/>
+        <Label x:Name="altitude_value" Content="{Binding VM_Altitude}" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left"  VerticalAlignment="Center"  FontWeight="Bold" FontFamily="Agency FB" Foreground="#FF95D4FF"/>
+        <Label x:Name="roll_value" Content="{Binding VM_Roll}"  Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left"  VerticalAlignment="Center"   FontWeight="Bold" FontFamily="Agency FB" Foreground="#FF95D4FF"/>
+        <Label x:Name="pitch_value" Content="{Binding VM_Pitch}" Grid.Row="4" Grid.Column="2"  HorizontalAlignment="Left"  VerticalAlignment="Center"  FontWeight="Bold" FontFamily="Agency FB" Foreground="#FF95D4FF"/>
+        <Label x:Name="altimeter_value" Content="{Binding VM_Altimeter}"  Grid.Row="1" Grid.Column="4" HorizontalAlignment="Center"  VerticalAlignment="Center"   FontWeight="Bold" FontFamily="Agency FB" Foreground="#FF95D4FF"/>
+        <Label x:Name="heading_value" Content="{Binding VM_Heading}" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Center"  VerticalAlignment="Center"   FontWeight="Bold" FontFamily="Agency FB" Foreground="#FF95D4FF"/>
+        <Label x:Name="ground_speed_value" Content="{Binding VM_GroundSpeed}" Grid.Row="3" Grid.Column="4" HorizontalAlignment="Center"  VerticalAlignment="Center"  FontWeight="Bold" FontFamily="Agency FB" Foreground="#FF95D4FF"/>
+        <Label x:Name="vertical_speed_value" Content="{Binding VM_VerticalSpeed}" Grid.Row="4" Grid.Column="4" HorizontalAlignment="Center"  VerticalAlignment="Center"  FontWeight="Bold" FontFamily="Agency FB" Foreground="#FF95D4FF"/>
 
 
     </Grid>

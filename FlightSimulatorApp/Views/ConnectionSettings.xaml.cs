@@ -22,6 +22,7 @@ namespace FlightSimulatorApp.Views
     {
         public ConnectionSettings()
         {
+            DataContext = (Application.Current as App).SVM;
             InitializeComponent();
         }
     }

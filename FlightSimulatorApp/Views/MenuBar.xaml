@@ -9,7 +9,7 @@
               
     <Grid>
         <StackPanel DockPanel.Dock="Top">
-            <Menu x:Name="MenuePannel" DataContext="{Binding ElementName=MainMenu}">
+            <Menu x:Name="MenuePannel" DataContext="{Binding ElementName=MainMenu}"  FontSize="16">
                 
                 <MenuItem Header="_Start">
                     <MenuItem Name="Connect" Header="Connect" InputGestureText="Ctrl+C" Click="MenuConnect_Click"></MenuItem>

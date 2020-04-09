@@ -35,37 +35,37 @@ namespace FlightSimulatorApp.ViewModel
         }
 
 
-        public double VM_Altitude
+        public string VM_Altitude
         {
-            get { return model.Altitude; }
+            get { return model.Altitude.ToString("0.000"); }
         }
-        public double VM_Roll
+        public string VM_Roll
         {
-            get { return model.Roll; }
+            get { return model.Roll.ToString("0.000"); }
         }
-        public double VM_Pitch
+        public string VM_Pitch
         {
-            get { return model.Pitch; }
+            get { return model.Pitch.ToString("0.000"); }
         }
-        public double VM_Altimeter
+        public string VM_Altimeter
         {
-            get { return model.Altimeter; }
+            get { return model.Altimeter.ToString("0.000"); }
         }
-        public double VM_Heading
+        public string VM_Heading
         {
-            get { return model.Heading; }
+            get { return model.Heading.ToString("0.000"); }
         }
-        public double VM_GroundSpeed
+        public string VM_GroundSpeed
         {
-            get { return model.GroundSpeed; }
+            get { return model.GroundSpeed.ToString("0.000"); }
         }
-        public double VM_VerticalSpeed
+        public string VM_VerticalSpeed
         {
-            get { return model.VerticalSpeed; }
+            get { return model.VerticalSpeed.ToString("0.000"); }
         }
-        public double VM_AirSpeed
+        public string VM_AirSpeed
         {
-            get { return model.AirSpeed; }
+            get { return model.AirSpeed.ToString("0.000"); }
         }
 
     }

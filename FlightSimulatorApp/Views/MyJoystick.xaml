@@ -13,7 +13,7 @@
 
     <UserControl.Resources>
         <ControlTemplate x:Key="simpleSlider" TargetType="{x:Type Slider}">
-            <Border SnapsToDevicePixels="true " Background="#3976F7"
+            <Border SnapsToDevicePixels="true " Background="#FF34323A" 
             BorderBrush="{TemplateBinding BorderBrush}"
             BorderThickness="{TemplateBinding BorderThickness}">
                 <Grid>
@@ -22,20 +22,18 @@
                         <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-
-                    <Rectangle x:Name="PART_SelectionRange" Fill="Beige" />
-
+                    <Rectangle x:Name="PART_SelectionRange"/>
                     <Track x:Name="PART_Track" Grid.Row="1" Orientation="Horizontal" >
-                        
                         <Track.Thumb>
                             <Thumb x:Name="Thumb">
                                 <Thumb.Template>
                                     <ControlTemplate TargetType="Thumb">
-                                        <Rectangle Fill="Red"
+                                        <Rectangle Fill="#33DBC6"
                                     Stroke="Black"
-                                    StrokeThickness="3"
+                                    StrokeThickness="1"
                                     Width="30"
-                                    Height="60"
+                                    Height="70"
+                                    HorizontalAlignment="Center"
                                     SnapsToDevicePixels="True"/>
                                     </ControlTemplate>
                                 </Thumb.Template>
@@ -47,12 +45,7 @@
         </ControlTemplate>
     </UserControl.Resources>
 
-
-
-
-
     <Grid>
-        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -66,17 +59,10 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-
-
         </Grid.RowDefinitions>
-
-
-
 
         <!--   header  !-->
         <Label Content="Controllers"  Grid.Row="0" Margin="0" FontSize="65" FontWeight="Bold" Grid.ColumnSpan="6" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontStretch="Normal"  Foreground="#FFFFFB"/>
-
-
         <!--   inner joystick and its components  !-->
         <local:Joystick  Grid.Row="1" Grid.Column="0"  Grid.ColumnSpan="3" Grid.RowSpan="2"
             x:Name="innerJoystick"
@@ -84,30 +70,18 @@
             VerticalAlignment="Center" 
             X="{Binding VM_Rudder, Mode=OneWayToSource}"
             Y="{Binding VM_Elevator, Mode=OneWayToSource}"/>
+        
+        
         <!--   elevator  !-->
-        <Label 
+        <Label Grid.Row="1" Grid.Column="0"
             x:Name="elavator_value"
-            HorizontalAlignment="Right" 
-            VerticalAlignment="Center" 
-            Background="{x:Null}" 
-            FontSize="36" 
-            Width="125" 
-            Height="71" 
-            IsEnabled="False" 
-            Foreground="#747E96"
-            Content="{Binding ElevatorString}" Margin="0,9,50,120" Grid.Row="1"/>
-        <!--   rudder  !-->
-        <Label
-            x:Name="rudder_value" 
-            Content="{Binding RudderString}"
             HorizontalAlignment="Center" 
-            VerticalAlignment="Top" 
-            Background="{x:Null}" 
-            FontSize="36" 
-            Foreground="#747E96"
-            Height="70" 
-            Width="123" Margin="30,22,30,0" Grid.Column="1" Grid.Row="3"/>
-        <Label Grid.Row="2"  Grid.ColumnSpan="3" Grid.Column="0" Content="&lt;- Rudder -&gt;" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="36" FontFamily="Segoe UI Symbol" Foreground="#747E96" Margin="162,0,165,172" Grid.RowSpan="2"/>
+            VerticalAlignment="Top"
+            FontSize="48" 
+            IsEnabled="False" 
+            FontFamily="Agency FB"
+            Foreground="#FF95D4FF"
+            Content="{Binding ElevatorString}"/>
         <Label Grid.Row="1" Content="&lt;- Elavator -&gt;" HorizontalAlignment="Center"  VerticalAlignment="Center" FontSize="36" FontFamily="Segoe UI Symbol" RenderTransformOrigin="0.58,-0.153" Margin="-56,182,3,160" Foreground="#747E96" Width="236" Grid.RowSpan="2" >
             <Label.RenderTransform>
                 <TransformGroup>
@@ -118,14 +92,25 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-
+        
+        
+        <!--   rudder  !-->
+        <Label
+            x:Name="rudder_value" 
+            Content="{Binding RudderString}"
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Bottom" 
+            FontSize="48" 
+            FontFamily="Agency FB" 
+            Foreground="#FF95D4FF" Grid.Column="2" Grid.Row="2"/>
+        <Label Grid.Row="2"  Grid.ColumnSpan="3" Grid.Column="0" Content="&lt;- Rudder -&gt;" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="36" FontFamily="Segoe UI Symbol" Foreground="#747E96" Margin="162,0,165,172" Grid.RowSpan="2"/>
 
 
 
 
         <!--   slider of Throttle  !-->
-        <Slider  Grid.Row="1"  Grid.ColumnSpan="3" Grid.Column="3"  x:Name="ThrottleSlider"   Background="#3976F7"  FontSize="36" 
-                TickPlacement="BottomRight" TickFrequency="0.1" Value="{Binding Path=VM_Throttle}" Maximum="1" Minimum="0" VerticalAlignment="Center" Width="500" Template="{StaticResource simpleSlider}" />
+        <Slider  Grid.Row="1"  Grid.ColumnSpan="3" Grid.Column="3"  x:Name="ThrottleSlider"
+                 TickFrequency="0.1" Value="{Binding Path=VM_Throttle}" Maximum="1" Minimum="0" VerticalAlignment="Center" Width="500" Template="{StaticResource simpleSlider}" />
 
         <Grid Grid.Column="4" Margin="90,44,0,34" Grid.Row="3" Grid.ColumnSpan="2">
             <Border HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="120" Width="240" BorderBrush="#FFCF5D1D"
@@ -142,7 +127,7 @@
                     <DropShadowEffect BlurRadius="20" Color="#FF91DEFB" ShadowDepth="0"/>
                 </TextBlock.Effect>
             </TextBlock>
-            <Border Width="5" CornerRadius="120 120 0 0" Background="#FFFF6901" RenderTransformOrigin="0.5 2" Height="60" Margin="0 0 0 50" 
+            <Border Width="5" CornerRadius="120 120 0 0" Background="#FFFF6901" RenderTransformOrigin="0.5 2" Height="60" Margin="136,0,136,51" 
                 VerticalAlignment="Bottom" HorizontalAlignment="Center">
                 <Border.RenderTransform>
                     <TransformGroup>
@@ -158,23 +143,15 @@
             </Border>
         </Grid>
 
-        <Label  Grid.ColumnSpan="3" Grid.Row="1" Grid.Column="3" Content="&lt;- Throttle -&gt;" HorizontalAlignment="Center"  VerticalAlignment="Top" FontSize="36" FontFamily="Segoe UI Symbol"  Foreground="#747E96" Height="70" />
+        <Label  Grid.ColumnSpan="3" Grid.Row="1" Grid.Column="3" Content="&lt;- Throttle -&gt;" HorizontalAlignment="Center"  VerticalAlignment="Top" FontSize="40" FontFamily="Segoe UI Symbol"  Foreground="#747E96" Height="70" />
 
 
 
 
         <!--   slider of Aileron  !-->
         <Slider Grid.Row="2"  Grid.ColumnSpan="3" Grid.Column="3" x:Name="AileronSlider" Width="500" VerticalAlignment="Center"
-                Foreground="#FFE5E5E5" TickPlacement="BottomRight"
                 TickFrequency="0.1" Minimum ="-1" Maximum="1" Value="{Binding VM_Aileron}" Template="{StaticResource simpleSlider}"/>
-        
-        
-        
-        
-        
-        <Label Grid.Row="1"  Grid.ColumnSpan="3" Grid.Column="0" x:Name="aileron_value" Content="{Binding AileronString}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="{x:Null}" FontSize="48" Height="65" Margin="546,0,17,56" Width="123" Foreground="#747E96"/>
-        <Label Grid.Row="2"  Grid.ColumnSpan="3" Grid.Column="3" Content="&lt;- Aileron -&gt;" FontSize="36" FontFamily="Segoe UI Symbol" Foreground="#747E96" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-
+        <Label Grid.Row="2"  Grid.ColumnSpan="3" Grid.Column="3" Content="&lt;- Aileron -&gt;" FontSize="40" FontFamily="Segoe UI Symbol" Foreground="#747E96" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         <Grid  Grid.ColumnSpan="2" Grid.Column="3" Margin="0,6,91,34" Grid.Row="3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="25*"/>
@@ -194,7 +171,7 @@
                     <DropShadowEffect BlurRadius="20" Color="#FF91DEFB" ShadowDepth="0"/>
                 </TextBlock.Effect>
             </TextBlock>
-            <Border Width="4" CornerRadius="120 120 0 0" Background="#FFFF6901" RenderTransformOrigin="0.5 2" Height="60" Margin="136,0,137,19" 
+            <Border Width="5" CornerRadius="120 120 0 0" Background="#FFFF6901" RenderTransformOrigin="0.5 2" Height="60" Margin="136,0,136,22" 
                 VerticalAlignment="Bottom" HorizontalAlignment="Center">
                 <Border.RenderTransform>
                     <TransformGroup>
