@@ -259,6 +259,7 @@ namespace FlightSimulatorApp.Model
                     
                 });
                 t.Start();
+                t.Join();
                
 
             }
@@ -266,18 +267,25 @@ namespace FlightSimulatorApp.Model
 
         private string infoRequest()
         {
-            Console.WriteLine(PropertiesSimulatorPath["roll"]);
-            return connector.WriteCommand("get " + PropertiesSimulatorPath["airSpeed"] + "\n" +
-                            "get " + PropertiesSimulatorPath["altimeter"] + "\n" +
-                            "get " + PropertiesSimulatorPath["altitude"] + "\n" +
-                            "get " + PropertiesSimulatorPath["heading"] + "\n" +
-                            "get " + PropertiesSimulatorPath["roll"] + "\n" +
-                            "get " + PropertiesSimulatorPath["groundSpeed"] + "\n" +
-                            "get " + PropertiesSimulatorPath["pitch"] + "\n" +
-                            "get " + PropertiesSimulatorPath["verticalSpeed"] + "\n" +
-                            "get " + PropertiesSimulatorPath["longitude"] + "\n" +
-                            "get " + PropertiesSimulatorPath["latitude"] + "\n"
-                            );
+            string output = "";
+            try
+            {
+                output =  connector.WriteCommand("get " + PropertiesSimulatorPath["airSpeed"] + "\n" +
+                                "get " + PropertiesSimulatorPath["altimeter"] + "\n" +
+                                "get " + PropertiesSimulatorPath["altitude"] + "\n" +
+                                "get " + PropertiesSimulatorPath["heading"] + "\n" +
+                                "get " + PropertiesSimulatorPath["roll"] + "\n" +
+                                "get " + PropertiesSimulatorPath["groundSpeed"] + "\n" +
+                                "get " + PropertiesSimulatorPath["pitch"] + "\n" +
+                                "get " + PropertiesSimulatorPath["verticalSpeed"] + "\n" +
+                                "get " + PropertiesSimulatorPath["longitude"] + "\n" +
+                                "get " + PropertiesSimulatorPath["latitude"] + "\n"
+                                );
+            } catch(System.NullReferenceException)
+            {
+                connect("127.0.0.1", 5402);
+            }
+            return output;
         }
 
         private void interpretInfo(string info)

@@ -42,7 +42,7 @@ namespace FlightSimulatorApp.Model
                 stream.Write(buffer, 0, buffer.Length);
                 //stream.Close();
             }  catch(Exception ex) {
-                
+                throw ex;
             }
         }
         public string read()
@@ -74,7 +74,13 @@ namespace FlightSimulatorApp.Model
         public string WriteCommand(string command)
         {
             mut.WaitOne();
-            write(command);
+            try
+            {
+                write(command);
+            } catch(Exception ex)
+            {
+                
+            }
             string output = read();
             mut.ReleaseMutex();
             return output;
