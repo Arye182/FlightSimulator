@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace FlightSimulatorApp.ViewModel
 {
-    public class MyJoystickVM : INotifyPropertyChanged
+    public class MyJoystickViewModel : INotifyPropertyChanged
     {
 
         // data members
@@ -18,7 +18,8 @@ namespace FlightSimulatorApp.ViewModel
         double aileron=0;
         double rudder=0;
         double throttle=0;
-        double _angle = -85;
+        double throttle_angel = -85;
+        double aileron_angel = 0;
         public event PropertyChangedEventHandler PropertyChanged;
         private FlightSimulatorModel model;
 
@@ -47,6 +48,15 @@ namespace FlightSimulatorApp.ViewModel
             set
             {
                 aileron = value;
+                AileronAngle = (180 / Math.PI) * (Math.Asin(value));
+                if (AileronAngle > 85)
+                {
+                    AileronAngle = 85;
+                }
+                if (AileronAngle < -85)
+                {
+                    AileronAngle = -85;
+                }
                 OnPropertyChanged("AileronString");
                 OnPropertyChanged("Aileron");
                 model.Aileron = value;
@@ -81,7 +91,15 @@ namespace FlightSimulatorApp.ViewModel
                 throttle = value;
                 // arccos(x- 0.5Pi) - 0.5Pi
                 // Angle = (180 / Math.PI ) * (Math.Acos(value - 0.5 * Math.PI) - (0.5*Math.PI)) ;
-                Angle = 180 * value - 85;
+                ThrottleAngle = 180 * value - 85;
+                if (ThrottleAngle > 85)
+                {
+                    ThrottleAngle = 85;
+                }
+                if (ThrottleAngle < -85)
+                {
+                    ThrottleAngle = -85;
+                }
 
                 OnPropertyChanged("ThrottleString");
                 OnPropertyChanged("Throttle");
@@ -130,22 +148,36 @@ namespace FlightSimulatorApp.ViewModel
             return String.Format("{0:N2}", intermediate);
         }
 
-        public double Angle
+        public double ThrottleAngle
         {
             get
             {
-                return _angle;
+                return throttle_angel;
             }
 
             private set
             {
-                _angle = value;
-                OnPropertyChanged("Angle");
+                throttle_angel = value;
+                OnPropertyChanged("ThrottleAngle");
+            }
+        }
+
+        public double AileronAngle
+        {
+            get
+            {
+                return aileron_angel;
+            }
+
+            private set
+            {
+                aileron_angel = value;
+                OnPropertyChanged("AileronAngle");
             }
         }
 
         // methods
-        public MyJoystickVM()
+        public MyJoystickViewModel()
         {
             this.model = (Application.Current as App).Model;
             //PropertyChanged += NotifyPropertyChanged;

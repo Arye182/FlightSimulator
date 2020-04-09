@@ -359,7 +359,7 @@ namespace FlightSimulatorApp.Model
             }
             try
             {
-                VerticalSpeed = Double.Parse(values[PropertiesIndex.LONGITUDE]);
+                Longitude = Double.Parse(values[PropertiesIndex.LONGITUDE]);
             }
             catch (Exception e)
             {
@@ -367,7 +367,7 @@ namespace FlightSimulatorApp.Model
             }
             try
             {
-                VerticalSpeed = Double.Parse(values[PropertiesIndex.LATITUDE]);
+                Latitude = Double.Parse(values[PropertiesIndex.LATITUDE]);
             }
             catch (Exception e)
             {

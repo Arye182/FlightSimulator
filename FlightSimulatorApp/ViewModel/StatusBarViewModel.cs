@@ -14,28 +14,28 @@ using System.Windows.Data;
 
 namespace FlightSimulatorApp.ViewModel
 {
+
+    // this is the view model for status bar, map.
     public class StatusBarViewModel : INotifyPropertyChanged
     {
         private FlightSimulatorModel model;
-
         public event PropertyChangedEventHandler PropertyChanged;
         private string connected_message = "Disconnected";
-        private string connnection_image = "/Views/Resources/disconnected.png";
+        private Uri connection_image = new Uri(@"/Views/Resources/disconnected.png", UriKind.RelativeOrAbsolute);
         private double longtitude;
         private double latitude;
-        private Location loc;
+        private string loc;
+        private MapMode map_mode = new RoadMode();
 
         public StatusBarViewModel()
         {
             this.model = (Application.Current as App).Model;
-            this.loc = new Location();
+            
             model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
                 NotifyPropertyChanged("VM_" + e.PropertyName);
             };
         }
-
-
 
         public void NotifyPropertyChanged(string propName)
         {
@@ -47,24 +47,24 @@ namespace FlightSimulatorApp.ViewModel
             {
                 if (model.ConnectionStatus == true)
                 {
-                    VM_ConnectionImagePath = "/Views/Resources/connected.png";
+                    VM_ConnectionImagePath = new Uri(@"/Views/Resources/connected.png", UriKind.RelativeOrAbsolute);
                     VM_ConnectionMessage = "Connected";
                 }
                 else
                 {
-                    VM_ConnectionImagePath = "/Views/Resources/disconnected.png";
+                    VM_ConnectionImagePath = new Uri(@"/Views/Resources/disconnected.png", UriKind.RelativeOrAbsolute);
                     VM_ConnectionMessage = "Disconnected";
                 }
             }
             if (propName == "VM_Longitude")
             {
                 VM_Longitude = model.Longitude;
-                this.loc.Longitude = model.Longitude;
+                VM_Location =  model.Longitude.ToString()+ "," + model.Latitude.ToString(); ;
             }
             if (propName == "VM_Latitude")
             {
                 VM_Latitude = model.Latitude;
-                this.loc.Latitude = model.Latitude;
+                VM_Location = model.Longitude.ToString()+ "," +  model.Latitude.ToString();
             }
 
         }
@@ -76,15 +76,15 @@ namespace FlightSimulatorApp.ViewModel
 
         }
 
-        public string VM_ConnectionImagePath
+        public Uri VM_ConnectionImagePath
         {
             get 
             {
-                return this.connnection_image;
+                return this.connection_image;
             }
             set
             {
-                this.connnection_image = value;
+                this.connection_image = value;
                 OnPropertyChanged("VM_ConnectionImagePath");
             }
             
@@ -125,6 +125,7 @@ namespace FlightSimulatorApp.ViewModel
 
         public double  VM_Latitude
         {
+
             get { return this.latitude; }
             set
             {
@@ -133,7 +134,7 @@ namespace FlightSimulatorApp.ViewModel
             }
         }
 
-        public Location VM_Location
+        public string VM_Location
         {
             get { return this.loc; }
             set
@@ -143,12 +144,51 @@ namespace FlightSimulatorApp.ViewModel
             }
         }
 
+        public double VM_Heading
+        {
+            get { return model.Heading; }
+        }
+
+        public string VM_MapModeString 
+        {
+            get
+            {
+                return Properties.Settings.Default.MapMode;
+            }
+            set
+            {
+                Properties.Settings.Default.MapMode = value;
+                if (value == "Aerial")
+                {
+                    VM_MapMode = new AerialMode();
+                } else if (value == "Roads")
+                {
+                    VM_MapMode = new RoadMode();
+
+                } else if (value == "AerialWithLabels")
+                {
+                    VM_MapMode = new MercatorMode();
+                }
+                OnPropertyChanged("VM_MapMode");
+            }
+        }
+
+        public MapMode VM_MapMode
+        {
+            get
+            {
+                return this.map_mode;
+            }
+            set
+            {
+                this.map_mode = value;
+            }
+        } 
+
         public void OnPropertyChanged(string propName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
 
         }
     }
-
-
 }

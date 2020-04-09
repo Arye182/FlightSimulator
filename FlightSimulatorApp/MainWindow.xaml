@@ -6,12 +6,15 @@
         xmlns:views="clr-namespace:FlightSimulatorApp.Views"
         mc:Ignorable="d" 
         Title="Flight Simulator App" 
-        Height="{Binding SystemParameters.PrimaryScreenHeight}" 
-        Width="{Binding SystemParameters.PrimaryScreenWidth}" 
+        Width="{Binding Path = VM_MainWindowWidth , Mode=TwoWay}"
+        Height="{Binding Path = VM_MainWindowHeigth , Mode=TwoWay}"
         WindowStartupLocation="CenterScreen"
         FontSize="18" 
-        Background="#1F1F36">
+        Background="#1F1F36"
+        Icon="/Views/Resources/app-icon.png">
 
+
+    
     <DockPanel>
         <!--   Menu  !-->
         <views:MenuBar DockPanel.Dock="Top"></views:MenuBar>
@@ -30,7 +33,7 @@
                 <RowDefinition Height="13*"/>
             </Grid.RowDefinitions>
             <!--   Map !-->
-            <Viewbox Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Stretch="Uniform" Margin="20,20,20,20" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Viewbox Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Stretch="Uniform" Margin="20,20,20,20" VerticalAlignment="Center" HorizontalAlignment="Center" >
                 <views:Map/>
             </Viewbox>
             <!--  Joystick  !-->

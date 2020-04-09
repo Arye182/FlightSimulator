@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FlightSimulatorApp.Views"
              xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+             xmlns:settings="clr-namespace:FlightSimulatorApp.Properties"
              mc:Ignorable="d" Width="1100" Height="900" Background="#323C54">
 
     <UserControl.Resources>
@@ -14,9 +15,18 @@
                     <Image.Source>
                         <BitmapImage UriSource="/Views/Resources/plane-icon.png"/>
                     </Image.Source>
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="{Binding VM_Heading}"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
                 </Image>
             </Grid>
         </ControlTemplate>
+        
     </UserControl.Resources>
     
     
@@ -24,17 +34,18 @@
     <Grid>
         <Label Content="Flight Map" FontSize="65" FontWeight="Bold" Grid.ColumnSpan="5" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" FontStretch="Normal"  Foreground="#FFFFFB"/>
 
-        <m:Map  
+        <m:Map
             Width="1000" 
             Height="750" 
             Margin="0,70,0,0"
             CredentialsProvider="0lorjGXdhAaoxKgm8ZCp~3iC811-s_dKqVi3oSUbISA~Aidta9Kv4580M0wRbDmjoWHM1I9mUw6JjmcT43tiNvyrUeAFDXmF9SIf4JLQ6pAu" 
-            Center="{Binding VM_Location}"
             ZoomLevel="2" 
             HorizontalAlignment="Center" 
             VerticalAlignment="Center" 
-            Mode="Road">
-            <m:Pushpin x:Name="pushpin" Location="{Binding VM_Location}" Template="{StaticResource PushpinControlTemplate}" />
+            Mode="{Binding VM_MapMode, Mode=TwoWay}" >
+            <m:Pushpin x:Name="pushpin" m:MapLayer.Position="{Binding VM_Location}" Template="{StaticResource PushpinControlTemplate}" >
+
+            </m:Pushpin>
         </m:Map>
 
 

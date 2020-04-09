@@ -73,22 +73,46 @@ namespace FlightSimulatorApp.Views
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
 
-        public class ImageConverter : IValueConverter
-        {
-            public object Convert(
-                object value, Type targetType, object parameter, CultureInfo culture)
-            {
-                return new BitmapImage(new Uri(value.ToString()));
-            }
 
-            public object ConvertBack(
-                object value, Type targetType, object parameter, CultureInfo culture)
-            {
-                throw new NotSupportedException();
-            }
-        }
 
     }
+    public class ValueConverter : IValueConverter
+    {
+        public object Convert(
+            object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return new BitmapImage(new Uri(value.ToString()));
+        }
+
+        public object ConvertBack(
+            object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotSupportedException();
+        }
+    }
+
+
+    [ValueConversion(typeof(double), typeof(string))]
+    public class DoubleConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            double doubleType = (double)value;
+            return doubleType.ToString();
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            string strValue = value as string;
+            double resultDouble;
+            if (double.TryParse(strValue, out resultDouble))
+            {
+                return resultDouble;
+            }
+            return DependencyProperty.UnsetValue;
+        }
+    }
+
 
 
 }
