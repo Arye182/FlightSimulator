@@ -31,8 +31,8 @@
                                         <Rectangle Fill="#33DBC6"
                                     Stroke="Black"
                                     StrokeThickness="1"
-                                    Width="30"
-                                    Height="70"
+                                    Width="50"
+                                    Height="75"
                                     HorizontalAlignment="Center"
                                     SnapsToDevicePixels="True"/>
                                     </ControlTemplate>
@@ -62,7 +62,7 @@
         </Grid.RowDefinitions>
 
         <!--   header  !-->
-        <Label Content="Controllers"  Grid.Row="0" Margin="0" FontSize="65" FontWeight="Bold" Grid.ColumnSpan="6" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontStretch="Normal"  Foreground="#FFFFFB"/>
+        <Label Content="Controllers"  Grid.Row="0" Margin="0" FontSize="100" FontWeight="Bold" Grid.ColumnSpan="6" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontStretch="Normal"  Foreground="#FFFFFB"/>
         <!--   inner joystick and its components  !-->
         <local:Joystick  Grid.Row="1" Grid.Column="0"  Grid.ColumnSpan="3" Grid.RowSpan="2"
             x:Name="innerJoystick"
@@ -70,8 +70,8 @@
             VerticalAlignment="Center" 
             X="{Binding VM_Rudder, Mode=OneWayToSource}"
             Y="{Binding VM_Elevator, Mode=OneWayToSource}"/>
-        
-        
+
+
         <!--   elevator  !-->
         <Label Grid.Row="1" Grid.Column="0"
             x:Name="elavator_value"
@@ -82,18 +82,17 @@
             FontFamily="Agency FB"
             Foreground="#FF95D4FF"
             Content="{Binding ElevatorString}"/>
-        <Label Grid.Row="1" Content="&lt;- Elavator -&gt;" HorizontalAlignment="Center"  VerticalAlignment="Center" FontSize="36" FontFamily="Segoe UI Symbol" RenderTransformOrigin="0.58,-0.153" Margin="-56,182,3,160" Foreground="#747E96" Width="236" Grid.RowSpan="2" >
+        <Label Grid.Row="1" Grid.Column="0" Content="&lt;- Elavator -&gt;" HorizontalAlignment="Left"  VerticalAlignment="Center" FontSize="45" Foreground="#747E96" Grid.ColumnSpan="2" Margin="76,55,0,82" >
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
                     <SkewTransform/>
-                    <RotateTransform Angle="89.848"/>
-                    <TranslateTransform X="15.924" Y="51.947"/>
+                    <RotateTransform Angle="90"/>
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        
-        
+
+
         <!--   rudder  !-->
         <Label
             x:Name="rudder_value" 
@@ -103,7 +102,7 @@
             FontSize="48" 
             FontFamily="Agency FB" 
             Foreground="#FF95D4FF" Grid.Column="2" Grid.Row="2"/>
-        <Label Grid.Row="2"  Grid.ColumnSpan="3" Grid.Column="0" Content="&lt;- Rudder -&gt;" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="36" FontFamily="Segoe UI Symbol" Foreground="#747E96" Margin="162,0,165,172" Grid.RowSpan="2"/>
+        <Label Grid.Row="3"  Grid.ColumnSpan="3" Grid.Column="0" Content="&lt;- Rudder -&gt;" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="45" Foreground="#747E96"/>
 
 
 
@@ -143,7 +142,7 @@
             </Border>
         </Grid>
 
-        <Label  Grid.ColumnSpan="3" Grid.Row="1" Grid.Column="3" Content="&lt;- Throttle -&gt;" HorizontalAlignment="Center"  VerticalAlignment="Top" FontSize="40" FontFamily="Segoe UI Symbol"  Foreground="#747E96" Height="70" />
+        <Label  Grid.ColumnSpan="3" Grid.Row="1" Grid.Column="3" Content="&lt;- Throttle -&gt;" HorizontalAlignment="Center"  VerticalAlignment="Top" FontSize="45"  Foreground="#747E96" />
 
 
 
@@ -151,7 +150,7 @@
         <!--   slider of Aileron  !-->
         <Slider Grid.Row="2"  Grid.ColumnSpan="3" Grid.Column="3" x:Name="AileronSlider" Width="500" VerticalAlignment="Center"
                 TickFrequency="0.1" Minimum ="-1" Maximum="1" Value="{Binding VM_Aileron}" Template="{StaticResource simpleSlider}"/>
-        <Label Grid.Row="2"  Grid.ColumnSpan="3" Grid.Column="3" Content="&lt;- Aileron -&gt;" FontSize="40" FontFamily="Segoe UI Symbol" Foreground="#747E96" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Label Grid.Row="2"  Grid.ColumnSpan="3" Grid.Column="3" Content="&lt;- Aileron -&gt;" FontSize="45" Foreground="#747E96" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         <Grid  Grid.ColumnSpan="2" Grid.Column="3" Margin="0,6,91,34" Grid.Row="3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="25*"/>

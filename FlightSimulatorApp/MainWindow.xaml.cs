@@ -26,8 +26,8 @@ namespace FlightSimulatorApp
         {
             DataContext = (Application.Current as App).SVM;
             InitializeComponent();
-            this.Width = 0.8 * SystemParameters.PrimaryScreenWidth;
-            this.Height = 0.8 * SystemParameters.PrimaryScreenHeight;
+            this.Width = 0.75 * SystemParameters.PrimaryScreenWidth;
+            this.Height = 0.75 * SystemParameters.PrimaryScreenHeight;
         }
     }
 }
