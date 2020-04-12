@@ -33,15 +33,15 @@
                 <RowDefinition Height="13*"/>
             </Grid.RowDefinitions>
             <!--   Map !-->
-            <Viewbox Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Stretch="Uniform" Margin="20,20,20,20" VerticalAlignment="Center" HorizontalAlignment="Center" >
+            <Viewbox Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Margin="20,20,20,20" VerticalAlignment="Center" HorizontalAlignment="Center" >
                 <views:Map/>
             </Viewbox>
             <!--  Joystick  !-->
-            <Viewbox Grid.Column="2" Grid.Row="1"  Stretch="Uniform" Margin="20,20,20,20" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <Viewbox Grid.Column="2" Grid.Row="1" Margin="20,20,20,20" VerticalAlignment="Bottom" HorizontalAlignment="Center">
                 <views:MyJoystick/>
             </Viewbox>
             <!--   Data  !-->
-            <Viewbox Grid.Column="2" Grid.Row="0" Stretch="Uniform" Margin="20,20,20,20" VerticalAlignment="Top" HorizontalAlignment="Center">
+            <Viewbox Grid.Column="2" Grid.Row="0" Margin="20,20,20,20" VerticalAlignment="Top" HorizontalAlignment="Center">
                 <views:FlightDashBoard/>
             </Viewbox>
         </Grid>

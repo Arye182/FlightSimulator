@@ -185,9 +185,6 @@
     <Resource Include="Views\Resources\warning.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Views\Resources\appbg.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Views\Resources\plane-icon.png" />
   </ItemGroup>
   <ItemGroup>

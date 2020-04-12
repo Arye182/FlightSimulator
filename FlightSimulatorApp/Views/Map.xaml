@@ -10,7 +10,7 @@
 
     <UserControl.Resources>
         <ControlTemplate x:Key="PushpinControlTemplate" TargetType="m:Pushpin">
-            <Grid Width="16" Height="16">
+            <Grid Width="24" Height="24">
                 <Image>
                     <Image.Source>
                         <BitmapImage UriSource="/Views/Resources/plane-icon.png"/>
@@ -32,7 +32,7 @@
     
     
     <Grid>
-        <Label Content="Flight Map" FontSize="65" FontWeight="Bold" Grid.ColumnSpan="5" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" FontStretch="Normal"  Foreground="#FFFFFB"/>
+        <Label Content="Flight Map" FontSize="70" FontWeight="Bold" Grid.ColumnSpan="5" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="#FFFFFB"/>
 
         <m:Map
             Width="1000" 
