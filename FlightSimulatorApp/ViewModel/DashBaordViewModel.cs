@@ -12,7 +12,7 @@ namespace FlightSimulatorApp.ViewModel
 {
      public class DashBaordViewModel : INotifyPropertyChanged
     {
-        private IFlightSimulatorModel model;
+        private FlightSimulatorModel model;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -65,7 +65,7 @@ namespace FlightSimulatorApp.ViewModel
         }
         public string VM_AirSpeed
         {
-            get { return model.AirSpeed.ToString("0.000"); }
+            get { return model.AirSpeed; }
         }
 
     }

@@ -26,7 +26,7 @@ namespace FlightSimulatorApp.Model
     
 
 
-    public class FlightSimulatorModel : IFlightSimulatorModel
+    public class FlightSimulatorModel
     {
 
         
@@ -50,7 +50,7 @@ namespace FlightSimulatorApp.Model
         private double altimeter;
         private double groungSpeed;
         private double verticalSpeed;
-        private double airSpeed;
+        private string airSpeed;
 
         //statusBar
         private bool connectionStatus = false;
@@ -138,7 +138,7 @@ namespace FlightSimulatorApp.Model
             get { return verticalSpeed; }
             set { verticalSpeed = value; NotifyPropertyChanged("VerticalSpeed"); }
         }
-        public double AirSpeed
+        public string AirSpeed
         {
             get { return airSpeed; }
             set { airSpeed = value; NotifyPropertyChanged("AirSpeed"); }
@@ -293,14 +293,7 @@ namespace FlightSimulatorApp.Model
             Console.WriteLine(info);
             string[] values = info.Split('\n');
             WarningMessage = "";
-            try
-            {
-                AirSpeed = Double.Parse(values[PropertiesIndex.AIRSPEED]);
-            }
-            catch (Exception e)
-            {
-                WarningMessage = "eror getting updated airspeed value";
-            }
+            AirSpeed = values[PropertiesIndex.AIRSPEED];
             try
             {
                 Altimeter = Double.Parse(values[PropertiesIndex.ALTIMETER]);
