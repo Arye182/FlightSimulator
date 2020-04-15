@@ -24,7 +24,7 @@ namespace FlightSimulatorApp.ViewModel
         private Uri connection_image = new Uri(@"/Views/Resources/disconnected.png", UriKind.RelativeOrAbsolute);
         private double longtitude;
         private double latitude;
-        private string loc;
+        private string loc = "0,0";
         private MapMode map_mode = new RoadMode();
 
         public StatusBarViewModel()

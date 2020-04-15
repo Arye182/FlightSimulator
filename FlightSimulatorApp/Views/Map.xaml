@@ -42,7 +42,7 @@
             ZoomLevel="2" 
             HorizontalAlignment="Center" 
             VerticalAlignment="Center" 
-            Mode="{Binding VM_MapMode, Mode=TwoWay}" >
+            Mode="{Binding VM_MapMode, Mode=TwoWay}">
             <m:Pushpin x:Name="pushpin" m:MapLayer.Position="{Binding VM_Location}" Template="{StaticResource PushpinControlTemplate}" >
 
             </m:Pushpin>
