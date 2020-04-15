@@ -20,10 +20,10 @@ namespace FlightSimulatorApp.Model
             {
                 Console.WriteLine("connecting to ip: {0}, port: {1}", ip, port.ToString());
                 my_client = new TcpClient(ip, port);
-                write_stream = my_client.GetStream();
-                write_stream.Flush();
-                read_stream = my_client.GetStream();
-                read_stream.Flush();
+                //write_stream = my_client.GetStream();
+                //write_stream.Flush();
+                //read_stream = my_client.GetStream();
+                //read_stream.Flush();
                 
                 Console.WriteLine("Connected!");
             } catch (Exception ex)
@@ -36,11 +36,13 @@ namespace FlightSimulatorApp.Model
         public void write(string command)
         {
             //mut.WaitOne();
-            byte[] buffer = Encoding.ASCII.GetBytes(command + "\n");
+            byte[] buffer = Encoding.ASCII.GetBytes(command+"\n");
+            
             try {
                 NetworkStream stream = this.my_client.GetStream();
+                stream.Flush();
                 stream.Write(buffer, 0, buffer.Length);
-                //stream.Close();
+                Console.WriteLine("enter write scope");
             }  catch(Exception ex) {
                 throw ex;
             }
@@ -52,8 +54,10 @@ namespace FlightSimulatorApp.Model
             try
             {
                 NetworkStream stream = this.my_client.GetStream();
-                stream.Read(buffer, 0, 1024);
+                stream.Read(buffer, 0, buffer.Length);
+                stream.Flush();
                 incomingInfo = Encoding.ASCII.GetString(buffer, 0, buffer.Length);
+               
                 //stream.Close();
             }
             catch (Exception ex)
@@ -63,7 +67,7 @@ namespace FlightSimulatorApp.Model
             }
             
            // mut.ReleaseMutex();
-            return incomingInfo;
+            return incomingInfo.Substring(0,incomingInfo.IndexOf('\n')+1);
         }
         public void disconnect()
         {
@@ -73,16 +77,20 @@ namespace FlightSimulatorApp.Model
 
         public string WriteCommand(string command)
         {
-            mut.WaitOne();
-            try
+            Console.WriteLine(command);
+            string[] commands = command.Split('\n');
+            //Console.WriteLine(commands.ToString());
+            string output = "";
+            foreach (var word in commands)
             {
-                write(command);
-            } catch(Exception ex)
-            {
-                
+                Console.WriteLine(word);
+                mut.WaitOne();
+                write(word);
+                output += read();
+                Console.WriteLine(output);
+                mut.ReleaseMutex();
             }
-            string output = read();
-            mut.ReleaseMutex();
+            Console.WriteLine("reach end of for scope");
             return output;
         }
     }

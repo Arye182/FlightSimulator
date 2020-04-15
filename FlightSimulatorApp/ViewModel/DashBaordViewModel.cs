@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace FlightSimulatorApp.ViewModel
 {
-     public class DashBaordViewModel : INotifyPropertyChanged
+    public class DashBaordViewModel : INotifyPropertyChanged
     {
         private FlightSimulatorModel model;
 
@@ -57,8 +57,8 @@ namespace FlightSimulatorApp.ViewModel
         }
         public string VM_GroundSpeed
         {
-            get { return model.GroundSpeed.ToString("0.000"); }
-        }
+            get { return  model.GroundSpeed;}
+}
         public string VM_VerticalSpeed
         {
             get { return model.VerticalSpeed.ToString("0.000"); }

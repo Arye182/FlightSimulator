@@ -16,7 +16,7 @@ namespace FlightSimulatorApp.Model
         public const int ALTITUDE = 2;
         public const int HEADING = 3;
         public const int ROLL = 4;
-        public const int GROUNGSPEED = 5;
+        public const int GROUNDSPEED = 5;
         public const int PITCH = 6;
         public const int VERTICALSPEED = 7;
         public const int LATITUDE = 8;
@@ -34,6 +34,7 @@ namespace FlightSimulatorApp.Model
         public event PropertyChangedEventHandler PropertyChanged;
 
         private ISimulatorConnector connector;
+        private Queue<string> setCommands;
         volatile Boolean stop;
         
         private double throttle;
@@ -48,7 +49,7 @@ namespace FlightSimulatorApp.Model
         private double pitch;
         private double heading;
         private double altimeter;
-        private double groungSpeed;
+        private string groundSpeed;
         private double verticalSpeed;
         private string airSpeed;
 
@@ -128,10 +129,10 @@ namespace FlightSimulatorApp.Model
             get { return heading; }
             set { heading = value; NotifyPropertyChanged("Heading"); }
         }
-        public double GroundSpeed
+        public string GroundSpeed
         {
-            get { return groungSpeed; }
-            set { groungSpeed = value; NotifyPropertyChanged("GroungSpeed"); }
+            get { return groundSpeed; }
+            set { groundSpeed = value; NotifyPropertyChanged("GroundSpeed"); }
         }
         public double VerticalSpeed
         {
@@ -181,7 +182,7 @@ namespace FlightSimulatorApp.Model
             set
             {
                 elevator = value;
-                SendControlInfo("Elevator");
+                //SendControlInfo("Elevator");
 
             }
         }
@@ -195,7 +196,7 @@ namespace FlightSimulatorApp.Model
             set
             {
                 aileron = value;
-                SendControlInfo("Aileron");
+                //SendControlInfo("Aileron");
 
 
             }
@@ -209,7 +210,7 @@ namespace FlightSimulatorApp.Model
             set
             {
                 rudder = value;
-                SendControlInfo("Rudder");
+               // SendControlInfo("Rudder");
             }
         }
         public double Throttle
@@ -268,9 +269,7 @@ namespace FlightSimulatorApp.Model
         private string infoRequest()
         {
             string output = "";
-            try
-            {
-                output =  connector.WriteCommand("get " + PropertiesSimulatorPath["airSpeed"] + "\n" +
+                output = connector.WriteCommand("get " + PropertiesSimulatorPath["airSpeed"] + "\n" +
                                 "get " + PropertiesSimulatorPath["altimeter"] + "\n" +
                                 "get " + PropertiesSimulatorPath["altitude"] + "\n" +
                                 "get " + PropertiesSimulatorPath["heading"] + "\n" +
@@ -279,29 +278,26 @@ namespace FlightSimulatorApp.Model
                                 "get " + PropertiesSimulatorPath["pitch"] + "\n" +
                                 "get " + PropertiesSimulatorPath["verticalSpeed"] + "\n" +
                                 "get " + PropertiesSimulatorPath["longitude"] + "\n" +
-                                "get " + PropertiesSimulatorPath["latitude"] + "\n"
+                                "get " + PropertiesSimulatorPath["latitude"]
                                 );
-            } catch(System.NullReferenceException)
+            
+           /* catch (System.NullReferenceException)
             {
                 connect("127.0.0.1", 5402);
-            }
+
+            }*/
+            Console.WriteLine(output);
             return output;
         }
 
         private void interpretInfo(string info)
         {
-            Console.WriteLine(info);
+            //Console.WriteLine(info);
             string[] values = info.Split('\n');
+            Console.WriteLine(values.Length);
             WarningMessage = "";
             AirSpeed = values[PropertiesIndex.AIRSPEED];
-            try
-            {
-                Altimeter = Double.Parse(values[PropertiesIndex.ALTIMETER]);
-            }
-            catch (Exception e)
-            {
-                WarningMessage = "eror getting updated altimeter value";
-            }
+            Altimeter = Double.Parse(values[PropertiesIndex.ALTIMETER]);
             try
             {
                 Altitude = Double.Parse(values[PropertiesIndex.ALTITUDE]);
@@ -326,14 +322,9 @@ namespace FlightSimulatorApp.Model
             {
                 WarningMessage = "eror getting updated roll value";
             }
-            try
-            {
-                GroundSpeed = Double.Parse(values[PropertiesIndex.GROUNGSPEED]);
-            }
-            catch (Exception e)
-            {
-                WarningMessage = "eror getting updated groundSpeed value";
-            }
+            //Console.WriteLine(values.Length);
+            GroundSpeed = values[PropertiesIndex.GROUNDSPEED];
+            
             try
             {
                 Pitch = Double.Parse(values[PropertiesIndex.PITCH]);
@@ -367,7 +358,6 @@ namespace FlightSimulatorApp.Model
                 WarningMessage = "eror getting updated latitude value";
             }
             
-            Console.WriteLine(warningMessage);
             //this.stop = true;
 
 
@@ -377,7 +367,9 @@ namespace FlightSimulatorApp.Model
 
         public void SendControlInfo(string propName)
         {
-            if (!connectionStatus)
+            setCommands.Enqueue("set " + PropertiesSimulatorPath[propName] + " " + typeof(FlightSimulatorModel).GetProperty(propName).GetValue(this, null) + "\n");
+        }
+            /*if (!connectionStatus)
             {
                 return;
             }
@@ -390,7 +382,7 @@ namespace FlightSimulatorApp.Model
             if (output == "ERR")
             {
                 WarningMessage = "eror writing to the simulator";
-            }
+            }*/
            /* if (connectionStatus)
             {
 
@@ -416,6 +408,6 @@ namespace FlightSimulatorApp.Model
                 warningMessage = "please connect";
             }*/
 
-        }
+        
 }
 }
