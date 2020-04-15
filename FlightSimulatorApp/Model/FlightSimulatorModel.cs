@@ -34,7 +34,7 @@ namespace FlightSimulatorApp.Model
         public event PropertyChangedEventHandler PropertyChanged;
 
         private ISimulatorConnector connector;
-        private Queue<string> setCommands;
+        private Queue<KeyValuePair<string, string>> setCommands;
         volatile Boolean stop;
         
         private double throttle;
@@ -88,6 +88,7 @@ namespace FlightSimulatorApp.Model
             this.stop = false;
             this.WarningMessage = "no message yet";
             this.connectionStatus = false;
+            this.setCommands = new Queue<KeyValuePair<string, string>>();
         }
 
 
@@ -182,7 +183,7 @@ namespace FlightSimulatorApp.Model
             set
             {
                 elevator = value;
-                //SendControlInfo("Elevator");
+                SendControlInfo("Elevator");
 
             }
         }
@@ -196,7 +197,7 @@ namespace FlightSimulatorApp.Model
             set
             {
                 aileron = value;
-                //SendControlInfo("Aileron");
+                SendControlInfo("Aileron");
 
 
             }
@@ -210,7 +211,7 @@ namespace FlightSimulatorApp.Model
             set
             {
                 rudder = value;
-               // SendControlInfo("Rudder");
+               SendControlInfo("Rudder");
             }
         }
         public double Throttle
@@ -268,7 +269,7 @@ namespace FlightSimulatorApp.Model
 
         private string infoRequest()
         {
-            string output = "";
+            string output = ""; 
                 output = connector.WriteCommand("get " + PropertiesSimulatorPath["airSpeed"] + "\n" +
                                 "get " + PropertiesSimulatorPath["altimeter"] + "\n" +
                                 "get " + PropertiesSimulatorPath["altitude"] + "\n" +
@@ -280,6 +281,15 @@ namespace FlightSimulatorApp.Model
                                 "get " + PropertiesSimulatorPath["longitude"] + "\n" +
                                 "get " + PropertiesSimulatorPath["latitude"]
                                 );
+            while(setCommands.Any())
+            {
+                if (connector.WriteCommand(setCommands.Dequeue().Value) == "ERR") {
+                    {
+                        warningMessage = "eror updating value in simulator";
+                    }
+                }
+                
+            }
             
            /* catch (System.NullReferenceException)
             {
@@ -367,14 +377,14 @@ namespace FlightSimulatorApp.Model
 
         public void SendControlInfo(string propName)
         {
-            setCommands.Enqueue("set " + PropertiesSimulatorPath[propName] + " " + typeof(FlightSimulatorModel).GetProperty(propName).GetValue(this, null) + "\n");
+            setCommands.Enqueue(new KeyValuePair<string, string>(propName, "set " + PropertiesSimulatorPath[propName] + " " + typeof(FlightSimulatorModel).GetProperty(propName).GetValue(this, null)));
         }
             /*if (!connectionStatus)
             {
                 return;
             }
             string output ="";
-            Task send = Task.Run(() => {
+            Task send = Task.Run(() =>
              
              output = connector.WriteCommand("set " + PropertiesSimulatorPath[propName] + " " + typeof(FlightSimulatorModel).GetProperty(propName).GetValue(this, null) + "\n");
                 });
