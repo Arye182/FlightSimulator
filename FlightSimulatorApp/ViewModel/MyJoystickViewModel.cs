@@ -48,7 +48,7 @@ namespace FlightSimulatorApp.ViewModel
                 OnPropertyChanged("ElevatorString");
                 OnPropertyChanged("Elevator");
 
-                if (elevator - prev_elevator >= 0.1)
+                if (elevator - prev_elevator >= 0.01)
                 {
                     model.Elevator = value;
                 }
@@ -88,7 +88,7 @@ namespace FlightSimulatorApp.ViewModel
                 OnPropertyChanged("AileronString");
                 OnPropertyChanged("Aileron");
 
-                if (aileron - prev_aileron >= 0.1)
+                if (aileron - prev_aileron >= 0.01)
                 {
                     model.Aileron = value;
                 }
@@ -118,7 +118,7 @@ namespace FlightSimulatorApp.ViewModel
                 OnPropertyChanged("RudderString");
                 OnPropertyChanged("Rudder");
 
-                if (rudder - prev_rudder >= 0.1)
+                if (rudder - prev_rudder >= 0.01)
                 {
                     model.Rudder = value;
                 }
@@ -158,7 +158,7 @@ namespace FlightSimulatorApp.ViewModel
                 OnPropertyChanged("ThrottleString");
                 OnPropertyChanged("Throttle");
 
-                if (throttle - prev_throttle >= 0.1)
+                if (throttle - prev_throttle >= 0.01)
                 {
                     model.Throttle = value;
                 }
