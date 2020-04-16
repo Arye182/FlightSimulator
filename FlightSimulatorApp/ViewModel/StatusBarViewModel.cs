@@ -24,6 +24,7 @@ namespace FlightSimulatorApp.ViewModel
         private Uri connection_image = new Uri(@"/Views/Resources/disconnected.png", UriKind.RelativeOrAbsolute);
         private double longtitude;
         private double latitude;
+        private string warning_message;
         private string loc = "0,0";
         private MapMode map_mode = new RoadMode();
 
@@ -67,6 +68,12 @@ namespace FlightSimulatorApp.ViewModel
                 VM_Location = model.Longitude.ToString()+ "," +  model.Latitude.ToString();
             }
 
+            if (propName == "VM_WarningMessage")
+            {
+                VM_WarningMessage = model.WarningMessage;
+            }
+
+
         }
 
         // connection status properties
@@ -109,7 +116,12 @@ namespace FlightSimulatorApp.ViewModel
 
         public string VM_WarningMessage
         {
-            get { return model.WarningMessage; }
+            get { return this.warning_message; }
+            set
+            {
+                this.warning_message = value;
+                OnPropertyChanged("VM_WarningMessage");
+            }
 
         }
 
