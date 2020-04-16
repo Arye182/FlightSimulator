@@ -32,10 +32,12 @@ namespace FlightSimulatorApp.Views
         {
             DataContext = (Application.Current as App).SBVM;
             InitializeComponent();
-            
-            DispatcherTimer timer = new DispatcherTimer(DispatcherPriority.Background);
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.IsEnabled = true;
+
+            DispatcherTimer timer = new DispatcherTimer(DispatcherPriority.Background)
+            {
+                Interval = TimeSpan.FromSeconds(1),
+                IsEnabled = true
+            };
             timer.Tick += (s, e) =>
             {
                 UpdateTime();
@@ -104,8 +106,7 @@ namespace FlightSimulatorApp.Views
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string strValue = value as string;
-            double resultDouble;
-            if (double.TryParse(strValue, out resultDouble))
+            if (double.TryParse(strValue, out double resultDouble))
             {
                 return resultDouble;
             }

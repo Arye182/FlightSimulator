@@ -18,7 +18,7 @@ namespace FlightSimulatorApp.ViewModel
     // this is the view model for status bar, map.
     public class StatusBarViewModel : INotifyPropertyChanged
     {
-        private FlightSimulatorModel model;
+        private readonly FlightSimulatorModel model;
         public event PropertyChangedEventHandler PropertyChanged;
         private string connected_message = "Disconnected";
         private Uri connection_image = new Uri(@"/Views/Resources/disconnected.png", UriKind.RelativeOrAbsolute);

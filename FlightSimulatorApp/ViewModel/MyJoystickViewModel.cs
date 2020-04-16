@@ -14,6 +14,7 @@ namespace FlightSimulatorApp.ViewModel
     {
 
         // data members
+        
         double elevator = 0;
         double aileron = 0;
         double rudder = 0;
@@ -25,7 +26,8 @@ namespace FlightSimulatorApp.ViewModel
         double throttle_angel = -85;
         double aileron_angel = 0;
         public event PropertyChangedEventHandler PropertyChanged;
-        private FlightSimulatorModel model;
+        private readonly FlightSimulatorModel model;
+        
 
         // properties
         public double VM_Elevator
@@ -36,24 +38,18 @@ namespace FlightSimulatorApp.ViewModel
             }
             set
             {
-                if (prev_elevator == 0)
-                {
-                    prev_elevator = value;
-                } else
-                {
-                    prev_elevator = elevator;
-                }
-                
                 elevator = value;
-                OnPropertyChanged("ElevatorString");
-                OnPropertyChanged("Elevator");
-
-                if (elevator - prev_elevator >= 0.01)
+                if (Math.Abs(elevator - prev_elevator) < 0.01)
+                {
+                    return;
+                }
+                prev_elevator = value;
+                if (model.ConnectionStatus)
                 {
                     model.Elevator = value;
                 }
-                
-                //NotifyPropertyChanged("Elevator");
+                OnPropertyChanged("ElevatorString");
+                OnPropertyChanged("Elevator");
             }
         }
         public double VM_Aileron
@@ -64,17 +60,6 @@ namespace FlightSimulatorApp.ViewModel
             }
             set
             {
-
-                if (prev_aileron == 0)
-                {
-                    prev_aileron = value;
-                }
-                else
-                {
-                    prev_aileron = aileron;
-                }
-
-
                 aileron = value;
                 AileronAngle = (180 / Math.PI) * (Math.Asin(value));
                 if (AileronAngle > 85)
@@ -85,16 +70,17 @@ namespace FlightSimulatorApp.ViewModel
                 {
                     AileronAngle = -85;
                 }
-                OnPropertyChanged("AileronString");
-                OnPropertyChanged("Aileron");
 
-                if (aileron - prev_aileron >= 0.01)
+                if (Math.Abs(aileron - prev_aileron) < 0.01)
                 {
+                    return;
+                }
+                prev_aileron = value;
+                if (model.ConnectionStatus) {
                     model.Aileron = value;
                 }
-                
-                //NotifyPropertyChanged("Aileron");
-                
+                OnPropertyChanged("AileronString");
+                OnPropertyChanged("Aileron");
             }
         }
         public double VM_Rudder
@@ -105,25 +91,18 @@ namespace FlightSimulatorApp.ViewModel
             }
             set
             {
-                if (prev_rudder == 0)
-                {
-                    prev_rudder = value;
-                }
-                else
-                {
-                    prev_rudder = rudder;
-                }
-
                 rudder = value;
-                OnPropertyChanged("RudderString");
-                OnPropertyChanged("Rudder");
-
-                if (rudder - prev_rudder >= 0.01)
+                if (Math.Abs(rudder - prev_rudder) < 0.01)
+                {
+                    return;
+                }
+                prev_rudder = value;
+                if (model.ConnectionStatus)
                 {
                     model.Rudder = value;
                 }
-                //NotifyPropertyChanged("Rudder");
-
+                OnPropertyChanged("RudderString");
+                OnPropertyChanged("Rudder");
             }
         }
         public double VM_Throttle
@@ -134,17 +113,7 @@ namespace FlightSimulatorApp.ViewModel
             }
             set
             {
-                if (prev_throttle == 0)
-                {
-                    prev_throttle = value;
-                }
-                else
-                {
-                    prev_throttle = throttle;
-                }
                 throttle = value;
-                // arccos(x- 0.5Pi) - 0.5Pi
-                // Angle = (180 / Math.PI ) * (Math.Acos(value - 0.5 * Math.PI) - (0.5*Math.PI)) ;
                 ThrottleAngle = 180 * value - 85;
                 if (ThrottleAngle > 85)
                 {
@@ -155,14 +124,17 @@ namespace FlightSimulatorApp.ViewModel
                     ThrottleAngle = -85;
                 }
 
-                OnPropertyChanged("ThrottleString");
-                OnPropertyChanged("Throttle");
-
-                if (throttle - prev_throttle >= 0.01)
+                if (Math.Abs(throttle - prev_throttle) < 0.01)
+                {
+                    return;
+                }
+                prev_throttle = value;
+                if (model.ConnectionStatus)
                 {
                     model.Throttle = value;
                 }
-                //NotifyPropertyChanged("Throttle");
+                OnPropertyChanged("ThrottleString");
+                OnPropertyChanged("Throttle");
             }
         }
 

@@ -13,8 +13,6 @@
         Background="#1F1F36"
         Icon="/Views/Resources/app-icon.png">
 
-
-    
     <DockPanel>
         <!--   Menu  !-->
         <views:MenuBar DockPanel.Dock="Top"></views:MenuBar>
