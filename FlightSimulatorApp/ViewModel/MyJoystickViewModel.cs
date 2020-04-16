@@ -14,6 +14,7 @@ namespace FlightSimulatorApp.ViewModel
     {
 
         // data members
+        
         double elevator = 0;
         double aileron = 0;
         double rudder = 0;
@@ -25,7 +26,8 @@ namespace FlightSimulatorApp.ViewModel
         double throttle_angel = -85;
         double aileron_angel = 0;
         public event PropertyChangedEventHandler PropertyChanged;
-        private FlightSimulatorModel model;
+        private readonly FlightSimulatorModel model;
+        
 
         // properties
         public double VM_Elevator
@@ -42,7 +44,10 @@ namespace FlightSimulatorApp.ViewModel
                     return;
                 }
                 prev_elevator = value;
-                model.Elevator = value;
+                if (model.ConnectionStatus)
+                {
+                    model.Elevator = value;
+                }
                 OnPropertyChanged("ElevatorString");
                 OnPropertyChanged("Elevator");
             }
@@ -68,10 +73,12 @@ namespace FlightSimulatorApp.ViewModel
 
                 if (Math.Abs(aileron - prev_aileron) < 0.01)
                 {
-                    
+                    return;
                 }
                 prev_aileron = value;
-                model.Aileron = value;
+                if (model.ConnectionStatus) {
+                    model.Aileron = value;
+                }
                 OnPropertyChanged("AileronString");
                 OnPropertyChanged("Aileron");
             }
@@ -90,7 +97,10 @@ namespace FlightSimulatorApp.ViewModel
                     return;
                 }
                 prev_rudder = value;
-                model.Rudder = value;
+                if (model.ConnectionStatus)
+                {
+                    model.Rudder = value;
+                }
                 OnPropertyChanged("RudderString");
                 OnPropertyChanged("Rudder");
             }
@@ -119,7 +129,10 @@ namespace FlightSimulatorApp.ViewModel
                     return;
                 }
                 prev_throttle = value;
-                model.Throttle = value;
+                if (model.ConnectionStatus)
+                {
+                    model.Throttle = value;
+                }
                 OnPropertyChanged("ThrottleString");
                 OnPropertyChanged("Throttle");
             }

@@ -104,9 +104,11 @@ namespace FlightSimulatorApp.Views
             Knob.MouseMove += Knob_MouseMove;
             centerKnob = Knob.Resources["CenterKnob"] as Storyboard;
         }
-        private void centerKnob_Completed(object sender, EventArgs e)
+        private void CenterKnob_Completed(object sender, EventArgs e)
         {
             X = Y = 0;
+            knobPosition.X = 0;
+            knobPosition.Y = 0;
             centerKnob.Stop();
             Released?.Invoke(this);
         }
@@ -131,20 +133,20 @@ namespace FlightSimulatorApp.Views
         }
         private void Knob_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            knob_point = e.GetPosition(this);
-            knob_first_point = e.GetPosition(this);
+            knob_point = e.GetPosition(this.Base);
+            knob_first_point = e.GetPosition(this.Base);
+            canvasWidth = Base.ActualWidth - KnobBase.ActualWidth;
+            canvasHeight = Base.ActualHeight - KnobBase.ActualHeight;
             Captured?.Invoke(this);
             Knob.CaptureMouse();
             centerKnob.Stop();
         }
         private void Knob_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            knobPosition.X = 0;
-            knobPosition.Y = 0;
-            Y = 0;
-            X = 0;
+
             Knob.ReleaseMouseCapture();
             centerKnob.Begin();
+
         }
         public void OnPropertyChanged(string name)
         {
