@@ -5,13 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FlightSimulatorApp.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="400" Width="400" Height="400" Background="#1F1F36" Title="Connection Settings" WindowStartupLocation="CenterScreen">
+             d:DesignHeight="300" d:DesignWidth="400" Width="400" Height="300" Background="#1F1F36" Title="Connection Settings" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -22,7 +23,7 @@
         <TextBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding VM_IP, Mode=TwoWay}"  FontSize="30" ></TextBox>
         <Label Grid.Column="0" Grid.Row="2" Content="PORT:" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#747E96" ></Label>
         <TextBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding VM_Port, Mode=TwoWay}"  FontSize="30" ></TextBox>
-        
-            
+        <Button Grid.Column="0" Grid.Row="3" Content="Save And Connect" Margin="10,10,10,10"   Click="SaveConnect_Click" FontSize="20"></Button>
+        <Button Grid.Column="1" Grid.Row="3" Content="Save And Close" Margin="10,10,10,10" Click="SaveClose_Click" FontSize="20"></Button>
     </Grid>
 </Window>
