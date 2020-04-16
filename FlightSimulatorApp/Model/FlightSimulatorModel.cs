@@ -235,8 +235,16 @@ namespace FlightSimulatorApp.Model
 
         public void connect(string ip, int port)
         {
-            this.connector.connect(ip, port);
+            try {
+                this.connector.connect(ip, port);
+                
+            }
+            catch
+            {
+                WarningMessage = "server is not connected";
+            }
             ConnectionStatus = true;
+
         }
         public void disconnect()
         {

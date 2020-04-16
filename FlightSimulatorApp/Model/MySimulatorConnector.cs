@@ -15,8 +15,7 @@ namespace FlightSimulatorApp.Model
         TcpClient my_client;
         public int conectionAttempts;
         public void connect(string ip, int port) { 
-            try
-            {
+            
                 Console.WriteLine("connecting to ip: {0}, port: {1}", ip, port.ToString());
                 my_client = new TcpClient(ip, port);
                 //write_stream = my_client.GetStream();
@@ -24,13 +23,8 @@ namespace FlightSimulatorApp.Model
                 //read_stream = my_client.GetStream();
                 //read_stream.Flush();
                 
-                Console.WriteLine("Connected!");
-            } catch (Exception ex)
-            {
-                Console.WriteLine("EROR - failed to connect please try again");
-                Console.WriteLine(ex.Message);
+                //Console.WriteLine("Connected!");
 
-            }
         }
         public void write(string command)
         {
@@ -43,7 +37,7 @@ namespace FlightSimulatorApp.Model
                 stream.Write(buffer, 0, buffer.Length);
                 Console.WriteLine("enter write scope");
             }  catch(Exception ex) {
-                throw ex;
+                
             }
         }
         public string read()
