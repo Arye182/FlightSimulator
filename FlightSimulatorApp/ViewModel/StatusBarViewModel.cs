@@ -144,7 +144,7 @@ namespace FlightSimulatorApp.ViewModel
             }
         }
 
-        public double VM_Heading
+        public string VM_Heading
         {
             get { return model.Heading; }
         }

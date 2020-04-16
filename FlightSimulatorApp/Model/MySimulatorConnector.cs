@@ -13,8 +13,7 @@ namespace FlightSimulatorApp.Model
 
         private static Mutex mut = new Mutex();
         TcpClient my_client;
-        private NetworkStream write_stream = null;
-        private NetworkStream read_stream = null;
+        public int conectionAttempts;
         public void connect(string ip, int port) { 
             try
             {
