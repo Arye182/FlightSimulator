@@ -38,8 +38,8 @@ namespace FlightSimulatorApp.Views
 
         private void SaveConnect_Click(object sender, RoutedEventArgs e)
         {
-            m.connect(svm.VM_IP, svm.VM_Port);
-            m.start();
+            m.Connect(svm.VM_IP, svm.VM_Port);
+            m.Start();
             this.Close();
         }
 

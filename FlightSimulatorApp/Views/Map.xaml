@@ -32,7 +32,8 @@
     
     
     <Grid>
-        <Label Content="Flight Map" FontSize="70" FontWeight="Bold" Grid.ColumnSpan="5" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="#FFFFFB"/>
+        <Label Content="Flight Map" FontSize="70" FontWeight="Bold" Grid.ColumnSpan="5" 
+               Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="#FFFFFB"/>
 
         <m:Map
             Width="1000" 
@@ -43,8 +44,9 @@
             HorizontalAlignment="Center" 
             VerticalAlignment="Center" 
             Mode="{Binding VM_MapMode, Mode=TwoWay}">
-            <m:Pushpin x:Name="pushpin" m:MapLayer.Position="{Binding VM_Location}" Template="{StaticResource PushpinControlTemplate}" >
-
+            <m:Pushpin x:Name="pushpin" 
+                       m:MapLayer.Position="{Binding VM_Location}" 
+                       Template="{StaticResource PushpinControlTemplate}">
             </m:Pushpin>
         </m:Map>
 

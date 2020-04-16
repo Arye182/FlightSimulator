@@ -33,9 +33,9 @@ namespace FlightSimulatorApp.Model
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private ISimulatorConnector connector;
-        private Queue<KeyValuePair<string, string>> setCommands;
-        volatile Boolean stop;
+        private readonly ISimulatorConnector connector;
+        private readonly Queue<KeyValuePair<string, string>> setCommands;
+        private readonly bool stop;
         private string simOutput;
         
         private double throttle;
@@ -60,7 +60,7 @@ namespace FlightSimulatorApp.Model
         private double latitude;
         private double longitude;
 
-        private SortedDictionary<string, string> PropertiesSimulatorPath = new SortedDictionary<string, string>()
+        private readonly SortedDictionary<string, string> PropertiesSimulatorPath = new SortedDictionary<string, string>()
         {
             {"throttle", "/controls/engines/current-engine/throttle" },
             {"aileron", "/controls/flight/aileron" },
@@ -233,7 +233,7 @@ namespace FlightSimulatorApp.Model
 
 
 
-        public void connect(string ip, int port)
+        public void Connect(string ip, int port)
         {
             try {
                 this.connector.connect(ip, port);
@@ -246,15 +246,15 @@ namespace FlightSimulatorApp.Model
             ConnectionStatus = true;
 
         }
-        public void disconnect()
+        public void Disconnect()
         {
             
             //this.connector.disconnect();
             WarningMessage = "Disconnected";
             ConnectionStatus = false;
-            initProperties();
+            InitProperties();
         }
-        public void start()
+        public void Start()
         {
             if (this.ConnectionStatus)
             {
@@ -263,9 +263,9 @@ namespace FlightSimulatorApp.Model
                     while (connectionStatus)
                     {
 
-                        simOutput  = infoRequest();
+                        simOutput  = InfoRequest();
 
-                        interpretInfo(simOutput);
+                        InterpretInfo(simOutput);
                         Thread.Sleep(250);
                     }
                     connector.disconnect();
@@ -277,7 +277,7 @@ namespace FlightSimulatorApp.Model
             }
         }
 
-        private string infoRequest()
+        private string InfoRequest()
         {
             string output = ""; 
                 output = connector.WriteCommand("get " + PropertiesSimulatorPath["airSpeed"] + "\n" +
@@ -310,7 +310,7 @@ namespace FlightSimulatorApp.Model
             return output;
         }
 
-        private void interpretInfo(string info)
+        private void InterpretInfo(string info)
         {
             //Console.WriteLine(info);
             string[] values = info.Split('\n');
@@ -328,15 +328,16 @@ namespace FlightSimulatorApp.Model
             {
                 Longitude = Double.Parse(values[PropertiesIndex.LONGITUDE]);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 WarningMessage = "eror getting updated longitude value";
             }
+
             try
             {
                 Latitude = Double.Parse(values[PropertiesIndex.LATITUDE]);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 WarningMessage = "eror getting updated latitude value";
             }
@@ -391,7 +392,7 @@ namespace FlightSimulatorApp.Model
                 warningMessage = "please connect";
             }*/
 
-        private void initProperties()
+        private void InitProperties()
         {
 
             Altitude = "0.000";
