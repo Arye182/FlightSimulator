@@ -36,6 +36,7 @@ namespace FlightSimulatorApp.Model
         private ISimulatorConnector connector;
         private Queue<KeyValuePair<string, string>> setCommands;
         volatile Boolean stop;
+        private string simOutput;
         
         private double throttle;
         private double aileron;
@@ -44,13 +45,13 @@ namespace FlightSimulatorApp.Model
         
 
         //Dashboard
-        private double altitude;
-        private double roll;
-        private double pitch;
-        private double heading;
-        private double altimeter;
+        private string altitude;
+        private string roll;
+        private string pitch;
+        private string heading;
+        private string altimeter;
         private string groundSpeed;
-        private double verticalSpeed;
+        private string verticalSpeed;
         private string airSpeed;
 
         //statusBar
@@ -105,27 +106,27 @@ namespace FlightSimulatorApp.Model
             }
         }
         //dashboard proprties
-        public double Altitude
+        public string Altitude
         {
             get { return altitude; }
             set { altitude = value; NotifyPropertyChanged("Altitude"); }
         }
-        public double Roll
+        public string Roll
         {
             get { return roll; }
             set { roll = value; NotifyPropertyChanged("Roll"); }
         }
-        public double Pitch
+        public string Pitch
         {
             get { return pitch; }
             set { pitch = value; NotifyPropertyChanged("Pitch"); }
         }
-        public double Altimeter
+        public string Altimeter
         {
             get { return altimeter; }
             set { altimeter = value; NotifyPropertyChanged("Altimeter"); }
         }
-        public double Heading
+        public string Heading
         {
             get { return heading; }
             set { heading = value; NotifyPropertyChanged("Heading"); }
@@ -135,7 +136,7 @@ namespace FlightSimulatorApp.Model
             get { return groundSpeed; }
             set { groundSpeed = value; NotifyPropertyChanged("GroundSpeed"); }
         }
-        public double VerticalSpeed
+        public string VerticalSpeed
         {
             get { return verticalSpeed; }
             set { verticalSpeed = value; NotifyPropertyChanged("VerticalSpeed"); }
@@ -240,9 +241,10 @@ namespace FlightSimulatorApp.Model
         public void disconnect()
         {
             
-            this.connector.disconnect();
+            //this.connector.disconnect();
             WarningMessage = "Disconnected";
             ConnectionStatus = false;
+            initProperties();
         }
         public void start()
         {
@@ -252,13 +254,13 @@ namespace FlightSimulatorApp.Model
                 {
                     while (connectionStatus)
                     {
-                        
-                        
-                        interpretInfo(infoRequest());
-                        //TODO handle err
+
+                        simOutput  = infoRequest();
+
+                        interpretInfo(simOutput);
                         Thread.Sleep(250);
                     }
-                    
+                    connector.disconnect();
                 });
                 t.Start();
                // t.Join();
@@ -285,7 +287,7 @@ namespace FlightSimulatorApp.Model
             {
                 if (connector.WriteCommand(setCommands.Dequeue().Value) == "ERR") {
                     {
-                        warningMessage = "eror updating value in simulator";
+                        WarningMessage = "eror updating value in simulator";
                     }
                 }
                 
@@ -307,50 +309,13 @@ namespace FlightSimulatorApp.Model
             Console.WriteLine(values.Length);
             WarningMessage = "";
             AirSpeed = values[PropertiesIndex.AIRSPEED];
-            Altimeter = Double.Parse(values[PropertiesIndex.ALTIMETER]);
-            try
-            {
-                Altitude = Double.Parse(values[PropertiesIndex.ALTITUDE]);
-            }
-            catch (Exception e)
-            {
-                WarningMessage = "eror getting updated altitude value";
-            }
-            try
-            {
-                Heading = Double.Parse(values[PropertiesIndex.HEADING]);
-            }
-            catch (Exception e)
-            {
-                WarningMessage = "eror getting updated heading value";
-            }
-            try
-            {
-                Roll = Double.Parse(values[PropertiesIndex.ROLL]);
-            }
-            catch (Exception e)
-            {
-                WarningMessage = "eror getting updated roll value";
-            }
-            //Console.WriteLine(values.Length);
+            Altimeter = values[PropertiesIndex.ALTIMETER];
+            Altitude = values[PropertiesIndex.ALTITUDE];
+            Heading = values[PropertiesIndex.HEADING];
+            Roll = values[PropertiesIndex.ROLL];
             GroundSpeed = values[PropertiesIndex.GROUNDSPEED];
-            
-            try
-            {
-                Pitch = Double.Parse(values[PropertiesIndex.PITCH]);
-            }
-            catch (Exception e)
-            {
-                WarningMessage = "eror getting updated pitch value";
-            }
-            try
-            {
-                VerticalSpeed = Double.Parse(values[PropertiesIndex.VERTICALSPEED]);
-            }
-            catch (Exception e)
-            {
-                WarningMessage = "eror getting updated verticalSpeed value";
-            }
+            Pitch = values[PropertiesIndex.PITCH];
+            VerticalSpeed = values[PropertiesIndex.VERTICALSPEED];
             try
             {
                 Longitude = Double.Parse(values[PropertiesIndex.LONGITUDE]);
@@ -418,6 +383,19 @@ namespace FlightSimulatorApp.Model
                 warningMessage = "please connect";
             }*/
 
+        private void initProperties()
+        {
+
+            Altitude = "0.000";
+            Roll = "0.000";
+            Pitch = "0.000";
+            Heading = "0.000";
+            Altimeter = "0.000";
+            GroundSpeed = "0.000";
+            VerticalSpeed = "0.000";
+            AirSpeed = "0.000";
+            
+        }
         
 }
 }
