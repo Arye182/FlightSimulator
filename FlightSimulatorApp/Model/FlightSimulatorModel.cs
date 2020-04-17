@@ -318,7 +318,9 @@ namespace FlightSimulatorApp.Model
             catch(Exception e)
             {
                 WarningMessage = "connection failure";
-                connector.isConnected = false;
+                connector.disconnect();
+                //connector.isConnected = false;
+                ConnectionStatus = false;
                 return "Connection failure";
             }
             

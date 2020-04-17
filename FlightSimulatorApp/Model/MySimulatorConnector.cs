@@ -44,11 +44,18 @@ namespace FlightSimulatorApp.Model
         }
         public string read()
         {
-            my_client.SendTimeout = 1000;
+            my_client.ReceiveTimeout = 10000;
             string incomingInfo;
             byte[] buffer = new byte[1024];
             NetworkStream stream = this.my_client.GetStream();
-            stream.Read(buffer, 0, buffer.Length);
+            try
+            {
+                stream.Read(buffer, 0, buffer.Length);
+            }
+            catch (System.IO.IOException e)
+            {
+                throw new TimeoutException();
+            }
             stream.Flush();
             incomingInfo = Encoding.ASCII.GetString(buffer, 0, buffer.Length);
                
@@ -64,6 +71,7 @@ namespace FlightSimulatorApp.Model
             {
                 Console.WriteLine("disconnect");
                 this.my_client.Close();
+                isConnected = false;
             }
         }
 
