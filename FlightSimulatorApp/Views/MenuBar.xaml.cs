@@ -35,27 +35,20 @@ namespace FlightSimulatorApp.Views
 
         private void MenuDisconnect_Click(object sender, RoutedEventArgs e)
         {
-            m.disconnect();
+            m.Disconnect();
         }
 
 
         private void MenuConnect_Click(object sender, RoutedEventArgs e)
         {
-            m.connect(svm.VM_IP, svm.VM_Port);
-            m.start();
+            m.Connect(svm.VM_IP, svm.VM_Port);
+            m.Start();
         }
 
 
         private void MenuExit_Click(object sender, RoutedEventArgs e)
         {
             Environment.Exit(0);
-        }
-
-
-
-        private void FullScreen_Click(object sender, RoutedEventArgs e)
-        {
-            svm.VM_MainWindowWidth = 1400;
         }
 
         private void Res1_Click(object sender, RoutedEventArgs e)
@@ -97,11 +90,14 @@ namespace FlightSimulatorApp.Views
         }
 
 
-
-
-        private void MenuExit_About(object sender, RoutedEventArgs e)
+        private void GitHub_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("All rights reserved Arye & Miri 2020");
+            System.Diagnostics.Process.Start("https://github.com/Arye182/FlightSimulator");
+        }
+
+        private void Menu_About(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("All rights reserved Arye & Miri 2020 - check GitHub link for more details");
         }
 
 
