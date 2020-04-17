@@ -233,7 +233,7 @@ namespace FlightSimulatorApp.Model
 
 
 
-        public void connect(string ip, int port)
+        public void Connect(string ip, int port)
         {
             try {
                 this.connector.connect(ip, port);
@@ -249,15 +249,15 @@ namespace FlightSimulatorApp.Model
             }
 
         }
-        public void disconnect()
+        public void Disconnect()
         {
             
             //this.connector.disconnect();
             WarningMessage = "Disconnected";
             ConnectionStatus = false;
-            initProperties();
+            InitProperties();
         }
-        public void start()
+        public void Start()
         {
             
                 Thread t = new Thread(delegate ()
@@ -265,10 +265,10 @@ namespace FlightSimulatorApp.Model
                     while (connectionStatus)
                     {
 
-                        simOutput  = infoRequest();
+                        simOutput  = InfoRequest();
                         if (simOutput != "Connection failure")
                         {
-                            interpretInfo(simOutput);
+                            InterpretInfo(simOutput);
                         }
                         Thread.Sleep(250);
                     }
@@ -281,7 +281,7 @@ namespace FlightSimulatorApp.Model
             
         }
 
-        private string infoRequest()
+        private string InfoRequest()
         {
             string output = "";
             try
@@ -332,7 +332,7 @@ namespace FlightSimulatorApp.Model
             
         }
 
-        private void interpretInfo(string info)
+        private void InterpretInfo(string info)
         {
             
             //Console.WriteLine(info);
@@ -414,7 +414,7 @@ namespace FlightSimulatorApp.Model
                 warningMessage = "please connect";
             }*/
 
-        private void initProperties()
+        private void InitProperties()
         {
 
             Altitude = "0.000";
