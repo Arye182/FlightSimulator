@@ -8,6 +8,7 @@ namespace FlightSimulatorApp.Model
 {//b
      public interface ISimulatorConnector
     {
+        
         void connect(string ip, int port);
         void write(string command);
         string read();

@@ -14,10 +14,12 @@ namespace FlightSimulatorApp.Model
         private static Mutex mut = new Mutex();
         TcpClient my_client;
         public int conectionAttempts;
+        public bool isConnected = false;
         public void connect(string ip, int port) { 
-            
+             
                 Console.WriteLine("connecting to ip: {0}, port: {1}", ip, port.ToString());
                 my_client = new TcpClient(ip, port);
+                isConnected = true;
                 //write_stream = my_client.GetStream();
                 //write_stream.Flush();
                 //read_stream = my_client.GetStream();
@@ -42,30 +44,27 @@ namespace FlightSimulatorApp.Model
         }
         public string read()
         {
+            my_client.SendTimeout = 1000;
             string incomingInfo;
             byte[] buffer = new byte[1024];
-            try
-            {
-                NetworkStream stream = this.my_client.GetStream();
-                stream.Read(buffer, 0, buffer.Length);
-                stream.Flush();
-                incomingInfo = Encoding.ASCII.GetString(buffer, 0, buffer.Length);
+            NetworkStream stream = this.my_client.GetStream();
+            stream.Read(buffer, 0, buffer.Length);
+            stream.Flush();
+            incomingInfo = Encoding.ASCII.GetString(buffer, 0, buffer.Length);
                
                 //stream.Close();
-            }
-            catch (Exception ex)
-            {
-                incomingInfo = "eror reading from server";
-
-            }
             
-           // mut.ReleaseMutex();
+
+            // mut.ReleaseMutex();
             return incomingInfo.Substring(0,incomingInfo.IndexOf('\n')+1);
         }
         public void disconnect()
         {
-            Console.WriteLine("disconnect");
-            this.my_client.Close();
+            if (isConnected)
+            {
+                Console.WriteLine("disconnect");
+                this.my_client.Close();
+            }
         }
 
         public string WriteCommand(string command)
@@ -76,6 +75,7 @@ namespace FlightSimulatorApp.Model
             string output = "";
             foreach (var word in commands)
             {
+                
                 Console.WriteLine(word);
                 mut.WaitOne();
                 write(word);

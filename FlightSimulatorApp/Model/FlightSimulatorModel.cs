@@ -33,7 +33,7 @@ namespace FlightSimulatorApp.Model
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private ISimulatorConnector connector;
+        private MySimulatorConnector connector;
         private Queue<KeyValuePair<string, string>> setCommands;
         volatile Boolean stop;
         private string simOutput;
@@ -83,7 +83,7 @@ namespace FlightSimulatorApp.Model
         };
 
         //constructor
-        public FlightSimulatorModel(ISimulatorConnector connector)
+        public FlightSimulatorModel(MySimulatorConnector connector)
         {
             this.connector = connector;
             this.stop = false;
@@ -243,7 +243,10 @@ namespace FlightSimulatorApp.Model
             {
                 WarningMessage = "server is not connected";
             }
-            ConnectionStatus = true;
+            if (connector.isConnected)
+            {
+                ConnectionStatus = true;
+            }
 
         }
         public void disconnect()
@@ -256,16 +259,17 @@ namespace FlightSimulatorApp.Model
         }
         public void start()
         {
-            if (this.ConnectionStatus)
-            {
+            
                 Thread t = new Thread(delegate ()
                 {
                     while (connectionStatus)
                     {
 
                         simOutput  = infoRequest();
-
-                        interpretInfo(simOutput);
+                        if (simOutput != "Connection failure")
+                        {
+                            interpretInfo(simOutput);
+                        }
                         Thread.Sleep(250);
                     }
                     connector.disconnect();
@@ -274,12 +278,14 @@ namespace FlightSimulatorApp.Model
                // t.Join();
                
 
-            }
+            
         }
 
         private string infoRequest()
         {
-            string output = ""; 
+            string output = "";
+            try
+            {
                 output = connector.WriteCommand("get " + PropertiesSimulatorPath["airSpeed"] + "\n" +
                                 "get " + PropertiesSimulatorPath["altimeter"] + "\n" +
                                 "get " + PropertiesSimulatorPath["altitude"] + "\n" +
@@ -291,27 +297,44 @@ namespace FlightSimulatorApp.Model
                                 "get " + PropertiesSimulatorPath["longitude"] + "\n" +
                                 "get " + PropertiesSimulatorPath["latitude"]
                                 );
-            while(setCommands.Any())
-            {
-                if (connector.WriteCommand(setCommands.Dequeue().Value) == "ERR") {
+                while (setCommands.Any())
+                {
+                    if (connector.WriteCommand(setCommands.Dequeue().Value) == "ERR")
                     {
-                        WarningMessage = "eror updating value in simulator";
+                        {
+                            WarningMessage = "eror updating value in simulator";
+                        }
                     }
+
                 }
-                
+                Console.WriteLine(output);
+                return output;
             }
+            catch(TimeoutException e)
+            {
+                WarningMessage = "server is not responding...";
+                return "Connection failure";
+            }
+            catch(Exception e)
+            {
+                WarningMessage = "connection failure";
+                connector.isConnected = false;
+                return "Connection failure";
+            }
+            
+            
             
            /* catch (System.NullReferenceException)
             {
                 connect("127.0.0.1", 5402);
 
             }*/
-            Console.WriteLine(output);
-            return output;
+            
         }
 
         private void interpretInfo(string info)
         {
+            
             //Console.WriteLine(info);
             string[] values = info.Split('\n');
             Console.WriteLine(values.Length);
