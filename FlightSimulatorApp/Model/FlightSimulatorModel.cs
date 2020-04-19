@@ -24,8 +24,8 @@ namespace FlightSimulatorApp.Model
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private readonly MySimulatorConnector connector;
-        private readonly Queue<KeyValuePair<string, string>> setCommands;
+        private MySimulatorConnector connector;
+        private Queue<KeyValuePair<string, string>> setCommands;
 
         private string simOutput;
         private double throttle;
@@ -48,7 +48,7 @@ namespace FlightSimulatorApp.Model
         private string latitude;
         private string longitude;
 
-        private readonly SortedDictionary<string, string> PropertiesSimulatorPath = new SortedDictionary<string, string>()
+        private SortedDictionary<string, string> PropertiesSimulatorPath = new SortedDictionary<string, string>()
         {
             {"throttle", "/controls/engines/current-engine/throttle" },
             {"aileron", "/controls/flight/aileron" },
@@ -73,10 +73,10 @@ namespace FlightSimulatorApp.Model
         public FlightSimulatorModel(MySimulatorConnector connector)
         {
             this.connector = connector;
-            this.WarningMessage = "Welcome! , Please Connect";
+            this.WarningMessage = "Welcome! Please Connect";
             this.connectionStatus = false;
             this.setCommands = new Queue<KeyValuePair<string, string>>();
-            this.InitProperties();
+            InitProperties();
         }
 
         public void NotifyPropertyChanged(string propName)
@@ -140,9 +140,9 @@ namespace FlightSimulatorApp.Model
             {
                 if (value != "ERR")
                 {
-                    if ((Double.Parse(value) >= 80) || (Double.Parse(value) <= -80))
+                    if ((Double.Parse(value) >= 85) || (Double.Parse(value) <= -85))
                     {
-                        WarningMessage = "Latitude / Longitude Value Is Illegal";
+                        WarningMessage = "latitude/longitude value is illegal";
                     }
                     else
                     {
@@ -180,7 +180,7 @@ namespace FlightSimulatorApp.Model
                 {
                     if ((Double.Parse(value) >= 180) || (Double.Parse(value) <= -180))
                     {
-                        WarningMessage = "Latitude / Longitude Value Is Illegal";
+                        WarningMessage = "longitude/latitude value is illegal";
                     }
                     else
                     {
@@ -248,25 +248,26 @@ namespace FlightSimulatorApp.Model
 
         public void Connect(string ip, int port)
         {
-            WarningMessage = "Trying To Connect...";
+            WarningMessage = "trying to connect...";
             try
             {
                 this.connector.Connect(ip, port);
             }
             catch
             {
-                WarningMessage = "Server Is Not Connected !";
+                WarningMessage = "server is not connected";
             }
             if (connector.isConnected)
             {
                 ConnectionStatus = true;
-                //WarningMessage = "";
+                
             }
         }
         public void Disconnect()
         {
-            WarningMessage = "Disconnected !";
+            WarningMessage = "Disconnected";
             ConnectionStatus = false;
+            
         }
         public void Start()
         {
@@ -276,7 +277,7 @@ namespace FlightSimulatorApp.Model
                 {
 
                     simOutput = InfoRequest();
-                    if (simOutput != "Connection Failure !")
+                    if (simOutput != "Connection failure")
                     {
                         InterpretInfo(simOutput);
                     }
@@ -289,44 +290,44 @@ namespace FlightSimulatorApp.Model
 
         private string InfoRequest()
         {
+            string output;
             try
             {
-                string output = connector.WriteCommand("get " + PropertiesSimulatorPath["airSpeed"] + "\n" +
-                    "get " + PropertiesSimulatorPath["altimeter"] + "\n" +
-                    "get " + PropertiesSimulatorPath["altitude"] + "\n" +
-                    "get " + PropertiesSimulatorPath["heading"] + "\n" +
-                    "get " + PropertiesSimulatorPath["roll"] + "\n" +
-                    "get " + PropertiesSimulatorPath["groundSpeed"] + "\n" +
-                    "get " + PropertiesSimulatorPath["pitch"] + "\n" +
-                    "get " + PropertiesSimulatorPath["verticalSpeed"] + "\n" +
-                    "get " + PropertiesSimulatorPath["latitude"] + "\n" +
-                    "get " + PropertiesSimulatorPath["longitude"]
-                    );
+                output = connector.WriteCommand("get " + PropertiesSimulatorPath["airSpeed"] + "\n" +
+                                "get " + PropertiesSimulatorPath["altimeter"] + "\n" +
+                                "get " + PropertiesSimulatorPath["altitude"] + "\n" +
+                                "get " + PropertiesSimulatorPath["heading"] + "\n" +
+                                "get " + PropertiesSimulatorPath["roll"] + "\n" +
+                                "get " + PropertiesSimulatorPath["groundSpeed"] + "\n" +
+                                "get " + PropertiesSimulatorPath["pitch"] + "\n" +
+                                "get " + PropertiesSimulatorPath["verticalSpeed"] + "\n" +
+                                "get " + PropertiesSimulatorPath["latitude"] + "\n" +
+                                "get " + PropertiesSimulatorPath["longitude"]
+                                );
                 while (setCommands.Any())
                 {
                     if (connector.WriteCommand(setCommands.Dequeue().Value) == "ERR")
                     {
                         {
-                            WarningMessage = "Eror updating value in simulator";
+                            WarningMessage = "eror updating value in simulator";
                         }
                     }
 
                 }
-                Console.WriteLine(output);
                 return output;
             }
             catch (TimeoutException e)
             {
-                WarningMessage = "Server is not responding...";
+                WarningMessage = "server is not responding...";
                 Console.WriteLine(e.Message);
-                return "Connection Failure";
+                return "Connection failure";
             }
-            catch
+            catch 
             {
-                WarningMessage = "Connection Failure";
+                WarningMessage = "connection failure";
                 connector.Disconnect();
                 ConnectionStatus = false;
-                return "Connection Failure";
+                return "Connection failure";
             }
 
         }
@@ -349,8 +350,7 @@ namespace FlightSimulatorApp.Model
 
         public void SendControlInfo(string propName)
         {
-            setCommands.Enqueue(new KeyValuePair<string, string>(propName, "set " + PropertiesSimulatorPath[propName] + " " + 
-                typeof(FlightSimulatorModel).GetProperty(propName).GetValue(this, null)));
+            setCommands.Enqueue(new KeyValuePair<string, string>(propName, "set " + PropertiesSimulatorPath[propName] + " " + typeof(FlightSimulatorModel).GetProperty(propName).GetValue(this, null)));
         }
 
         private void InitProperties()
