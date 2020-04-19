@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel;
-using FlightSimulatorApp.Model;
-using System.Windows;
-using FlightSimulatorApp;
+﻿using FlightSimulatorApp.Model;
 using Microsoft.Maps.MapControl.WPF;
-using System.Globalization;
-using System.Windows.Media.Imaging;
-using System.Windows.Data;
+using System;
+using System.ComponentModel;
+using System.Windows;
 
 namespace FlightSimulatorApp.ViewModel
 {
@@ -31,7 +23,7 @@ namespace FlightSimulatorApp.ViewModel
         public StatusBarViewModel()
         {
             this.model = (Application.Current as App).Model;
-            
+
             model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
                 NotifyPropertyChanged("VM_" + e.PropertyName);
@@ -59,13 +51,13 @@ namespace FlightSimulatorApp.ViewModel
             }
             if (propName == "VM_Longitude")
             {
-                VM_Longitude = model.Longitude;
-                VM_Location =  model.Longitude.ToString()+ "," + model.Latitude.ToString(); ;
+                VM_Longitude = Double.Parse(model.Longitude);
+                VM_Location = model.Longitude + "," + model.Latitude; ;
             }
             if (propName == "VM_Latitude")
             {
-                VM_Latitude = model.Latitude;
-                VM_Location = model.Longitude.ToString()+ "," +  model.Latitude.ToString();
+                VM_Latitude = Double.Parse(model.Latitude);
+                VM_Location = model.Longitude + "," + model.Latitude;
             }
 
             if (propName == "VM_WarningMessage")
@@ -85,7 +77,7 @@ namespace FlightSimulatorApp.ViewModel
 
         public Uri VM_ConnectionImagePath
         {
-            get 
+            get
             {
                 return this.connection_image;
             }
@@ -94,7 +86,7 @@ namespace FlightSimulatorApp.ViewModel
                 this.connection_image = value;
                 OnPropertyChanged("VM_ConnectionImagePath");
             }
-            
+
         }
 
         public string VM_ConnectionMessage
@@ -125,9 +117,9 @@ namespace FlightSimulatorApp.ViewModel
 
         }
 
-        public double VM_Longitude 
+        public double VM_Longitude
         {
-            get { return this.longtitude;  }
+            get { return this.longtitude; }
             set
             {
                 this.longtitude = value;
@@ -135,7 +127,7 @@ namespace FlightSimulatorApp.ViewModel
             }
         }
 
-        public double  VM_Latitude
+        public double VM_Latitude
         {
 
             get { return this.latitude; }
@@ -161,7 +153,7 @@ namespace FlightSimulatorApp.ViewModel
             get { return model.Heading; }
         }
 
-        public string VM_MapModeString 
+        public string VM_MapModeString
         {
             get
             {
@@ -173,11 +165,13 @@ namespace FlightSimulatorApp.ViewModel
                 if (value == "Aerial")
                 {
                     VM_MapMode = new AerialMode();
-                } else if (value == "Roads")
+                }
+                else if (value == "Roads")
                 {
                     VM_MapMode = new RoadMode();
 
-                } else if (value == "AerialWithLabels")
+                }
+                else if (value == "AerialWithLabels")
                 {
                     VM_MapMode = new MercatorMode();
                 }
@@ -195,7 +189,7 @@ namespace FlightSimulatorApp.ViewModel
             {
                 this.map_mode = value;
             }
-        } 
+        }
 
         public void OnPropertyChanged(string propName)
         {
