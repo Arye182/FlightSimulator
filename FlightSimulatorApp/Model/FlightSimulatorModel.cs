@@ -174,7 +174,7 @@ namespace FlightSimulatorApp.Model
                     {
                         WarningMessage = "longitude value is illegal";
                     }
-                    longitude = string.Format("0.000", Double.Parse(value));
+                    longitude = String.Format("0.000", Double.Parse(value));
                 }
                 else
                 {
