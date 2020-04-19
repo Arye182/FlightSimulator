@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
-using FlightSimulatorApp.Model;
+﻿using FlightSimulatorApp.Model;
 using FlightSimulatorApp.ViewModel;
-using FlightSimulatorApp.Views;
+using System.Windows;
 
 namespace FlightSimulatorApp
 {
@@ -19,10 +12,9 @@ namespace FlightSimulatorApp
         // properties of view models and the model
         public FlightSimulatorModel Model { get; internal set; }
         public MyJoystickViewModel JoystickVM { get; internal set; }
-        public DashBaordViewModel DashVM { get ; internal set; }
+        public DashBaordViewModel DashVM { get; internal set; }
         public StatusBarViewModel SBVM { get; internal set; }
         public SettingsViewModel SVM { get; internal set; }
-
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {

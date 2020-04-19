@@ -1,24 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows;
-using System.ComponentModel;
 using System.Windows.Media.Animation;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
-
-
-//using FlightSimulator.Model.EventArgs;
-
 
 namespace FlightSimulatorApp.Views
 {
@@ -52,7 +37,6 @@ namespace FlightSimulatorApp.Views
     public partial class Joystick : UserControl
     {
         // this methods are for the joystick
-
         // data members
         private Point knob_point = new Point();
         private Point knob_first_point = new Point();
@@ -62,7 +46,6 @@ namespace FlightSimulatorApp.Views
         // properties
         public static readonly DependencyProperty XProperty = DependencyProperty.Register("X", typeof(double), typeof(Joystick), null);
         public static readonly DependencyProperty YProperty = DependencyProperty.Register("Y", typeof(double), typeof(Joystick), null);
-
         public double X
         {
             get { return Convert.ToDouble(GetValue(XProperty)); }
@@ -80,14 +63,10 @@ namespace FlightSimulatorApp.Views
             }
         }
 
-
-
-
         // delegates
         public delegate void MovementEventHandler(Joystick sender, JoystickEventArgs args);
         public delegate void EmptyJoystickEventHandler(Joystick sender);
-        public delegate void PropertyChangedDelegate(Joystick sender, PropertyChangedEventArgs args );
-
+        public delegate void PropertyChangedDelegate(Joystick sender, PropertyChangedEventArgs args);
 
         // events
         public event MovementEventHandler Moved;
@@ -117,19 +96,21 @@ namespace FlightSimulatorApp.Views
             if (!Knob.IsMouseCaptured) return;
             knob_point.X = e.GetPosition(this).X - knob_first_point.X;
             knob_point.Y = e.GetPosition(this).Y - knob_first_point.Y;
-            if (Math.Sqrt(knob_point.X * knob_point.X + knob_point.Y * knob_point.Y) <= 67)
+            double knob_dist = Math.Round(Math.Sqrt(knob_point.X * knob_point.X + knob_point.Y * knob_point.Y));
+            if (knob_dist >= canvasHeight / 2 || knob_dist >= canvasWidth / 2)
             {
-                knobPosition.X = knob_point.X;
-                knobPosition.Y = knob_point.Y;
-                // convert the X,Y coordinates to range [-1,1]
-                X = (2 * (knobPosition.X + 65) / 130 - 1);
-                Y = (-(knobPosition.Y) / 65);
-                if (Moved == null)
-                {
-                    return;
-                }
-                Moved?.Invoke(this, new JoystickEventArgs { X = X, Y = Y });
+                return;
             }
+            knobPosition.X = knob_point.X;
+            knobPosition.Y = knob_point.Y;
+            // convert the X,Y coordinates to range [-1,1]
+            X = knobPosition.X / 123;
+            Y = -knobPosition.Y / 123;
+            if (Moved == null)
+            {
+                return;
+            }
+            Moved?.Invoke(this, new JoystickEventArgs { X = X, Y = Y });
         }
         private void Knob_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -143,10 +124,8 @@ namespace FlightSimulatorApp.Views
         }
         private void Knob_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-
             Knob.ReleaseMouseCapture();
             centerKnob.Begin();
-
         }
         public void OnPropertyChanged(string name)
         {

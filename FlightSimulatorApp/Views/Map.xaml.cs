@@ -26,7 +26,6 @@ namespace FlightSimulatorApp.Views
         {
             DataContext = (Application.Current as App).SBVM;
             InitializeComponent();
-            
         }
     }
 }

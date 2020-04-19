@@ -17,9 +17,7 @@
                     <MenuItem Name="Exit" Header="Exit" InputGestureText="Ctrl+E" Click="MenuExit_Click"></MenuItem>
                     <Separator></Separator>
                 </MenuItem>
-                
-                
-                
+
                 <MenuItem Header="S_ettings">
                     <MenuItem Header="_Connection Settings" InputGestureText="Ctrl + P" Click="PortIP_Click"></MenuItem>
                     <MenuItem Header="Screen Resolution">
@@ -36,17 +34,12 @@
                     <Separator></Separator>
                 </MenuItem>
                 
-                
-                
                 <MenuItem Header="_Help">
                     <MenuItem Header="Go To GitHub" Click="GitHub_Click"></MenuItem>
                     <MenuItem Header="About" Click="Menu_About"></MenuItem>
                     
                     <Separator></Separator>
                 </MenuItem>
-                
-                
-                
 
             </Menu>
         </StackPanel>

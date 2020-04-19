@@ -1,20 +1,12 @@
-﻿using FlightSimulatorApp.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace FlightSimulatorApp.Views
@@ -32,7 +24,6 @@ namespace FlightSimulatorApp.Views
         {
             DataContext = (Application.Current as App).SBVM;
             InitializeComponent();
-
             DispatcherTimer timer = new DispatcherTimer(DispatcherPriority.Background)
             {
                 Interval = TimeSpan.FromSeconds(1),
@@ -42,17 +33,19 @@ namespace FlightSimulatorApp.Views
             {
                 UpdateTime();
             };
-
         }
+
         public List<TimeZoneInfo> TimeZones
         {
             get { return TimeZoneInfo.GetSystemTimeZones().ToList(); }
         }
+
         public string CurrentTime
         {
             get { return _currenttime; }
             set { _currenttime = value; OnPropertyChanged("CurrentTime"); }
         }
+
         public TimeZoneInfo SelectedTimeZone
         {
             get { return _selectedTimeZone; }
@@ -63,21 +56,22 @@ namespace FlightSimulatorApp.Views
                 UpdateTime();
             }
         }
+
         private void UpdateTime()
         {
             CurrentTime = SelectedTimeZone == null
                    ? DateTime.Now.ToLongTimeString()
                    : DateTime.UtcNow.AddHours(SelectedTimeZone.BaseUtcOffset.TotalHours).ToLongTimeString();
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
+
         public void OnPropertyChanged(string property)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
-
-
-
     }
+
     public class ValueConverter : IValueConverter
     {
         public object Convert(
@@ -92,7 +86,6 @@ namespace FlightSimulatorApp.Views
             throw new NotSupportedException();
         }
     }
-
 
     [ValueConversion(typeof(double), typeof(string))]
     public class DoubleConverter : IValueConverter
@@ -113,7 +106,4 @@ namespace FlightSimulatorApp.Views
             return DependencyProperty.UnsetValue;
         }
     }
-
-
-
 }

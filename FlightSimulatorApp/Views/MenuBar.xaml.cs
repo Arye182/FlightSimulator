@@ -1,20 +1,8 @@
 ﻿using FlightSimulatorApp.Model;
+using FlightSimulatorApp.ViewModel;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Microsoft.Maps.MapControl.WPF;
-using FlightSimulatorApp.ViewModel;
 
 namespace FlightSimulatorApp.Views
 {
@@ -32,19 +20,16 @@ namespace FlightSimulatorApp.Views
             InitializeComponent();
         }
 
-
         private void MenuDisconnect_Click(object sender, RoutedEventArgs e)
         {
             m.Disconnect();
         }
-
 
         private void MenuConnect_Click(object sender, RoutedEventArgs e)
         {
             m.Connect(svm.VM_IP, svm.VM_Port);
             m.Start();
         }
-
 
         private void MenuExit_Click(object sender, RoutedEventArgs e)
         {
@@ -89,7 +74,6 @@ namespace FlightSimulatorApp.Views
             sbvm.VM_MapModeString = "Roads";
         }
 
-
         private void GitHub_Click(object sender, RoutedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://github.com/Arye182/FlightSimulator");
@@ -100,18 +84,10 @@ namespace FlightSimulatorApp.Views
             MessageBox.Show("All rights reserved Arye & Miri 2020 - check GitHub link for more details");
         }
 
-
-
-
         private void PortIP_Click(object sender, RoutedEventArgs e)
         {
             ConnectionSettings cs = new ConnectionSettings();
             cs.Show();
         }
-
-
-        
-
-
     }
 }
