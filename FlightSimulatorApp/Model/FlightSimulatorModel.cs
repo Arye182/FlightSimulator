@@ -91,42 +91,42 @@ namespace FlightSimulatorApp.Model
         public string Altitude
         {
             get { return altitude; }
-            set { altitude = value.IsNormalized() ? string.Format("0.000", Double.Parse(value)) : value; ; NotifyPropertyChanged("Altitude"); }
+            set { altitude = value.Length > 4 ? value.Substring(0, 5) : value; NotifyPropertyChanged("Altitude"); }
         }
         public string Roll
         {
             get { return roll; }
-            set { roll = value.IsNormalized() ? string.Format("0.000", Double.Parse(value)) : value; ; NotifyPropertyChanged("Roll"); }
+            set { roll = value.Length > 4 ? value.Substring(0, 5) : value; NotifyPropertyChanged("Roll"); }
         }
         public string Pitch
         {
             get { return pitch; }
-            set { pitch = value.IsNormalized() ? string.Format("0.000", Double.Parse(value)) : value; ; NotifyPropertyChanged("Pitch"); }
+            set { pitch = value.Length > 4 ? value.Substring(0, 5) : value; NotifyPropertyChanged("Pitch"); }
         }
         public string Altimeter
         {
             get { return altimeter; }
-            set { altimeter = value.IsNormalized() ? string.Format("0.000", Double.Parse(value)) : value; ; NotifyPropertyChanged("Altimeter"); }
+            set { altimeter = value.Length > 4 ? value.Substring(0, 5) : value; NotifyPropertyChanged("Altimeter"); }
         }
         public string Heading
         {
             get { return heading; }
-            set { heading = value.IsNormalized() ? string.Format("0.000", Double.Parse(value)) : value; ; NotifyPropertyChanged("Heading"); }
+            set { heading = value.Length > 4 ? value.Substring(0, 5) : value; NotifyPropertyChanged("Heading"); }
         }
         public string GroundSpeed
         {
             get { return groundSpeed; }
-            set { groundSpeed = value.IsNormalized() ? string.Format("0.000", Double.Parse(value)) : value; ; NotifyPropertyChanged("GroundSpeed"); }
+            set { groundSpeed = value.Length > 4 ? value.Substring(0, 5) : value;  NotifyPropertyChanged("GroundSpeed"); }
         }
         public string VerticalSpeed
         {
             get { return verticalSpeed; }
-            set { verticalSpeed = value.IsNormalized() ? string.Format("0.000", Double.Parse(value)) : value; ; NotifyPropertyChanged("VerticalSpeed"); }
+            set { verticalSpeed = value.Length > 4 ? value.Substring(0, 5) : value ; NotifyPropertyChanged("VerticalSpeed"); }
         }
         public string AirSpeed
         {
             get { return airSpeed; }
-            set {airSpeed = value.IsNormalized() ? string.Format("0.000", Double.Parse(value)) : value; 
+            set {airSpeed = value.Length>4 ? value.Substring(0,5) : value; 
                 NotifyPropertyChanged("AirSpeed"); }
         }
 
@@ -134,13 +134,13 @@ namespace FlightSimulatorApp.Model
         public string Latitude
         {
             get { return latitude; }
-            set { if (value.IsNormalized())
+            set { if (value!="ERR")
                 {
                     if ((Double.Parse(value) > 180) || (Double.Parse(value) < -180))
                     {
                         WarningMessage = "latitude value is illegal";
                     }
-                    latitude = string.Format("0.000", Double.Parse(value));
+                    latitude = value.Length > 4 ? value.Substring(0, 7) : value;
                 }
                 else
                 {
@@ -168,19 +168,19 @@ namespace FlightSimulatorApp.Model
         {
             get { return longitude; }
             set {
-                if (value.IsNormalized())
+                if (value!="ERR")
                 {
                     if ((Double.Parse(value) > 90) || (Double.Parse(value) < -90))
                     {
                         WarningMessage = "longitude value is illegal";
                     }
-                    longitude = String.Format("0.000", Double.Parse(value));
+                    longitude = value.Length>4? value.Substring(0,7) : value;
                 }
                 else
                 {
                     longitude = value; ;
                 }
-                NotifyPropertyChanged("Latitude");
+                NotifyPropertyChanged("Longitude");
             }
         }
 
