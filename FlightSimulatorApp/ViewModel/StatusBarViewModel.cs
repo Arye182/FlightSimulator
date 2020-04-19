@@ -14,8 +14,8 @@ namespace FlightSimulatorApp.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
         private string connected_message = "Disconnected";
         private Uri connection_image = new Uri(@"/Views/Resources/disconnected.png", UriKind.RelativeOrAbsolute);
-        private double longtitude;
-        private double latitude;
+        private string longtitude;
+        private string latitude;
         private string warning_message;
         private string loc = "0,0";
         private MapMode map_mode = new RoadMode();
@@ -51,12 +51,12 @@ namespace FlightSimulatorApp.ViewModel
             }
             if (propName == "VM_Longitude")
             {
-                VM_Longitude = Double.Parse(model.Longitude);
+                VM_Longitude = model.Longitude;
                 VM_Location = model.Longitude + "," + model.Latitude; ;
             }
             if (propName == "VM_Latitude")
             {
-                VM_Latitude = Double.Parse(model.Latitude);
+                VM_Latitude = model.Latitude;
                 VM_Location = model.Longitude + "," + model.Latitude;
             }
 
@@ -117,7 +117,7 @@ namespace FlightSimulatorApp.ViewModel
 
         }
 
-        public double VM_Longitude
+        public string VM_Longitude
         {
             get { return this.longtitude; }
             set
@@ -127,7 +127,7 @@ namespace FlightSimulatorApp.ViewModel
             }
         }
 
-        public double VM_Latitude
+        public string VM_Latitude
         {
 
             get { return this.latitude; }
