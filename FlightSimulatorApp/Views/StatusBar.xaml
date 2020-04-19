@@ -47,9 +47,9 @@
         <StatusBarItem Grid.Column="4" HorizontalAlignment="Left">
             <TextBlock >
                     <Label Content="Lat:"></Label>
-                    <Label Content="{Binding VM_Latitude, Converter={StaticResource DoubleConverter}}"></Label>
+                    <Label Content="{Binding VM_Latitude}"></Label>
                     <Label Content="Lon:"></Label>
-                    <Label Content="{Binding VM_Longitude , Converter={StaticResource DoubleConverter}}"></Label>
+                    <Label Content="{Binding VM_Longitude}"></Label>
             </TextBlock>
         </StatusBarItem>
         <Separator Grid.Column="5" />

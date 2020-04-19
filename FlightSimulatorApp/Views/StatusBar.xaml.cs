@@ -92,6 +92,7 @@ namespace FlightSimulatorApp.Views
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            
             double doubleType = (double)value;
             return doubleType.ToString();
         }
