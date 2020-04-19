@@ -73,7 +73,7 @@ namespace FlightSimulatorApp.Model
         public FlightSimulatorModel(MySimulatorConnector connector)
         {
             this.connector = connector;
-            this.warningMessage = "Welcome! , Please Connect";
+            this.WarningMessage = "Welcome! , Please Connect";
             this.connectionStatus = false;
             this.setCommands = new Queue<KeyValuePair<string, string>>();
             this.InitProperties();
