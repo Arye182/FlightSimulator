@@ -58,11 +58,6 @@ namespace FlightSimulatorApp.Model
             }
             stream.Flush();
             incomingInfo = Encoding.ASCII.GetString(buffer, 0, buffer.Length);
-               
-                //stream.Close();
-            
-
-            // mut.ReleaseMutex();
             return incomingInfo.Substring(0,incomingInfo.IndexOf('\n')+1);
         }
         public void disconnect()
