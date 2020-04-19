@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FlightSimulatorApp.Model
-{//b
-     public interface ISimulatorConnector
+﻿namespace FlightSimulatorApp.Model
+{
+    public interface ISimulatorConnector
     {
-        
-        void connect(string ip, int port);
-        void write(string command);
-        string read();
-        void disconnect();
+        void Connect(string ip, int port);
+        void Write(string command);
+        string Read();
+        void Disconnect();
         string WriteCommand(string command);
     }
 }

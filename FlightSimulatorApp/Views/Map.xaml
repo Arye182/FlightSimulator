@@ -10,7 +10,7 @@
 
     <UserControl.Resources>
         <ControlTemplate x:Key="PushpinControlTemplate" TargetType="m:Pushpin">
-            <Grid Width="24" Height="24">
+            <Grid Width="25" Height="25">
                 <Image>
                     <Image.Source>
                         <BitmapImage UriSource="/Views/Resources/plane-icon.png"/>
@@ -40,7 +40,7 @@
             Height="750" 
             Margin="0,70,0,0"
             CredentialsProvider="0lorjGXdhAaoxKgm8ZCp~3iC811-s_dKqVi3oSUbISA~Aidta9Kv4580M0wRbDmjoWHM1I9mUw6JjmcT43tiNvyrUeAFDXmF9SIf4JLQ6pAu" 
-            ZoomLevel="2" 
+            ZoomLevel="1.55" 
             HorizontalAlignment="Center" 
             VerticalAlignment="Center" 
             Mode="{Binding VM_MapMode, Mode=TwoWay}">

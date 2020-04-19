@@ -1,22 +1,15 @@
-﻿using System;
+﻿using FlightSimulatorApp.Model;
+using System;
 using System.ComponentModel;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FlightSimulatorApp.Model;
-using FlightSimulatorApp;
 using System.Windows;
 
 namespace FlightSimulatorApp.ViewModel
 {
     public class DashBaordViewModel : INotifyPropertyChanged
     {
-        private FlightSimulatorModel model;
+        private readonly FlightSimulatorModel model;
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-
         public DashBaordViewModel()
         {
             this.model = (Application.Current as App).Model; ;
@@ -25,7 +18,6 @@ namespace FlightSimulatorApp.ViewModel
                 NotifyPropertyChanged("VM_" + e.PropertyName);
             };
         }
-
         public void NotifyPropertyChanged(string propName)
         {
             if (PropertyChanged != null)
@@ -33,8 +25,6 @@ namespace FlightSimulatorApp.ViewModel
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
         }
-
-
         public string VM_Altitude
         {
             get { return model.Altitude; }
@@ -57,8 +47,8 @@ namespace FlightSimulatorApp.ViewModel
         }
         public string VM_GroundSpeed
         {
-            get { return  model.GroundSpeed;}
-}
+            get { return model.GroundSpeed; }
+        }
         public string VM_VerticalSpeed
         {
             get { return model.VerticalSpeed; }
@@ -67,6 +57,5 @@ namespace FlightSimulatorApp.ViewModel
         {
             get { return model.AirSpeed; }
         }
-
     }
 }

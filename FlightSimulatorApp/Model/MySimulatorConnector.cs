@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Net.Sockets;
+using System.Text;
 using System.Threading;
 
 namespace FlightSimulatorApp.Model
@@ -11,30 +8,33 @@ namespace FlightSimulatorApp.Model
     public class MySimulatorConnector : ISimulatorConnector
     {
 
-        private static Mutex mut = new Mutex();
+        private static readonly Mutex mut = new Mutex();
         TcpClient my_client;
         public int conectionAttempts;
         public bool isConnected = false;
-        public void connect(string ip, int port) { 
-                my_client = new TcpClient(ip, port);
-                isConnected = true;
+        public void Connect(string ip, int port)
+        {
+            my_client = new TcpClient(ip, port);
+            isConnected = true;
 
         }
-        public void write(string command)
+        public void Write(string command)
         {
-            //mut.WaitOne();
-            byte[] buffer = Encoding.ASCII.GetBytes(command+"\n");
-            
-            try {
+            byte[] buffer = Encoding.ASCII.GetBytes(command + "\n");
+
+            try
+            {
                 NetworkStream stream = this.my_client.GetStream();
                 stream.Flush();
                 stream.Write(buffer, 0, buffer.Length);
                 Console.WriteLine("enter write scope");
-            }  catch {
-                
+            }
+            catch
+            {
+
             }
         }
-        public string read()
+        public string Read()
         {
             my_client.ReceiveTimeout = 10000;
             string incomingInfo;
@@ -51,9 +51,9 @@ namespace FlightSimulatorApp.Model
             }
             stream.Flush();
             incomingInfo = Encoding.ASCII.GetString(buffer, 0, buffer.Length);
-            return incomingInfo.Substring(0,incomingInfo.IndexOf('\n')+1);
+            return incomingInfo.Substring(0, incomingInfo.IndexOf('\n') + 1);
         }
-        public void disconnect()
+        public void Disconnect()
         {
             if (isConnected)
             {
@@ -67,15 +67,13 @@ namespace FlightSimulatorApp.Model
         {
             Console.WriteLine(command);
             string[] commands = command.Split('\n');
-            //Console.WriteLine(commands.ToString());
             string output = "";
             foreach (var word in commands)
             {
-                
                 Console.WriteLine(word);
                 mut.WaitOne();
-                write(word);
-                output += read();
+                Write(word);
+                output += Read();
                 Console.WriteLine(output);
                 mut.ReleaseMutex();
             }
