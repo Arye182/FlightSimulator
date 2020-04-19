@@ -313,9 +313,10 @@ namespace FlightSimulatorApp.Model
             catch(TimeoutException e)
             {
                 WarningMessage = "server is not responding...";
+                Console.WriteLine(e.Message);
                 return "Connection failure";
             }
-            catch(Exception e)
+            catch
             {
                 WarningMessage = "connection failure";
                 connector.disconnect();

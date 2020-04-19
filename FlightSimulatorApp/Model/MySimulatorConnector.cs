@@ -30,7 +30,7 @@ namespace FlightSimulatorApp.Model
                 stream.Flush();
                 stream.Write(buffer, 0, buffer.Length);
                 Console.WriteLine("enter write scope");
-            }  catch(Exception ex) {
+            }  catch {
                 
             }
         }
@@ -46,6 +46,7 @@ namespace FlightSimulatorApp.Model
             }
             catch (System.IO.IOException e)
             {
+                Console.WriteLine(e.Message);
                 throw new TimeoutException();
             }
             stream.Flush();
