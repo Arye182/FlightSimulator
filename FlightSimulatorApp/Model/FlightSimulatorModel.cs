@@ -75,7 +75,7 @@ namespace FlightSimulatorApp.Model
         public FlightSimulatorModel(MySimulatorConnector connector)
         {
             this.connector = connector;
-            this.WarningMessage = "no message yet";
+            this.WarningMessage = "please connect";
             this.connectionStatus = false;
             this.setCommands = new Queue<KeyValuePair<string, string>>();
         }
@@ -134,13 +134,15 @@ namespace FlightSimulatorApp.Model
         public string Latitude
         {
             get { return latitude; }
-            set { if (value!="ERR")
+            set { if (value != "ERR")
                 {
-                    if ((Double.Parse(value) > 180) || (Double.Parse(value) < -180))
+                    if ((Double.Parse(value) > 85) || (Double.Parse(value) < -85))
                     {
-                        WarningMessage = "latitude value is illegal";
+                        WarningMessage = "latitude/longitude value is illegal";
                     }
+                    else { 
                     latitude = value.Length > 4 ? value.Substring(0, 7) : value;
+                }
                 }
                 else
                 {
@@ -170,11 +172,14 @@ namespace FlightSimulatorApp.Model
             set {
                 if (value!="ERR")
                 {
-                    if ((Double.Parse(value) > 90) || (Double.Parse(value) < -90))
+                    if ((Double.Parse(value) > 180) || (Double.Parse(value) < -180))
                     {
-                        WarningMessage = "longitude value is illegal";
+                        WarningMessage = "longitude/latitude value is illegal";
                     }
-                    longitude = value.Length>4? value.Substring(0,7) : value;
+                    else
+                    {
+                        longitude = value.Length > 4 ? value.Substring(0, 7) : value;
+                    }
                 }
                 else
                 {
@@ -237,6 +242,7 @@ namespace FlightSimulatorApp.Model
 
         public void Connect(string ip, int port)
         {
+            WarningMessage = "trying to connect...";
             try {
                 this.connector.connect(ip, port);
             }
@@ -247,6 +253,7 @@ namespace FlightSimulatorApp.Model
             if (connector.isConnected)
             {
                 ConnectionStatus = true;
+                //WarningMessage = "";
             }
         }
         public void Disconnect()

@@ -16,16 +16,8 @@ namespace FlightSimulatorApp.Model
         public int conectionAttempts;
         public bool isConnected = false;
         public void connect(string ip, int port) { 
-             
-                Console.WriteLine("connecting to ip: {0}, port: {1}", ip, port.ToString());
                 my_client = new TcpClient(ip, port);
                 isConnected = true;
-                //write_stream = my_client.GetStream();
-                //write_stream.Flush();
-                //read_stream = my_client.GetStream();
-                //read_stream.Flush();
-                
-                //Console.WriteLine("Connected!");
 
         }
         public void write(string command)
