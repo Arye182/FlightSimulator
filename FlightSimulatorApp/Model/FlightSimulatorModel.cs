@@ -91,49 +91,63 @@ namespace FlightSimulatorApp.Model
         public string Altitude
         {
             get { return altitude; }
-            set { altitude = value; NotifyPropertyChanged("Altitude"); }
+            set { altitude = value.IsNormalized() ? string.Format("0.000", Double.Parse(value)) : value; ; NotifyPropertyChanged("Altitude"); }
         }
         public string Roll
         {
             get { return roll; }
-            set { roll = value; NotifyPropertyChanged("Roll"); }
+            set { roll = value.IsNormalized() ? string.Format("0.000", Double.Parse(value)) : value; ; NotifyPropertyChanged("Roll"); }
         }
         public string Pitch
         {
             get { return pitch; }
-            set { pitch = value; NotifyPropertyChanged("Pitch"); }
+            set { pitch = value.IsNormalized() ? string.Format("0.000", Double.Parse(value)) : value; ; NotifyPropertyChanged("Pitch"); }
         }
         public string Altimeter
         {
             get { return altimeter; }
-            set { altimeter = value; NotifyPropertyChanged("Altimeter"); }
+            set { altimeter = value.IsNormalized() ? string.Format("0.000", Double.Parse(value)) : value; ; NotifyPropertyChanged("Altimeter"); }
         }
         public string Heading
         {
             get { return heading; }
-            set { heading = value; NotifyPropertyChanged("Heading"); }
+            set { heading = value.IsNormalized() ? string.Format("0.000", Double.Parse(value)) : value; ; NotifyPropertyChanged("Heading"); }
         }
         public string GroundSpeed
         {
             get { return groundSpeed; }
-            set { groundSpeed = value; NotifyPropertyChanged("GroundSpeed"); }
+            set { groundSpeed = value.IsNormalized() ? string.Format("0.000", Double.Parse(value)) : value; ; NotifyPropertyChanged("GroundSpeed"); }
         }
         public string VerticalSpeed
         {
             get { return verticalSpeed; }
-            set { verticalSpeed = value; NotifyPropertyChanged("VerticalSpeed"); }
+            set { verticalSpeed = value.IsNormalized() ? string.Format("0.000", Double.Parse(value)) : value; ; NotifyPropertyChanged("VerticalSpeed"); }
         }
         public string AirSpeed
         {
             get { return airSpeed; }
-            set { airSpeed = value; NotifyPropertyChanged("AirSpeed"); }
+            set {airSpeed = value.IsNormalized() ? string.Format("0.000", Double.Parse(value)) : value; 
+                NotifyPropertyChanged("AirSpeed"); }
         }
 
         /*StatusBar properties*/
         public string Latitude
         {
             get { return latitude; }
-            set { latitude = value; NotifyPropertyChanged("Latitude"); }
+            set { if (value.IsNormalized())
+                {
+                    if ((Double.Parse(value) > 180) || (Double.Parse(value) < -180))
+                    {
+                        WarningMessage = "latitude value is illegal";
+                    }
+                    latitude = string.Format("0.000", Double.Parse(value));
+                }
+                else
+                {
+                    latitude = value; ;
+                }
+                NotifyPropertyChanged("Latitude");
+            }  
         }
         public bool ConnectionStatus
         {
@@ -153,7 +167,21 @@ namespace FlightSimulatorApp.Model
         public string Longitude
         {
             get { return longitude; }
-            set { longitude = value; NotifyPropertyChanged("Longitude"); }
+            set {
+                if (value.IsNormalized())
+                {
+                    if ((Double.Parse(value) > 90) || (Double.Parse(value) < -90))
+                    {
+                        WarningMessage = "longitude value is illegal";
+                    }
+                    longitude = string.Format("0.000", Double.Parse(value));
+                }
+                else
+                {
+                    longitude = value; ;
+                }
+                NotifyPropertyChanged("Latitude");
+            }
         }
 
         /*joistick properties*/
