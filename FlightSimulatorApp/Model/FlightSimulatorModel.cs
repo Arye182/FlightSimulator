@@ -259,7 +259,7 @@ namespace FlightSimulatorApp.Model
             if (connector.isConnected)
             {
                 ConnectionStatus = true;
-                //WarningMessage = "";
+                
             }
         }
         public void Disconnect()
@@ -289,7 +289,7 @@ namespace FlightSimulatorApp.Model
 
         private string InfoRequest()
         {
-            string output = "";
+            string output;
             try
             {
                 output = connector.WriteCommand("get " + PropertiesSimulatorPath["airSpeed"] + "\n" +
@@ -313,19 +313,18 @@ namespace FlightSimulatorApp.Model
                     }
 
                 }
-                Console.WriteLine(output);
                 return output;
             }
             catch (TimeoutException e)
             {
                 WarningMessage = "server is not responding...";
+                Console.WriteLine(e.Message);
                 return "Connection failure";
             }
-            catch (Exception e)
+            catch 
             {
                 WarningMessage = "connection failure";
                 connector.disconnect();
-                //connector.isConnected = false;
                 ConnectionStatus = false;
                 return "Connection failure";
             }

@@ -29,7 +29,6 @@ namespace FlightSimulatorApp.Model
                 NetworkStream stream = this.my_client.GetStream();
                 stream.Flush();
                 stream.Write(buffer, 0, buffer.Length);
-                Console.WriteLine("enter write scope");
             }  catch {
                 
             }
@@ -57,7 +56,6 @@ namespace FlightSimulatorApp.Model
         {
             if (isConnected)
             {
-                Console.WriteLine("disconnect");
                 this.my_client.Close();
                 isConnected = false;
             }
@@ -65,21 +63,15 @@ namespace FlightSimulatorApp.Model
 
         public string WriteCommand(string command)
         {
-            Console.WriteLine(command);
             string[] commands = command.Split('\n');
-            //Console.WriteLine(commands.ToString());
             string output = "";
             foreach (var word in commands)
             {
-                
-                Console.WriteLine(word);
                 mut.WaitOne();
                 write(word);
                 output += read();
-                Console.WriteLine(output);
                 mut.ReleaseMutex();
             }
-            Console.WriteLine("reach end of for scope");
             return output;
         }
     }
