@@ -1,9 +1,7 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Threading;
 
 namespace FlightSimulatorApp.Model
@@ -116,40 +114,46 @@ namespace FlightSimulatorApp.Model
         public string GroundSpeed
         {
             get { return groundSpeed; }
-            set { groundSpeed = value.Length > 4 ? value.Substring(0, 5) : value;  NotifyPropertyChanged("GroundSpeed"); }
+            set { groundSpeed = value.Length > 4 ? value.Substring(0, 5) : value; NotifyPropertyChanged("GroundSpeed"); }
         }
         public string VerticalSpeed
         {
             get { return verticalSpeed; }
-            set { verticalSpeed = value.Length > 4 ? value.Substring(0, 5) : value ; NotifyPropertyChanged("VerticalSpeed"); }
+            set { verticalSpeed = value.Length > 4 ? value.Substring(0, 5) : value; NotifyPropertyChanged("VerticalSpeed"); }
         }
         public string AirSpeed
         {
             get { return airSpeed; }
-            set {airSpeed = value.Length>4 ? value.Substring(0,5) : value; 
-                NotifyPropertyChanged("AirSpeed"); }
+            set
+            {
+                airSpeed = value.Length > 4 ? value.Substring(0, 5) : value;
+                NotifyPropertyChanged("AirSpeed");
+            }
         }
 
         /*StatusBar properties*/
         public string Latitude
         {
             get { return latitude; }
-            set { if (value != "ERR")
+            set
+            {
+                if (value != "ERR")
                 {
-                    if ((Double.Parse(value) > 85) || (Double.Parse(value) < -85))
+                    if ((Double.Parse(value) >= 85) || (Double.Parse(value) <= -85))
                     {
                         WarningMessage = "latitude/longitude value is illegal";
                     }
-                    else { 
-                    latitude = value.Length > 4 ? value.Substring(0, 7) : value;
-                }
+                    else
+                    {
+                        latitude = value.Length > 4 ? value.Substring(0, 7) : value;
+                    }
                 }
                 else
                 {
                     latitude = value; ;
                 }
                 NotifyPropertyChanged("Latitude");
-            }  
+            }
         }
         public bool ConnectionStatus
         {
@@ -169,10 +173,11 @@ namespace FlightSimulatorApp.Model
         public string Longitude
         {
             get { return longitude; }
-            set {
-                if (value!="ERR")
+            set
+            {
+                if (value != "ERR")
                 {
-                    if ((Double.Parse(value) > 180) || (Double.Parse(value) < -180))
+                    if ((Double.Parse(value) >= 180) || (Double.Parse(value) <= -180))
                     {
                         WarningMessage = "longitude/latitude value is illegal";
                     }
@@ -207,7 +212,7 @@ namespace FlightSimulatorApp.Model
             get
             {
                 return aileron;
-                
+
             }
             set
             {
@@ -224,7 +229,7 @@ namespace FlightSimulatorApp.Model
             set
             {
                 rudder = value;
-               SendControlInfo("Rudder");
+                SendControlInfo("Rudder");
             }
         }
         public double Throttle
@@ -243,7 +248,8 @@ namespace FlightSimulatorApp.Model
         public void Connect(string ip, int port)
         {
             WarningMessage = "trying to connect...";
-            try {
+            try
+            {
                 this.connector.connect(ip, port);
             }
             catch
@@ -264,21 +270,21 @@ namespace FlightSimulatorApp.Model
         }
         public void Start()
         {
-                Thread t = new Thread(delegate ()
+            Thread t = new Thread(delegate ()
+            {
+                while (connectionStatus)
                 {
-                    while (connectionStatus)
-                    {
 
-                        simOutput  = InfoRequest();
-                        if (simOutput != "Connection failure")
-                        {
-                            InterpretInfo(simOutput);
-                        }
-                        Thread.Sleep(250);
+                    simOutput = InfoRequest();
+                    if (simOutput != "Connection failure")
+                    {
+                        InterpretInfo(simOutput);
                     }
-                    connector.disconnect();
-                });
-                t.Start();   
+                    Thread.Sleep(250);
+                }
+                connector.disconnect();
+            });
+            t.Start();
         }
 
         private string InfoRequest()
@@ -294,8 +300,8 @@ namespace FlightSimulatorApp.Model
                                 "get " + PropertiesSimulatorPath["groundSpeed"] + "\n" +
                                 "get " + PropertiesSimulatorPath["pitch"] + "\n" +
                                 "get " + PropertiesSimulatorPath["verticalSpeed"] + "\n" +
-                                "get " + PropertiesSimulatorPath["longitude"] + "\n" +
-                                "get " + PropertiesSimulatorPath["latitude"]
+                                "get " + PropertiesSimulatorPath["latitude"] + "\n" +
+                                "get " + PropertiesSimulatorPath["longitude"]
                                 );
                 while (setCommands.Any())
                 {
@@ -310,13 +316,12 @@ namespace FlightSimulatorApp.Model
                 Console.WriteLine(output);
                 return output;
             }
-            catch(TimeoutException e)
+            catch (TimeoutException e)
             {
                 WarningMessage = "server is not responding...";
-                Console.WriteLine(e.Message);
                 return "Connection failure";
             }
-            catch
+            catch (Exception e)
             {
                 WarningMessage = "connection failure";
                 connector.disconnect();
@@ -324,7 +329,7 @@ namespace FlightSimulatorApp.Model
                 ConnectionStatus = false;
                 return "Connection failure";
             }
-            
+
         }
 
         private void InterpretInfo(string info)
@@ -360,6 +365,6 @@ namespace FlightSimulatorApp.Model
             VerticalSpeed = "0.000";
             AirSpeed = "0.000";
         }
-        
-}
+
+    }
 }

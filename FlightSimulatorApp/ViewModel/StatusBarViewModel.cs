@@ -52,12 +52,12 @@ namespace FlightSimulatorApp.ViewModel
             if (propName == "VM_Longitude")
             {
                 VM_Longitude = model.Longitude;
-                VM_Location = model.Longitude + "," + model.Latitude; ;
+                VM_Location =  model.Latitude + "," + model.Longitude; ;
             }
             if (propName == "VM_Latitude")
             {
                 VM_Latitude = model.Latitude;
-                VM_Location = model.Longitude + "," + model.Latitude;
+                VM_Location = model.Latitude + "," + model.Longitude;
             }
 
             if (propName == "VM_WarningMessage")
@@ -173,7 +173,7 @@ namespace FlightSimulatorApp.ViewModel
                 }
                 else if (value == "AerialWithLabels")
                 {
-                    VM_MapMode = new MercatorMode();
+                    VM_MapMode = new AerialMode(true);
                 }
                 OnPropertyChanged("VM_MapMode");
             }
